@@ -59,7 +59,14 @@ function Door(){
             
             <div style={{opacity: show}} id='scroll'>
                 <img src={scroll} alt="scroll" id='scroll'/>
-                <p>How to play</p>
+                    <h1>How to Play</h1>
+                <p>  Welcome to the Ruins of Alexandria <br />
+                    An ancient artifact of immense power lies hidden, awaiting a soul to unveil its secrets.
+                    Traverse the lands and undertake the many quests that test your courage and wit.
+                    But beware, for each failed challenge costs a <span style={{color:"red"}}>LIFE</span>, and you have but <span style={{color:"red"}}>TEN</span>.
+                    Keep your eyes sharp for <span style={{color:"red"}}>CLUES</span> within the mini games, for they may guide you in <span style={{color:"red"}}>future quests</span>.
+                    May fortune favor you and your heart remain steadfast in this land of ancient wonder.
+                </p>
             </div>
             
         </main>

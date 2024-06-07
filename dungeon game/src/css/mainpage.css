@@ -3,6 +3,11 @@
     src: url('../assets/MoriaCitadel.TTF');
 }
 
+@font-face {
+    font-family: 'potter';
+    src: url('../assets/ya.otf');
+}
+
 header{
     display: flex;
     flex-direction: row;
@@ -159,8 +164,10 @@ main div{
 }
 
 #scroll img{
+    width: 30rem;
+    height: auto;
     position: relative;
-    top: -1.5rem;
+    top: -4.5rem;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -169,11 +176,27 @@ main div{
     position: absolute;
     z-index: 1;
     color: black;
-    font-size: 25px;
-    top: -10rem;
+    font-size: 20px;
+    top: -3rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    width: 20rem;
+    margin: 0;
+    font-family: 'potter';
+    line-height: 30px;
+}
+
+#scroll h1{
+    position: absolute;
+    z-index: 1;
+    color: rgb(214, 152, 94);
+    font-size: 30px;
+    top: -22rem;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
     width: 19rem;
     margin: 0;
+    font-family: 'brick';
 }
