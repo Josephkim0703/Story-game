@@ -1,0 +1,57 @@
+@font-face {
+    font-family: 'brick';
+    src: url('../assets/MoriaCitadel.TTF');
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 3rem;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+header h1{
+    font-family: "brick";
+    margin: 12px;
+    font-size: 19px;
+    mix-blend-mode: difference;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 5px black;
+    z-index: 1;
+}
+
+header a{  
+    mix-blend-mode: difference; 
+    font-size: 1.5rem; 
+    text-shadow: 2px 2px 4px black;
+    color: rgb(255, 255, 255);
+    margin: 10px;
+    transition: color 0.3s ease;
+}
+
+header a:hover{
+    color: rgb(141, 141, 141);
+}
+
+#links{
+    z-index: 1;
+    position: relative;
+    margin: 12px; 
+    mix-blend-mode: difference; 
+}
+
+main{
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    text-align: center;
+}
+
+main h1{
+   
+}
+
+
+
