@@ -112,6 +112,11 @@ main img {
     left: 2.6rem;
 }
 
+#start:hover h1{
+    text-shadow: 0px 0px 8px orange;
+}
+
+
 main div{
     z-index: -1;
     width: 7rem;
@@ -157,7 +162,12 @@ main div{
     transform: translate(-50%, -50%); 
 }
 
+#rules:hover h1{
+    text-shadow: 0px 0px 8px orange;
+}
+
 #scroll{
+    
     z-index: 5;
     transition: opacity 0.5s;
     position: relative;
@@ -200,3 +210,4 @@ main div{
     margin: 0;
     font-family: 'brick';
 }
+

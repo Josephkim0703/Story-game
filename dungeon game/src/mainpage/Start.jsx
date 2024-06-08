@@ -9,6 +9,7 @@ function Door(){
     const [hover, setHover] = useState(false);
     const [opacity, setOpacity] = useState(1);
     const [show, setShow] = useState("0");
+    const [display, setDisplay] = useState("");
 
         document.addEventListener('click', (e) =>{
             if (!e.target.closest('#rules')) {
@@ -22,22 +23,28 @@ function Door(){
 
     const start = () => {
       setOpacity(0);  
+      
+      setTimeout(() => {
+        setDisplay("none");
+      }, 3000);
     };
     const mouseon = () => {
         setHover(true);
+        
     }
 
     const mouseoff = () => {
         setHover(false);
+        setGlow("")
     }
 
     
     const style = {
-        backgroundColor: hover? "rgb(158, 0, 0)" : "black"
+        backgroundColor: hover? "rgb(158, 0, 0)" : "black",
     }
 
     return(
-        <main style={{opacity: opacity}}>
+        <main style={{opacity: opacity, display: display}}>
             <h1>Ruins of Alexandria</h1>        
                 <img src={logo} alt="image" /> 
                     <button type='button' 
@@ -51,7 +58,7 @@ function Door(){
 
                     <button type='button' 
                         id='rules' 
-                        onClick={rules}>
+                        onClick={rules}>     
                             <img src={button} alt="Rules"/>
                                 <h1>Rules</h1>
                     </button>
