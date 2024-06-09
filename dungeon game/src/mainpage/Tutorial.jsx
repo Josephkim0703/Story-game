@@ -1,17 +1,20 @@
 import React, {useState , useEffect} from 'react';
 import '../css/mainpage.css';
 
-function Tutorial(){
+function Tutorial(props){
 
 const [userName, setUsername] = useState("");
-const [visible, setVisibility] = useState(false);
-const [count, setCount] = useState(0);
 const [placeHolder, setplaceHolder] = useState('Username...');
+
+const [visible, setVisibility] = useState(false);
 const [hide, setHide] = useState(true);
 const [hide1, setHide1] = useState(false);
 const [hide2, setHide2] = useState(true);
+
 const [display, setDisplay] = useState("none");
 const [opacity, setOpacity] = useState(0);
+const [count, setCount] = useState(0);
+const [hover, setHover] = useState(false);
 
 const text = [
     'Hello traveler! The name is Thornwood, nice to meet you!',
@@ -54,7 +57,7 @@ const forward = () => {
             setOpacity(1);
         },1000);       
     }
-}
+};
 
 //function when backward button is clicked moves text backward
 const back = () => {
@@ -63,7 +66,7 @@ const back = () => {
     if(count <= 4){
         setHide1(false);
     }
-}
+};
 
 //updates username once its clicked
 const update = (e) => {
@@ -79,7 +82,20 @@ const set = () => {
         setVisibility(false);
         setHide(true);
     }
+};
+
+function exit() {
+    setHover(false);
 }
+
+function enter() {
+    setHover(true);
+}
+
+const style = {
+    color: hover? 'orange' : '',
+};
+
 
 return(
     <div id='playerPrompts'>
@@ -101,8 +117,10 @@ return(
                 </div>
             }
     
-            <button type='button' id='arrow' onClick="" style={{opacity : opacity, display : display}}><h2>&#129178;</h2></button>
-        
+            <div id='arrow' style={{opacity : opacity, display : display}}>
+                <button type='button' onClick={props.start} onMouseEnter={enter} onMouseLeave={exit}></button>
+                <h2 style={style}>&#129178;</h2>
+            </div>
     </div>
 );
 }

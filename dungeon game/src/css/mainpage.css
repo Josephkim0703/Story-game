@@ -223,6 +223,10 @@ main div{
     margin: 0;
 }
 
+#playerPrompts button{
+    cursor: pointer;
+}
+
 #inputBox input{
     border: 2px solid black;
     background-color: rgba(240, 248, 255, 0.75);
@@ -306,33 +310,43 @@ main div{
 
 #arrow{
     position: relative;
-    top: 40rem;
-    left: 64%;
+    top: 37rem;
+    left: 61.5%;
     transform: translate(-50%, -50%);
     background-color: transparent;
-    border: 2px solid black;
     font-size: 80px;
-    width: 12rem;
+    width: 6.5rem;
     height: 5rem;
-    transition: opacity 2s ease;
+    transition: opacity 1.5s ease;
+    transform: scale(2, 1) rotate(-50deg);
+    animation: hover 3s infinite; 
+}
+
+#arrow button{
+    position: absolute;
+    top: 2rem;
+    left: 3rem;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    font-size: 80px;
+    width: 6.5rem;
+    height: 5rem;
+    z-index: 1;
+    border: 0px;
 }
 
 #arrow h2{  
-    border: 1px solid black;
+    color: rgb(204, 3, 3);
     margin: 0;
- 
+    padding: 0; 
     font-size: 10rem;
     position: absolute;
-    top: -5rem;
-    left: 2rem;
-    display:inline-block;
-    transform:scale(2,1) rotate(-50deg);
+    top: -5rem; 
+    left: -1rem;
+    z-index: 0;
+    text-shadow: -4px 3px 1px black;
 }
 
-#arrow:hover h2{
-    color: orange;
-    text-shadow: 0px 0px 5px black;
-}
 
 video{
     pointer-events: none;
@@ -359,6 +373,14 @@ video{
     z-index: 0;
 }
 
-@keyframes hover{
-
+@keyframes hover {
+    0% {
+        transform: translateY(0) scale(2, 1) rotate(-50deg);
+    }
+    50% {
+        transform: translateY(-20px) scale(2, 1) rotate(-50deg); /* Move up by 10px */
+    }
+    100% {
+        transform: translateY(0) scale(2, 1) rotate(-50deg);
+    }
 }

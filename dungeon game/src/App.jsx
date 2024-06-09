@@ -3,10 +3,15 @@ import Intro from './mainpage/Intro.jsx';
 import './css/App.css';
 
 function App() {
+  const [hide, setHide] = useState(true);
+
+  const startGame = () => {
+    setHide(false);
+  };
 
   return(
     <>
-    <Intro/>
+    {hide &&  <Intro start={startGame}/>}
     </>
   )
  

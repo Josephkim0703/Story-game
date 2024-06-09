@@ -5,7 +5,7 @@ import video from '../assets/background.mp4';
 import Town from '../assets/background-town.jpeg';
 import {useState} from 'react';
 
-function Intro() {
+function Intro(props) {
 
   const [complete, setComplete] = useState(false);
   const [done, setDone] = useState(true);
@@ -15,13 +15,14 @@ function Intro() {
   const start = () => {
     setComplete(true);
     setDone(false);
-    console.log('success');
   }
 
   const videoChange = () => {
-    const x = setPosition("-6%, 25%");
-    const y = setZoom("7");
+    setPosition("-6%, 25%");
+    setZoom("7");
   }
+
+
 
   return(
     <>
@@ -35,7 +36,7 @@ function Intro() {
 
     {complete && 
     <>
-      <Tutorial/>
+      <Tutorial start={props.start}/>
       <img src={Town} alt="background-Image" id='background-town'/>
     </>
     }
