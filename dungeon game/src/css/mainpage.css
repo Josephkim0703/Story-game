@@ -4,8 +4,13 @@
 }
 
 @font-face {
-    font-family: 'potter';
-    src: url('../assets/ya.otf');
+    font-family: 'cursive';
+    src: url('../assets/BLKCHCRY.TTF');
+}
+
+@font-face {
+    font-family: 'Main';
+    src: url('../assets/main.otf');
 }
 
 header{
@@ -78,6 +83,17 @@ main img {
     transform: translate(-50%, -50%);
 
 }
+
+main div{
+    z-index: -1;
+    width: 7rem;
+    height: 2rem;
+    position: absolute;
+    top: 22rem;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    transition: background-color 0.5s;
+}
   
 #start {
     width: 14.5rem;
@@ -114,19 +130,6 @@ main img {
 
 #start:hover h1{
     text-shadow: 0px 0px 8px orange;
-}
-
-
-main div{
-    z-index: -1;
-    width: 7rem;
-    height: 2rem;
-
-    position: absolute;
-    top: 22rem;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    transition: background-color 0.5s;
 }
 
 #rules img{
@@ -211,3 +214,151 @@ main div{
     font-family: 'brick';
 }
 
+#playerPrompts{
+    position: relative;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    text-align: center;
+    margin: 0;
+}
+
+#inputBox input{
+    border: 2px solid black;
+    background-color: rgba(240, 248, 255, 0.75);
+    width: 15rem;
+    height: 3rem;
+    border-radius: 1rem;
+    font-size: 30px;
+    padding: 0px 10px;
+    font-family: 'cursive';
+}
+
+#inputBox{
+    width: 17rem;
+    position: relative;
+    top: 38rem;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+#inputBox button{
+    font-weight: 900;
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    left: 83%;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%; 
+    border: 2px solid black;
+    background-color:rgb(202, 5, 5) ;
+}
+
+#inputBox button:hover{
+    background-color: rgb(76, 190, 76);
+}
+
+#textBox{
+    position: absolute;
+    top: 33rem;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    border: 2px solid black;
+    background-color: rgba(240, 248, 255, 0.75);
+    width: 35rem;
+    height: auto;
+    border-radius: 1rem;
+}
+
+#textBox p{
+    font-weight: 500;
+    font-family: 'main';
+    margin: 15px;
+    font-size: 30px;
+}
+
+#textBox h2{
+    margin: 0;
+    font-size: 40px;
+    position: absolute;
+    top: -16px;
+    left: 15px;
+}
+
+#textBox button{
+    position: relative;
+    width: 4rem;
+    height: 1.5rem;
+    padding: 0;
+    border-radius: 5px; 
+    border: none; 
+    margin: 5px 5px 10px 5px;
+    background-color: transparent;
+    display: inline-block;
+    vertical-align: middle; 
+}
+
+#textBox button:hover h2{
+  color: orange;
+  text-shadow: 0px 0px 2px black;
+}
+
+#arrow{
+    position: relative;
+    top: 40rem;
+    left: 64%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    border: 2px solid black;
+    font-size: 80px;
+    width: 12rem;
+    height: 5rem;
+    transition: opacity 2s ease;
+}
+
+#arrow h2{  
+    border: 1px solid black;
+    margin: 0;
+ 
+    font-size: 10rem;
+    position: absolute;
+    top: -5rem;
+    left: 2rem;
+    display:inline-block;
+    transform:scale(2,1) rotate(-50deg);
+}
+
+#arrow:hover h2{
+    color: orange;
+    text-shadow: 0px 0px 5px black;
+}
+
+video{
+    pointer-events: none;
+    width: auto;
+    height: 1080px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 0;
+}
+
+#introPage{
+    transition: transform 6s ease;
+}
+
+#background-town{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 0;
+}
+
+@keyframes hover{
+
+}

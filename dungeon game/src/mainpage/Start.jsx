@@ -4,7 +4,7 @@ import button from '../assets/button.png';
 import scroll from '../assets/scroll.png';
 import {useState} from 'react';
 
-function Door(){
+function Start(props){
 
     const [hover, setHover] = useState(false);
     const [opacity, setOpacity] = useState(1);
@@ -23,10 +23,11 @@ function Door(){
 
     const start = () => {
       setOpacity(0);  
-      
+      props.zoom();
       setTimeout(() => {
         setDisplay("none");
-      }, 3000);
+        props.next();
+      }, 3500);
     };
     const mouseon = () => {
         setHover(true);
@@ -35,7 +36,6 @@ function Door(){
 
     const mouseoff = () => {
         setHover(false);
-        setGlow("")
     }
 
     
@@ -80,4 +80,4 @@ function Door(){
     )
 }
 
-export default Door;
+export default Start;
