@@ -1,4 +1,5 @@
 import Header from './Header.jsx';
+import HealthBar from './HealthBar.jsx';
 import Start from './Start.jsx';
 import Tutorial from './Tutorial.jsx';
 import video from '../assets/background.mp4';
@@ -38,6 +39,7 @@ function Intro(props) {
           <img src={Town} alt="background-Image" id='background-town'/>
         </>
       }
+      <HealthBar/>
     </>
 )}
 
