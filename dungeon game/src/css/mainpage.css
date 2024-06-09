@@ -96,6 +96,7 @@ main div{
 }
   
 #start {
+    cursor: pointer;
     width: 14.5rem;
     height: 4rem;
     background-color: transparent;
@@ -154,6 +155,7 @@ main div{
 }
 
 #rules{
+    cursor: pointer;
     width: 14.5rem;
     height: 4rem;
     background-color: transparent;
@@ -317,9 +319,9 @@ main div{
     font-size: 80px;
     width: 6.5rem;
     height: 5rem;
-    transition: opacity 1.5s ease;
+    transition: opacity 1s ease;
     transform: scale(2, 1) rotate(-50deg);
-    animation: hover 3s infinite; 
+    animation: hover 3s ease infinite; 
 }
 
 #arrow button{
@@ -346,7 +348,6 @@ main div{
     z-index: 0;
     text-shadow: -4px 3px 1px black;
 }
-
 
 video{
     pointer-events: none;
@@ -375,12 +376,12 @@ video{
 
 @keyframes hover {
     0% {
-        transform: translateY(0) scale(2, 1) rotate(-50deg);
+        transform: translate(0) scale(2, 1) rotate(-50deg);
     }
     50% {
-        transform: translateY(-20px) scale(2, 1) rotate(-50deg); /* Move up by 10px */
+        transform: translate(30px,-35px) scale(2, 1) rotate(-50deg); /* Move up by 10px */
     }
     100% {
-        transform: translateY(0) scale(2, 1) rotate(-50deg);
+        transform: translate(0) scale(2, 1) rotate(-50deg);
     }
 }

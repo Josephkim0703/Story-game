@@ -22,27 +22,23 @@ function Intro(props) {
     setZoom("7");
   }
 
-
-
   return(
     <>
     <Header/>
-    {done &&
-    <> 
-      <Start next={start} zoom={videoChange}/>
-      <video src={video} controls autoPlay loop muted style={{transform: `scale(${zoom}) translate(${position})`}} id='introPage'></video>
-    </>
-    }
+      {done &&
+        <> 
+          <Start next={start} zoom={videoChange}/>
+          <video src={video} controls autoPlay loop muted style={{transform: `scale(${zoom}) translate(${position})`}} id='introPage'></video>
+        </>
+      }
 
-    {complete && 
-    <>
-      <Tutorial start={props.start}/>
-      <img src={Town} alt="background-Image" id='background-town'/>
+      {complete && 
+        <>
+          <Tutorial start={props.start}/>
+          <img src={Town} alt="background-Image" id='background-town'/>
+        </>
+      }
     </>
-    }
-   
-    </>
-  )
-}
+)}
 
 export default Intro;

@@ -17,14 +17,14 @@ const [count, setCount] = useState(0);
 const [hover, setHover] = useState(false);
 
 const text = [
-    'Hello traveler! The name is Thornwood, nice to meet you!',
-    'May I ask what your name is?',
-    `What a strong name you have ${userName}!`,
+    'Greetings, traveler! I am Thornwood, It is an honor to meet you!',
+    'May I ask by what name you are known by, traveler?',
+    `What a mighty name you have ${userName}!`,
     'I hear your seeking to explore the Ruins of Alexandria.',
-    'You wil be faced with many obstacles along your journey.',
-    'Please take caution as you see the bar at the bottom is your life bar...',
+    'You will be faced with many obstacles along your journey.',
+    'Please take caution! As you see, the bar at the bottom is your life...',
     'And you have but 10 lives.',
-    'On your journey look out for CLUES that may help on you on the future!',
+    'On your journey, look out for CLUES that may help you in the future!',
     `Goodluck and I hope to one day here the tales of ${userName}!`
 ];
 
@@ -70,7 +70,7 @@ const back = () => {
 
 //updates username once its clicked
 const update = (e) => {
-    setUsername(e.target.value);
+    setUsername(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1).toLowerCase())
 };
 
 //submit button for username
