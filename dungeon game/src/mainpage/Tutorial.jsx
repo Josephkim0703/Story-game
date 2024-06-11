@@ -1,5 +1,6 @@
 import React, {useState , useEffect} from 'react';
 import '../css/mainpage.css';
+import Thorn from '../assets/thornwood.png';
 
 function Tutorial(props){
 
@@ -102,6 +103,8 @@ const style = {
 return(
     <div id='playerPrompts'>
         {hide2 &&
+            <>
+            <img src={Thorn} alt="Thornwood" />
             <div id='textBox'>
                 <p>{words}</p>  
                     {hide &&
@@ -111,6 +114,7 @@ return(
                         </div>
                     }
             </div>
+            </>
             }
             {visible && 
                 <div id='inputBox'>
