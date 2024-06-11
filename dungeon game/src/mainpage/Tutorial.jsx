@@ -31,6 +31,8 @@ const text = [
 //whenever the count or username is changed the setword resets
 useEffect(() => {
     setWords(text[count]);
+
+  
 }, [count, userName]);
 
 const [words, setWords] = useState(text[0]);

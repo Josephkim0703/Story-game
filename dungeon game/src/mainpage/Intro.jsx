@@ -37,9 +37,10 @@ function Intro(props) {
         <>
           <Tutorial start={props.start}/>
           <img src={Town} alt="background-Image" id='background-town'/>
+          <HealthBar/>
         </>
       }
-      <HealthBar/>
+    
     </>
 )}
 
