@@ -1,5 +1,3 @@
-import Header from './Header.jsx';
-import HealthBar from './HealthBar.jsx';
 import Start from './Start.jsx';
 import Tutorial from './Tutorial.jsx';
 import video from '../assets/background.mp4';
@@ -13,6 +11,8 @@ function Intro(props) {
   const [zoom, setZoom] = useState("");
   const [position, setPosition] = useState("");
 
+  
+
   const start = () => {
     setComplete(true);
     setDone(false);
@@ -25,7 +25,6 @@ function Intro(props) {
 
   return(
     <>
-    <Header/>
       {done &&
         <> 
           <Start next={start} zoom={videoChange}/>
@@ -37,7 +36,7 @@ function Intro(props) {
         <>
           <Tutorial start={props.start}/>
           <img src={Town} alt="background-Image" id='background-town'/>
-          <HealthBar/>
+          {props.healthbar(true)}
         </>
       }
     
