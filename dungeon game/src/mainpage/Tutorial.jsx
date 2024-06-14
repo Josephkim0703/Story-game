@@ -1,11 +1,13 @@
 import React, {useState , useEffect} from 'react';
 import '../css/mainpage.css';
 import Thorn from '../assets/thornwood.png';
+import Thorn1 from '../assets/thornwood1.png';
 
 function Tutorial(props){
 
 const [userName, setUsername] = useState("");
 const [placeHolder, setplaceHolder] = useState('Username...');
+const [image, setImage] = useState(Thorn);
 
 const [visible, setVisibility] = useState(false);
 const [hide, setHide] = useState(true);
@@ -32,9 +34,22 @@ const text = [
 //whenever the count or username is changed the setword resets
 useEffect(() => {
     setWords(text[count]);
-
-  
 }, [count, userName]);
+
+useEffect(() => {
+    if(count % 2 === 1){
+        setImage(Thorn1);     
+    }else if(count === 2){
+        setImage(Thorn1);
+    }else if(count >= 8){
+    //    setImage(Thorn)      
+    }else{
+        setImage(Thorn);
+    }
+
+   
+  
+},[count])
 
 const [words, setWords] = useState(text[0]);
 
@@ -104,7 +119,7 @@ return(
     <div id='playerPrompts'>
         {hide2 &&
             <>
-            <img src={Thorn} alt="Thornwood" />
+            <img src={image} alt="Thornwood" />
             <div id='textBox'>
                 <p>{words}</p>  
                     {hide &&

@@ -234,7 +234,7 @@ main div{
 #playerPrompts img{
     width: 21rem;
     position: relative;
-    top: 5.6rem;
+    top: 10.3rem;
     margin: auto;
 }
 
@@ -252,7 +252,7 @@ main div{
 #inputBox{
     width: 17rem;
     position: relative;
-    top: 8.5rem;
+    top: 12rem;
     left: 50%;
     transform: translate(-50%, -50%); 
 }
@@ -276,9 +276,9 @@ main div{
 
 #textBox{
     position: relative;
-    top: 10rem;
+    top: 15rem;
     left: 50%;
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -5rem); 
     border: 2px solid black;
     background-color: rgba(240, 248, 255, 0.75);
     width: 35rem;
@@ -386,7 +386,7 @@ video{
 
 footer{
     position: fixed;
-    top: 56rem;
+    top: 95%;
     left: 50%;
     transform: translate(-50%,-50%);
     display: flex;
