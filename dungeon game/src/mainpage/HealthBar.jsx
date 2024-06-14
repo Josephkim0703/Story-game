@@ -37,7 +37,6 @@ function HealthBar(){
                     </li>
                 ))}
             </ul>
-            <button type='button' onClick={die}>Kill</button>
         </footer>
     );
 }

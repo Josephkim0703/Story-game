@@ -45,10 +45,7 @@ useEffect(() => {
     //    setImage(Thorn)      
     }else{
         setImage(Thorn);
-    }
-
-   
-  
+    } 
 },[count])
 
 const [words, setWords] = useState(text[0]);
@@ -113,7 +110,6 @@ function enter() {
 const style = {
     color: hover? 'orange' : '',
 };
-
 
 return(
     <div id='playerPrompts'>
