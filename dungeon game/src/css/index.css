@@ -3,3 +3,14 @@ body{
     overflow: hidden;
     cursor: grab;
 }
+
+.Gamescreen{
+    border: 1px solid black;
+    width: 20rem;
+    height: auto;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+}

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Intro from './mainpage/Intro.jsx';
 import Header from './mainpage/Header.jsx';
-import HealthBar from './mainpage/HealthBar.jsx';
+import HealthBar from './Util/HealthBar.jsx';
+import Game from './Game.jsx'
 import './css/App.css';
 
 function App() {
@@ -17,7 +18,11 @@ function App() {
     <>
     <Header/>
     {hide &&  <Intro start={startGame} healthbar={setHide1}/>}
-    {hide1 && <HealthBar/>}
+    {hide1 &&
+      <>
+        <Game/>    
+        <HealthBar/>
+      </>}
     </>
   )
  

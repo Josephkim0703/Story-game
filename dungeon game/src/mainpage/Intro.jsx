@@ -2,7 +2,7 @@ import Start from './Start.jsx';
 import Tutorial from './Tutorial.jsx';
 import video from '../assets/background.mp4';
 import Town from '../assets/background-town.jpeg';
-import HealthBar from './HealthBar.jsx';
+import HealthBar from '../Util/HealthBar.jsx';
 import {useState, useEffect} from 'react';
 
 function Intro(props) {
