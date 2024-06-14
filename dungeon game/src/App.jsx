@@ -10,7 +10,7 @@ function App() {
 
   const startGame = () => {
     setHide(false);
-  
+    setHide1(true);
   };
 
   return(

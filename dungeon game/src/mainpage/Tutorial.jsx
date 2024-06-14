@@ -64,10 +64,9 @@ const forward = () => {
     } 
 
     if(count === 8){
-        setHide2(false);
-
+        setHide2(false);  
         setDisplay("block");
-
+        props.state(false);
         setTimeout(() =>{
             setOpacity(1);
         },1000);       
@@ -137,7 +136,7 @@ return(
             <div id='arrow' style={{opacity : opacity, display : display}}>
                 <button type='button' onClick={props.start} onMouseEnter={enter} onMouseLeave={exit}></button>
                 <h2 style={style}>&#129178;</h2>
-            </div>
+            </div>           
     </div>
 );
 }

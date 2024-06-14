@@ -2,12 +2,14 @@ import Start from './Start.jsx';
 import Tutorial from './Tutorial.jsx';
 import video from '../assets/background.mp4';
 import Town from '../assets/background-town.jpeg';
-import {useState} from 'react';
+import HealthBar from './HealthBar.jsx';
+import {useState, useEffect} from 'react';
 
 function Intro(props) {
 
   const [complete, setComplete] = useState(false);
   const [done, setDone] = useState(true);
+  const [hide, setHide] = useState(true);
   const [zoom, setZoom] = useState("");
   const [position, setPosition] = useState("");
 
@@ -15,13 +17,14 @@ function Intro(props) {
 
   const start = () => {
     setComplete(true);
-    setDone(false);
+    setDone(false); 
   }
 
   const videoChange = () => {
     setPosition("-6%, 25%");
     setZoom("7");
   }
+
 
   return(
     <>
@@ -34,9 +37,9 @@ function Intro(props) {
 
       {complete && 
         <>
-          <Tutorial start={props.start}/>
+          <Tutorial start={props.start} state={setHide}/>
           <img src={Town} alt="background-Image" id='background-town'/>
-          {props.healthbar(true)}
+          {hide && <HealthBar/>}
         </>
       }
     
