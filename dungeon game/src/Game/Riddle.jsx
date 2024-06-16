@@ -1,15 +1,20 @@
 import '../css/index.css';
+import { useState, useEffect } from 'react';
+import backgroundImg from '../assets/Game_background_1.png'
 
 function Game1(props) {
 
-    const text = ["it works"];
+props.background(backgroundImg);
 
-    props.setText(text);
-    
+useEffect(() => {
+    props.setText(['it works', 'kinda'])
+},[props.setText])
+
+ 
     return(
         <>
         <div id="game1" className="GameScreen">
-
+      
         </div>
         </>
     );
