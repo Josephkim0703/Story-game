@@ -1,6 +1,8 @@
 import '../css/index.css';
 import { useState, useEffect } from 'react';
-import backgroundImg from '../assets/Game_background_1.png'
+import background from '../assets/background_town.png';
+import background_Char from '../assets/background_town_1.png';
+import alley from '../assets/background_alley.jpeg';
 
 function Game1(props) {
 
@@ -16,18 +18,24 @@ const text = [
     "Imagine the treasures and glory awaiting if I uncover the secrets of Alexandria!",
     "And of course I can't forget about...",
     "the Wom...",
-    "BAM!",
+    "בצלמות העמוקה, שם פחדים דלקים, אני השטן רואה את האור.",
     "What was that!?",
-    "it didnt work"
+    "I swear I saw something run here...",
+    "Ahhhhh!!!"
 ];
 
 useEffect(() => {
     props.setText(text);
-    props.background(backgroundImg);
+    props.background(background);
    
 },[props.setText]);
 
 useEffect(() => {
+    if(props.count === 5 || props.count === 6){
+        props.background(background_Char); 
+    }else{
+        props.background(background); 
+    }
     if(props.count === 7){
         props.hide(false);
 
@@ -39,6 +47,12 @@ useEffect(() => {
         },1000); 
     }
 },[props.count]);
+
+const nextSet = () => {
+    props.hide(true);
+    setDisplay("none");
+    props.background(alley);
+}
 
 function exit() {
     setHover(false);
@@ -57,7 +71,7 @@ const style = {
         <>
        {hide && 
         <div id='game_arrow' style={{opacity : opacity, display : display}}>
-        <button type='button' onMouseEnter={enter} onMouseLeave={exit}></button>
+        <button type='button' onClick={nextSet} onMouseEnter={enter} onMouseLeave={exit}></button>
         <h2 style={style}>&#129178;</h2>
         </div>   
        }

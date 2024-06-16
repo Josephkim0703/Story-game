@@ -16,7 +16,7 @@
 #game_textBox{
     z-index: 1;
     position: absolute;
-    top: 45rem;
+    top: 48rem;
     left: 50%;
     transform: translate(-50%, -5rem); 
     border: 2px solid black;
