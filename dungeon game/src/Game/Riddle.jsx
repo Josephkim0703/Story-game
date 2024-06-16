@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import background from '../assets/background_town.png';
 import background_Char from '../assets/background_town_1.png';
 import alley from '../assets/background_alley.jpeg';
+import death from '../assets/death.png';
+import skull from '../assets/skull1.png';
 
 function Game1(props) {
 
@@ -10,7 +12,7 @@ function Game1(props) {
     const [display, setDisplay] = useState("none");
     const [opacity, setOpacity] = useState(0);
     const [hover, setHover] = useState(false);
-
+    const [hide1, setHide1] = useState(false);
 
 const text = [
     "...",
@@ -21,7 +23,22 @@ const text = [
     "בצלמות העמוקה, שם פחדים דלקים, אני השטן רואה את האור.",
     "What was that!?",
     "I swear I saw something run here...",
-    "Ahhhhh!!!"
+    "Ahhhhh!!!",
+    "I hear you're seeking to explore the ruins...",
+    "I've a relic that can grant you immense power.",
+    "This relic can aid you when all hope seems lost...",
+    "This dude seems sus...",
+    "If you can solve my riddle, the relic shall be yours.",
+    "But if you fail! תאבד חיים אחד."
+];
+
+const riddle = [
+    "I am the end of all things, the shadow's embrace",
+    "A path that all must tread, yet none can retrace.",
+    "Some call me silence, where voices all cease",
+    "Others see darkness, a void without peace.",
+    "But look deeper, you'll see my true guise",
+    "I am not ONE or the OTHER, you must open your EYES."
 ];
 
 useEffect(() => {
@@ -33,10 +50,10 @@ useEffect(() => {
 useEffect(() => {
     if(props.count === 5 || props.count === 6){
         props.background(background_Char); 
-    }else{
-        props.background(background); 
     }
+   
     if(props.count === 7){
+        props.background(background);
         props.hide(false);
 
         setHide(true); 
@@ -45,6 +62,10 @@ useEffect(() => {
         setTimeout(() =>{
             setOpacity(1);
         },1000); 
+    }
+
+    if(props.count === text.length){
+        setHide1(true);
     }
 },[props.count]);
 
@@ -75,9 +96,14 @@ const style = {
         <h2 style={style}>&#129178;</h2>
         </div>   
        }
+        {hide1 &&
         <div id="game1" className="GameScreen">
-            
+            <img src={death} alt="image" id='reaper'/>   
+            <button type='button'>Yesterday</button>
+            <button type='button'><img src={skull} alt="" id='skull'/></button>
+            <button type='button'>Night</button>
         </div>
+        }
         </>
     );
 }
