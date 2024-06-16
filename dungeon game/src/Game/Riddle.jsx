@@ -13,6 +13,7 @@ function Game1(props) {
     const [opacity, setOpacity] = useState(0);
     const [hover, setHover] = useState(false);
     const [hide1, setHide1] = useState(false);
+    const [hide2, setHide2] = useState(false);
 
 const text = [
     "...",
@@ -27,7 +28,6 @@ const text = [
     "I hear you're seeking to explore the ruins...",
     "I've a relic that can grant you immense power.",
     "This relic can aid you when all hope seems lost...",
-    "This dude seems sus...",
     "If you can solve my riddle, the relic shall be yours.",
     "But if you fail! תאבד חיים אחד."
 ];
@@ -64,8 +64,12 @@ useEffect(() => {
         },1000); 
     }
 
-    if(props.count === text.length){
+    if(props.count === 8){
         setHide1(true);
+    }
+
+    if(props.count === text.length){
+        setHide2(true);
     }
 },[props.count]);
 
@@ -92,16 +96,21 @@ const style = {
         <>
        {hide && 
         <div id='game_arrow' style={{opacity : opacity, display : display}}>
-        <button type='button' onClick={nextSet} onMouseEnter={enter} onMouseLeave={exit}></button>
-        <h2 style={style}>&#129178;</h2>
+            <button type='button' onClick={nextSet} onMouseEnter={enter} onMouseLeave={exit}></button>
+            <h2 style={style}>&#129178;</h2>
         </div>   
        }
+
         {hide1 &&
         <div id="game1" className="GameScreen">
-            <img src={death} alt="image" id='reaper'/>   
-            <button type='button'>Yesterday</button>
-            <button type='button'><img src={skull} alt="" id='skull'/></button>
-            <button type='button'>Night</button>
+            <img src={death} alt="image" id='reaper'/>  
+                {hide2 &&
+                    <>
+                    <button type='button'>Yesterday</button>
+                    <button type='button'><img src={skull} alt="" id='skull'/></button>
+                    <button type='button'>Night</button>
+                    </>
+                }
         </div>
         }
         </>

@@ -14,7 +14,7 @@
 }
 
 #game_textBox{
-    z-index: 1;
+    z-index: 10;
     position: absolute;
     top: 48rem;
     left: 50%;
@@ -101,11 +101,11 @@
 }
 
 #game1{
+    z-index: 1;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    margin: auto;
     text-align: center;
     display: flex;
     flex-direction: row;
@@ -117,12 +117,15 @@
     left: 50%;
     transform: translate(-50%,-50%);
     width: 55rem;
-    z-index: 0;
+    z-index: 1;
+    margin: 0;
 }
 
+
+
 #game1 button{
+    margin: 0;
     z-index: 1;
-    position: relative;
     border: 0;
     background-color: transparent;
     color: white;
