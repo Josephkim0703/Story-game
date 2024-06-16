@@ -2,51 +2,47 @@ import React, {useState , useEffect} from 'react';
 import '../css/game.css';
 
 function Textbox(props){
-    const [hide1, setHide1] = useState(false);
-    const [hide, setHide] = useState(true);
-    const [count, setCount] = useState(0);
+    const [hide, setHide] = useState(false);
+   
 
     const text = props.text;
 
     useEffect(() => {
-        setWords(text[count]);
+        setWords(text[props.count]);
 
-        if(count >= text.length){
-            setHide(false);
+        if(props.count >= text.length){
+            props.hide(false);
         } 
-    }, [count]);
+    }, [props.count]);
 
     const [words, setWords] = useState(text[0]);
 
     const forward = () => {
-        setCount((prevCount) => prevCount + 1);
+        props.setCount((prevCount) => prevCount + 1);
     
-        if(count >= 0){
-            setHide1(true);
+        if(props.count >= 1){
+            setHide(true);
         }  
         
     };
     
     const back = () => {
-        setCount((prevCount) => prevCount - 1);
+        props.setCount((prevCount) => prevCount - 1);
     
-        if(count === 1){
-            setHide1(false);
+        if(props.count === 2){
+            setHide(false);
         }
     };
     
-
     return(
-        <>
-            {hide &&
-                <div id='game_textBox'>
-                    <p>{words}</p>                
-                        <div>
-                            {hide1 &&  <button type='button' onClick={back}><h2>&#129176;</h2></button>}   
-                            <button type='button' onClick={forward}><h2>&#129178;</h2></button>                     
-                        </div>
-                </div>
-            }
+        <>        
+            <div id='game_textBox'>
+                <p>{words}</p>                
+                    <div>
+                        {hide &&  <button type='button' onClick={back}><h2>&#129176;</h2></button>}   
+                        <button type='button' onClick={forward}><h2>&#129178;</h2></button>                     
+                    </div>
+            </div>
         </>
     )
 }
