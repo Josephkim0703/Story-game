@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     //grabs the start variable if the var is true then set those things
-    const updatePage = localStorage.getItem('start_1');
+    const updatePage = localStorage.getItem('start_game');
     if (updatePage === 'true') {
       setHide(false);
       setHide1(true);
@@ -22,7 +22,7 @@ function App() {
     setHide(false);
     setHide1(true);
     //create a variable called start and set it to true
-    localStorage.setItem('start_1', 'true');
+    localStorage.setItem('start_game', 'true');
   };
 
   return(

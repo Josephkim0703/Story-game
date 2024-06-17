@@ -44,9 +44,19 @@ const riddle = [
 ];
 
 useEffect(() => {
+    const updatePage = localStorage.getItem('start_game_phase2');
+    if (updatePage === "true") {
+        setHide1(true);
+        props.hide(true);
+        setDisplay("none");
+        props.background(alley);
+        props.setText(text[8]);
+    }
+  }, []);
+
+useEffect(() => {
     props.setText(text);
     props.background(background);
-   
 },[props.setText]);
 
 useEffect(() => {
@@ -76,9 +86,13 @@ useEffect(() => {
     }
 
     if(props.count >= 9){
-        props.setColor("green");
+        props.setColor("#65000B");
     }else{
         props.setColor("black");
+    }
+
+    if(props.count < 7){
+        setHide1(false);
     }
 
     if(props.count === text.length){
@@ -92,6 +106,7 @@ const nextSet = () => {
     props.hide(true);
     setDisplay("none");
     props.background(alley);
+    localStorage.setItem('start_game_phase2', true);
 }
 
 function exit() {

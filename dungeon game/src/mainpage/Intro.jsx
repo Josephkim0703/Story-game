@@ -25,7 +25,7 @@ function Intro(props) {
   const start = () => {
     setComplete(true);
     setDone(false); 
-    localStorage.setItem('start', 'true')
+    localStorage.setItem('start', true)
   }
 
   const videoChange = () => {
