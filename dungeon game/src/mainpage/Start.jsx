@@ -1,7 +1,7 @@
 import '../css/mainpage.css';
-import logo from '../assets/Logo.png';
-import button from '../assets/button.png';
-import scroll from '../assets/scroll.png';
+import logo from '../assets/Util/Logo.png';
+import button from '../assets/Util/button.png';
+import scroll from '../assets/Util/scroll.png';
 import {useState} from 'react';
 
 function Start(props){

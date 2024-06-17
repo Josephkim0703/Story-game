@@ -1,7 +1,7 @@
 import Start from './Start.jsx';
 import Tutorial from './Tutorial.jsx';
-import video from '../assets/background.mp4';
-import Town from '../assets/background-town.jpeg';
+import video from '../assets/Backgrounds/background.mp4';
+import Town from '../assets/Backgrounds/background-town.jpeg';
 import HealthBar from '../Util/HealthBar.jsx';
 import {useState, useEffect} from 'react';
 
@@ -34,9 +34,6 @@ function Intro(props) {
     setPosition("-6%, 25%");
     setZoom("7");
   }
-
-
-
 
   return(
     <>

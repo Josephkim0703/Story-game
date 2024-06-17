@@ -1,7 +1,7 @@
 import React, {useState , useEffect} from 'react';
 import '../css/mainpage.css';
-import Thorn from '../assets/thornwood.png';
-import Thorn1 from '../assets/thornwood1.png';
+import Thorn from '../assets/Characters/Thornwood.png';
+import Thorn1 from '../assets/Characters/thornwood_open.png';
 
 function Tutorial(props){
 

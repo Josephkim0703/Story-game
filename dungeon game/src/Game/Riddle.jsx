@@ -1,10 +1,10 @@
 import '../css/index.css';
 import { useState, useEffect } from 'react';
-import background from '../assets/background_town.png';
-import background_Char from '../assets/background_town_1.png';
-import alley from '../assets/background_alley.jpeg';
-import death from '../assets/death.png';
-import skull from '../assets/skull1.png';
+import background from '../assets/Backgrounds/background_town.png';
+import background_Char from '../assets/Backgrounds/background_town_1.png';
+import alley from '../assets/Backgrounds/background_alley.png';
+import death from '../assets/Characters/Death_Noface.png';
+import skull from '../assets/Characters/skull.png';
 
 function Game1(props) {
 

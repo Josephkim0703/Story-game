@@ -1,5 +1,5 @@
 import '../css/mainpage.css';
-import Heart from '../assets/heart.png'
+import Heart from '../assets/Util/heart.png'
 import React, {useState} from 'react';
 
 function HealthBar(){

@@ -1,16 +1,16 @@
 @font-face {
     font-family: 'brick';
-    src: url('../assets/MoriaCitadel.TTF');
+    src: url('../assets/Fonts/MoriaCitadel.TTF');
 }
 
 @font-face {
     font-family: 'cursive';
-    src: url('../assets/BLKCHCRY.TTF');
+    src: url('../assets/Fonts/BLKCHCRY.TTF');
 }
 
 @font-face {
     font-family: 'Main';
-    src: url('../assets/main.otf');
+    src: url('../assets/Fonts/main.otf');
 }
 
 header{
@@ -232,9 +232,9 @@ main div{
 }
 
 #playerPrompts img{
-    width: 21rem;
+    width: 30rem;
     position: relative;
-    top: 10.3rem;
+    top: 4.3rem;
     margin: auto;
 }
 
@@ -252,7 +252,7 @@ main div{
 #inputBox{
     width: 17rem;
     position: relative;
-    top: 12rem;
+    top: 6rem;
     left: 50%;
     transform: translate(-50%, -50%); 
 }
@@ -276,7 +276,7 @@ main div{
 
 #textBox{
     position: relative;
-    top: 15rem;
+    top: 9rem;
     left: 50%;
     transform: translate(-50%, -5rem); 
     border: 2px solid black;

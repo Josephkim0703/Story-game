@@ -16,7 +16,7 @@
 #game_textBox{
     z-index: 10;
     position: absolute;
-    top: 48rem;
+    top: 46rem;
     left: 50%;
     transform: translate(-50%, -5rem); 
     border: 2px solid black;
@@ -115,13 +115,11 @@
     position: absolute;
     top: 12rem;
     left: 50%;
-    transform: translate(-50%,-50%);
-    width: 55rem;
+    transform: translate(-57%,-50%);
+    width: 65rem;
     z-index: 1;
     margin: 0;
 }
-
-
 
 #game1 button{
     margin: 0;
@@ -132,17 +130,17 @@
 }
 
 #skull{
-    width: 7rem;
+    width: 4.5rem;
     position: absolute;
-    top: -13rem;
+    top: -17rem;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-58%,-50%);
     filter: brightness(0);
-    transition: filter 2s ease;
+    transition: filter 1.5s ease;
 }
 
 #skull:hover{
-    filter: brightness(0.3);
+    filter: brightness(1.5);
 }
 
 @keyframes game_hover {
