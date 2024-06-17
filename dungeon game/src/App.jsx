@@ -3,7 +3,7 @@ import Intro from './mainpage/Intro.jsx';
 import Header from './mainpage/Header.jsx';
 import HealthBar from './Util/HealthBar.jsx';
 import Game from './Game.jsx'
-import './css/App.css';
+import './css/index.css';
 
 function App() {
   const [hide, setHide] = useState(true);

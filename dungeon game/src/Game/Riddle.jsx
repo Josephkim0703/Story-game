@@ -11,6 +11,7 @@ function Game1(props) {
     const [hide, setHide] = useState(false);
     const [display, setDisplay] = useState("none");
     const [opacity, setOpacity] = useState(0);
+    const [opacity1, setOpacity1] = useState(0);
     const [hover, setHover] = useState(false);
     const [hide1, setHide1] = useState(false);
     const [hide2, setHide2] = useState(false);
@@ -55,7 +56,7 @@ useEffect(() => {
     if(props.count === 7){
         props.background(background);
         props.hide(false);
-
+        props.hide1(false);
         setHide(true); 
         setDisplay("block");
 
@@ -64,16 +65,29 @@ useEffect(() => {
         },1000); 
     }
 
+    if(props.count >=7 && props.count <= 8){
+        props.hide1(false);
+    }
+
     if(props.count === 8){
-        setHide1(true);
+        setOpacity1(1);
+    }
+
+    if(props.count >= 9){
+        props.setColor("red");
+    }else{
+        props.setColor("black");
     }
 
     if(props.count === text.length){
         setHide2(true);
     }
+
+    console.log(props.count);
 },[props.count]);
 
 const nextSet = () => {
+    setHide1(true);
     props.hide(true);
     setDisplay("none");
     props.background(alley);
@@ -102,7 +116,7 @@ const style = {
        }
 
         {hide1 &&
-        <div id="game1" className="GameScreen">
+        <div id="game1" className="GameScreen" style={{opacity: opacity1}}>
             <img src={death} alt="image" id='reaper'/>  
                 {hide2 &&
                     <>

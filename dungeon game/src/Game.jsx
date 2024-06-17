@@ -7,13 +7,15 @@ function Game(){
     const [text, setText] = useState(["..."]);
     const [background, setBackground] = useState();
     const [hide, setHide] = useState(true);
+    const [hide1, setHide1] = useState(false);
     const [count, setCount] = useState(0);
+    const [color, setColor] = useState("Black");
 
     return(
         <>
-        <Game1 setText={setText} background={setBackground} hide={setHide} count={count}/>
+        <Game1 setText={setText} background={setBackground} hide={setHide} hide1={setHide1} count={count} setColor={setColor}/>
         {hide &&
-        <Textbox text={text} hide={setHide} count={count} setCount={setCount}/>
+        <Textbox text={text} hide={setHide} hide1={hide1} setHide1={setHide1} count={count} setCount={setCount} color={color}/>
         }
         <img src={background} alt="Image" id='game_background'/>
         </>
