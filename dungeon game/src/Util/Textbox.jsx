@@ -10,6 +10,7 @@ function Textbox(props){
 
         if(props.count >= text.length){
             props.hide(false);
+            props.setColor("black");
         } 
     }, [props.count]);
 

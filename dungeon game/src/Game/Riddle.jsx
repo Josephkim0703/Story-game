@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import background from '../assets/Backgrounds/background_town.png';
 import background_Char from '../assets/Backgrounds/background_town_1.png';
 import alley from '../assets/Backgrounds/background_alley.png';
+import alley_blue from '../assets/Backgrounds/background_alley1.png';
 import death from '../assets/Characters/Death_Noface.png';
 import skull from '../assets/Characters/skull.png';
 
@@ -65,25 +66,25 @@ useEffect(() => {
         },1000); 
     }
 
-    if(props.count >=7 && props.count <= 8){
+    if(props.count >= 7 && props.count <= 8){
         props.hide1(false);
     }
 
     if(props.count === 8){
         setOpacity1(1);
+        props.background(alley_blue);
     }
 
     if(props.count >= 9){
-        props.setColor("red");
+        props.setColor("green");
     }else{
         props.setColor("black");
     }
 
     if(props.count === text.length){
         setHide2(true);
+       
     }
-
-    console.log(props.count);
 },[props.count]);
 
 const nextSet = () => {
