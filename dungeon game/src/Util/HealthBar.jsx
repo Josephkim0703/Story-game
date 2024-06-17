@@ -1,5 +1,5 @@
 import '../css/mainpage.css';
-import Heart from '../assets/Util/heart.png'
+import Heart from '../assets/Util/Heart.png'
 import React, {useState} from 'react';
 
 function HealthBar(){
@@ -16,10 +16,10 @@ function HealthBar(){
         //if the last div is not false
         if (prevHeart !== false) {
             //create a new array and use spread operator to fill with the heart array
-            const newHeart = [...hearts];
+            const newArray = [...hearts];
             //find the previous div in the new array and set it to false then push to setHearts()
-            newHeart[prevHeart] = false;
-            setHearts(newHeart);
+            newArray[prevHeart] = false;
+            setHearts(newArray);
         }     
 
         if(hearts.length == 0){

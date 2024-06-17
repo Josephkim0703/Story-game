@@ -11,6 +11,7 @@ function Textbox(props){
         if(props.count >= text.length){
             props.hide(false);
             props.setColor("black");
+            props.setWords();
         } 
     }, [props.count]);
 
@@ -35,11 +36,11 @@ function Textbox(props){
     
     return(
         <>        
-            <div id='game_textBox'>
+            <div id='game_textBox' style={{backgroundColor: props.bgColor, border: props.border}}>
                 <p style={{color: props.color}}>{words}</p>                
                     <div>
-                        {props.hide1 &&  <button type='button' onClick={back}><h2>&#129176;</h2></button>}   
-                        <button type='button' onClick={forward}><h2>&#129178;</h2></button>                     
+                        {props.hide1 &&  <button type='button' onClick={back} style={{color: props.buttonColor}}><h2>&#129176;</h2></button>}   
+                        <button type='button' onClick={forward} style={{color: props.buttonColor}}><h2>&#129178;</h2></button>                     
                     </div>
             </div>
         </>

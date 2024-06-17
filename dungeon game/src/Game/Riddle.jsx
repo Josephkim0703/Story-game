@@ -47,8 +47,9 @@ useEffect(() => {
     const updatePage = localStorage.getItem('start_game_phase2');
     if (updatePage === "true") {
         setHide1(true);
-        props.hide(true);
         setDisplay("none");
+
+        props.hide(true);     
         props.background(alley);
         props.setText(text[8]);
     }
@@ -68,6 +69,7 @@ useEffect(() => {
         props.background(background);
         props.hide(false);
         props.hide1(false);
+
         setHide(true); 
         setDisplay("block");
 
@@ -85,11 +87,11 @@ useEffect(() => {
         props.background(alley_blue);
     }
 
-    if(props.count >= 9){
-        props.setColor("#65000B");
-    }else{
-        props.setColor("black");
-    }
+    const counter = props.count >= 9;
+        props.setColor(counter ? "#B22222" : "");
+        props.setButtonColor(counter ? "#B22222" : "");
+        props.setBgcolor(counter ? "rgba(0, 0, 0, 0.5)" : "");
+        props.setBorder(counter ? "2px solid white" : "");
 
     if(props.count < 7){
         setHide1(false);
@@ -103,8 +105,9 @@ useEffect(() => {
 
 const nextSet = () => {
     setHide1(true);
-    props.hide(true);
     setDisplay("none");
+
+    props.hide(true);
     props.background(alley);
     localStorage.setItem('start_game_phase2', true);
 }
@@ -121,7 +124,6 @@ const style = {
     color: hover? 'orange' : '',
 };
 
- 
     return(
         <>
        {hide && 
