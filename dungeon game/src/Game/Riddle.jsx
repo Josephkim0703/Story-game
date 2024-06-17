@@ -31,7 +31,7 @@ const text = [
     "I've a relic that can grant you immense power.",
     "This relic can aid you when all hope seems lost...",
     "If you can solve my riddle, the relic shall be yours.",
-    "But if you fail! תאבד חיים אחד."
+    "But if you fail! תאבד חיים אחד.",
 ];
 
 const riddle = [
@@ -40,7 +40,8 @@ const riddle = [
     "Some call me silence, where voices all cease",
     "Others see darkness, a void without peace.",
     "But look deeper, you'll see my true guise",
-    "I am not ONE or the OTHER, you must open your EYES."
+    "I am not ONE or the OTHER, you must open your EYES.",
+    "What am I"
 ];
 
 useEffect(() => {
@@ -137,11 +138,11 @@ const style = {
         <div id="game1" className="GameScreen" style={{opacity: opacity1}}>
             <img src={death} alt="image" id='reaper'/>  
                 {hide2 &&
-                    <>
-                    <button type='button'>Yesterday</button>
-                    <button type='button'><img src={skull} alt="" id='skull'/></button>
+                    <div id='setup'>            
+                    <button type='button'>Tomorrow</button>
+                    <button type='button' id='button_skull'><img src={skull} alt="" id='skull'/></button>
                     <button type='button'>Night</button>
-                    </>
+                    </div>
                 }
         </div>
         }

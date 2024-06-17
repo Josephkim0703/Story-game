@@ -5,17 +5,17 @@ function Textbox(props){
   
     const text = props.text;
 
+    const [words, setWords] = useState(text[0]);
+
     useEffect(() => {
         setWords(text[props.count]);
 
         if(props.count >= text.length){
             props.hide(false);
             props.setColor("black");
-            props.setWords();
+            setWords();
         } 
     }, [props.count]);
-
-    const [words, setWords] = useState(text[0]);
 
     const forward = () => {
         props.setCount((prevCount) => prevCount + 1);
