@@ -13,6 +13,11 @@
     src: url('../assets/Fonts/main.otf');
 }
 
+@font-face {
+    font-family: 'scary';
+    src: url('../assets/Fonts/scary.ttf');
+}
+
 header{
     display: flex;
     flex-direction: row;

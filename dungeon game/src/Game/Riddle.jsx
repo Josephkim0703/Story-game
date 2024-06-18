@@ -8,14 +8,20 @@ import death from '../assets/Characters/Death_Noface.png';
 import skull from '../assets/Characters/skull.png';
 
 function Game1(props) {
+    const [hover, setHover] = useState(false);
 
     const [hide, setHide] = useState(false);
+    const [hide1, setHide1] = useState(false);
+    const [hide2, setHide2] = useState(false);
+    const [hide3, setHide3] = useState(true);
+    const [hide4, setHide4] = useState(false);
+
     const [display, setDisplay] = useState("none");
     const [opacity, setOpacity] = useState(0);
     const [opacity1, setOpacity1] = useState(0);
-    const [hover, setHover] = useState(false);
-    const [hide1, setHide1] = useState(false);
-    const [hide2, setHide2] = useState(false);
+    const [opacity2, setOpacity2] = useState(0);
+    const [brightness, setBrightness] = useState("");
+    const [blur, setBlur] = useState("blur(0)");
 
 const text = [
     "...",
@@ -28,10 +34,16 @@ const text = [
     "I swear I saw something run here...",
     "Ahhhhh!!!",
     "I hear you're seeking to explore the ruins...",
-    "I've a relic that can grant you immense power.",
-    "This relic can aid you when all hope seems lost...",
-    "If you can solve my riddle, the relic shall be yours.",
+    "I've an elixir that can grant you immense power.",
+    "Once consumed it will aid you when all hope seems lost...",
+    "To obtain it, you must choose the right chalice by solving my riddle.",
     "But if you fail! תאבד חיים אחד.",
+    "Do you accept?",
+    "Uhhhh...",
+    "This seems really suspicious, but...",
+    "Theoretically, it's a 50-50 chance, right?",
+    "...",
+    "Fuck it we ball"
 ];
 
 const riddle = [
@@ -41,20 +53,8 @@ const riddle = [
     "Others see darkness, a void without peace.",
     "But look deeper, you'll see my true guise",
     "I am not ONE or the OTHER, you must open your EYES.",
-    "What am I"
+    "What am I?"
 ];
-
-useEffect(() => {
-    const updatePage = localStorage.getItem('start_game_phase2');
-    if (updatePage === "true") {
-        setHide1(true);
-        setDisplay("none");
-
-        props.hide(true);     
-        props.background(alley);
-        props.setText(text[8]);
-    }
-  }, []);
 
 useEffect(() => {
     props.setText(text);
@@ -88,7 +88,7 @@ useEffect(() => {
         props.background(alley_blue);
     }
 
-    const counter = props.count >= 9;
+    const counter = (props.count >= 9 && props.count <= 14);
         props.setColor(counter ? "#B22222" : "");
         props.setButtonColor(counter ? "#B22222" : "");
         props.setBgcolor(counter ? "rgba(0, 0, 0, 0.5)" : "");
@@ -110,7 +110,6 @@ const nextSet = () => {
 
     props.hide(true);
     props.background(alley);
-    localStorage.setItem('start_game_phase2', true);
 }
 
 function exit() {
@@ -125,29 +124,91 @@ const style = {
     color: hover? 'orange' : '',
 };
 
-    return(
-        <>
-       {hide && 
-        <div id='game_arrow' style={{opacity : opacity, display : display}}>
-            <button type='button' onClick={nextSet} onMouseEnter={enter} onMouseLeave={exit}></button>
-            <h2 style={style}>&#129178;</h2>
-        </div>   
-       }
+const deathText = [
+    "Incorrect!",
+    "The asnwer is...",
+    "DEATH",
+];
 
-        {hide1 &&
-        <div id="game1" className="GameScreen" style={{opacity: opacity1}}>
-            <img src={death} alt="image" id='reaper'/>  
-                {hide2 &&
-                    <div id='setup'>            
-                    <button type='button'>Tomorrow</button>
-                    <button type='button' id='button_skull'><img src={skull} alt="" id='skull'/></button>
-                    <button type='button'>Night</button>
-                    </div>
-                }
+const [Dtext, setDtext] = useState(deathText[0]);
+
+const incorrect = () => {
+    setHide3(false);
+    setHide4(true);
+
+    setTimeout(() =>{ 
+        setOpacity2(1);
+        setTimeout(() => {
+            setOpacity2(0);
+            setTimeout(() => {
+                setOpacity2(1);
+                setDtext(deathText[1])
+                setTimeout(() => {
+                    setOpacity2(0);
+                    setTimeout(() => {
+                        setOpacity2(1);
+                        setDtext(deathText[2]) 
+                        setBrightness("brightness(2)")
+                    }, 2000);
+                }, 2500);
+            }, 2000);
+        }, 1500);
+     },500);
+
+    props.die();
+};
+
+
+
+return (
+    <>
+      {hide && (
+        <div id="game_arrow" style={{ opacity: opacity, display: display }}>
+          <button type="button" onClick={nextSet} onMouseEnter={enter} onMouseLeave={exit}></button>
+          <h2 style={style}>&#129178;</h2>
         </div>
-        }
-        </>
-    );
+      )}
+  
+      {hide1 && (
+        <div id="game1" className="GameScreen" style={{ opacity: opacity1, filter: blur }}>
+          <img src={death} alt="image" id="reaper" />
+            {hide4 && (<h2 style={{opacity: opacity2}}>{Dtext}</h2>)} 
+
+          {hide2 && (
+            <>
+              <button type="button" id="button_skull">
+                <img src={skull} alt="" id="skull" style={{ filter: brightness }} />
+              </button>
+  
+              {hide3 && (
+                <>
+                  <div id="setup">
+
+                    <button type="button" onClick={incorrect}>
+                      <img src="" alt="Image" />
+                        <h1>Tomorrow</h1>
+                    </button>
+
+                    <button type="button" onClick={incorrect}>
+                      <img src="" alt="Image" />
+                        <h1>Night</h1>
+                    </button>
+
+                  </div>
+  
+                  <div id="textBox_riddle">
+                    {riddle.map((line, index) => (
+                      <p key={index}>{line}</p>
+                    ))}
+                  </div>
+                </>
+              )}
+            </>
+          )}
+        </div>
+      )}
+    </>
+  );
 }
 
 export default Game1

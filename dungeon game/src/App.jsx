@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Intro from './mainpage/Intro.jsx';
 import Header from './mainpage/Header.jsx';
-import HealthBar from './Util/HealthBar.jsx';
 import Game from './Game.jsx'
 import './css/index.css';
 
@@ -32,7 +31,6 @@ function App() {
     {hide1 &&
       <>
         <Game/>    
-        <HealthBar/>
       </>}
     </>
   )
