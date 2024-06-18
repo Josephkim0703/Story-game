@@ -6,6 +6,8 @@
     left: 50%;
     transform: translate(-50%,-50%);
     z-index: 0;
+    transition: filter 8s ease;
+    filter: blur(0);
 }
 
 .GameScreen{
@@ -26,6 +28,7 @@
     border-radius: 1rem;
     transition: height 0.3s ease;
     text-align: center;
+    color: black;
 }
 
 #game_textBox p{
@@ -114,15 +117,15 @@
 #game1 h2{
     z-index: 5;
     font-family: 'scary';
-    color: red;
     font-size: 6rem;
-    width: 30rem;
+    width: 40rem;
     position: absolute;
     top: -10rem;
     left: 50%;
     transform: translate(-50%,-50%);
     opacity: 0;
     transition: opacity 2s ease;
+    text-shadow: 0px 0px 8px rgb(22, 0, 0);
 }
 
 #game1 button{

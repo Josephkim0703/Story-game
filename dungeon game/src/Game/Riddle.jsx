@@ -21,7 +21,6 @@ function Game1(props) {
     const [opacity1, setOpacity1] = useState(0);
     const [opacity2, setOpacity2] = useState(0);
     const [brightness, setBrightness] = useState("");
-    const [blur, setBlur] = useState("blur(0)");
 
 const text = [
     "...",
@@ -131,10 +130,12 @@ const deathText = [
 ];
 
 const [Dtext, setDtext] = useState(deathText[0]);
+const [color, setColor] = useState("white");
 
 const incorrect = () => {
     setHide3(false);
     setHide4(true);
+    props.hide2(false);
 
     setTimeout(() =>{ 
         setOpacity2(1);
@@ -146,13 +147,21 @@ const incorrect = () => {
                 setTimeout(() => {
                     setOpacity2(0);
                     setTimeout(() => {
+                        setColor("red")
                         setOpacity2(1);
                         setDtext(deathText[2]) 
                         setBrightness("brightness(2)")
+                            setTimeout(() => {
+                                props.setBlur("blur(8px) brightness(0.5)");
+                                setTimeout(() => {
+                                    props.setOpacity(1);
+                                    props.setVisibility("visible");
+                            },2500);  
+                        }, 500); 
                     }, 2000);
-                }, 2500);
+                }, 2000);
             }, 2000);
-        }, 1500);
+        }, 1000);
      },500);
 
     props.die();
@@ -170,9 +179,9 @@ return (
       )}
   
       {hide1 && (
-        <div id="game1" className="GameScreen" style={{ opacity: opacity1, filter: blur }}>
-          <img src={death} alt="image" id="reaper" />
-            {hide4 && (<h2 style={{opacity: opacity2}}>{Dtext}</h2>)} 
+        <div id="game1" className="GameScreen">
+          <img src={death} alt="image" id="reaper" style={{opacity: opacity1}}/>
+            {hide4 && (<h2 style={{opacity: opacity2, color: color }}>{Dtext}</h2>)} 
 
           {hide2 && (
             <>

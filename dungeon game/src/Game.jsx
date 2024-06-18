@@ -4,7 +4,7 @@ import Textbox from './Util/Textbox.jsx';
 import HealthBar from './Util/HealthBar.jsx';
 import { useState } from 'react';
 
-function Game(){
+function Game(props){
     const [text, setText] = useState(["..."]);
     const [count, setCount] = useState(0);
     const [background, setBackground] = useState();
@@ -13,11 +13,13 @@ function Game(){
     const [hide, setHide] = useState(true);
     //hide back button
     const [hide1, setHide1] = useState(false);
-
-    const [border, setBorder] = useState("2px solid black");
-    const [color, setColor] = useState("Black");
+    //hide health bar
+    const [hide2, setHide2] = useState(true);
+    const [border, setBorder] = useState("");
+    const [color, setColor] = useState("");
     const [buttonColor, setButtonColor] = useState("");
-    const [bgcolor, setBgcolor] = useState("rgba(240, 248, 255, 0.75)");
+    const [bgcolor, setBgcolor] = useState("");
+    const [blur, setBlur] = useState(""); 
 
     const [hearts, setHearts] = useState(Array(10).fill(true));
 
@@ -38,18 +40,22 @@ function Game(){
 
     return(
         <>
+
         <Game1 setText={setText} die={die} background={setBackground} 
-               hide={setHide} hide1={setHide1} count={count} 
-               setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder} setButtonColor={setButtonColor}/>
+               hide={setHide} hide1={setHide1} hide2={setHide2} count={count} 
+               setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}
+               setButtonColor={setButtonColor} setBlur={setBlur}
+               setOpacity={props.opacity} setVisibility={props.visibility}/>
         
         {hide && (<Textbox text={text} count={count} setCount={setCount}
                  hide={setHide} hide1={hide1} setHide1={setHide1}
                  color={color} setColor={setColor} bgColor={bgcolor} 
                  border={border} buttonColor={buttonColor}/>)}
 
-        <HealthBar hearts={hearts}/>
+        {hide2 && (<HealthBar hearts={hearts}/>)}
 
-        <img src={background} alt="Image" id='game_background'/>
+        <img src={background} alt="Image" id='game_background' style={{filter: blur}}/>
+      
         </>
     )
 
