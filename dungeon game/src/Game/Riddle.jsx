@@ -156,6 +156,9 @@ const incorrect = () => {
                                 setTimeout(() => {
                                     props.setOpacity(1);
                                     props.setVisibility("visible");
+                                    setTimeout(() => {
+                                    props.finish(false);
+                                    },4000);  
                             },2500);  
                         }, 500); 
                     }, 2000);

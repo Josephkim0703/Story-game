@@ -9,23 +9,22 @@ function Intro(props) {
 
   const [complete, setComplete] = useState(false);
   const [done, setDone] = useState(true);
-  const [hide, setHide] = useState(true);
   const [zoom, setZoom] = useState("");
   const [position, setPosition] = useState("");
 
-  useEffect(() => {
-    const updatePage = localStorage.getItem('start')
+ // useEffect(() => {
+  //  const updatePage = localStorage.getItem('start')
 
-    if(updatePage === "true"){
-      setComplete(true);
-      setDone(false); 
-    }
- },[]);
+  //  if(updatePage == "true"){
+   //   setComplete(true);
+//setDone(false); 
+  //  }
+ //},[]);
 
   const start = () => {
     setComplete(true);
     setDone(false); 
-    localStorage.setItem('start', true)
+   // localStorage.setItem('start', true)
   }
 
   const videoChange = () => {
@@ -44,9 +43,8 @@ function Intro(props) {
 
       {complete && 
         <>
-          <Tutorial start={props.start} state={setHide}/>
+          <Tutorial start={props.start}/>
           <img src={Town} alt="background-Image" id='background-town'/>
-          {hide && <HealthBar/>}
         </>
       }
     

@@ -15,6 +15,8 @@ function Game(props){
     const [hide1, setHide1] = useState(false);
     //hide health bar
     const [hide2, setHide2] = useState(true);
+    const [hide_game_1, sethide_game_1] = useState(true);
+
     const [border, setBorder] = useState("");
     const [color, setColor] = useState("");
     const [buttonColor, setButtonColor] = useState("");
@@ -40,12 +42,13 @@ function Game(props){
 
     return(
         <>
-
-        <Game1 setText={setText} die={die} background={setBackground} 
+        {hide_game_1 &&
+        (<Game1 setText={setText} die={die} background={setBackground} 
                hide={setHide} hide1={setHide1} hide2={setHide2} count={count} 
                setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}
                setButtonColor={setButtonColor} setBlur={setBlur}
-               setOpacity={props.opacity} setVisibility={props.visibility}/>
+               setOpacity={props.opacity} setVisibility={props.visibility} finish={sethide_game_1}/>)}
+        
         
         {hide && (<Textbox text={text} count={count} setCount={setCount}
                  hide={setHide} hide1={hide1} setHide1={setHide1}

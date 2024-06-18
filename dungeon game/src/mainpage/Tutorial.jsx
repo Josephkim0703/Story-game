@@ -25,8 +25,7 @@ const text = [
     `What a mighty name you have ${userName}!`,
     'I hear your seeking to explore the Ruins of Alexandria.',
     'You will be faced with many obstacles along your journey.',
-    'Please take caution! As you see, the bar at the bottom is your life...',
-    'And you have but 10 lives.',
+    'Please take caution! As you only have but 10 lives',
     'On your journey, look out for CLUES that may help you in the future!',
     `Goodluck and I hope to one day here the tales of ${userName}!`
 ];
@@ -41,8 +40,6 @@ useEffect(() => {
         setImage(Thorn1);     
     }else if(count === 2){
         setImage(Thorn1);
-    }else if(count >= 8){
-    //    setImage(Thorn)      
     }else{
         setImage(Thorn);
     } 
@@ -63,10 +60,9 @@ const forward = () => {
         setHide1(true);
     } 
 
-    if(count === 8){
+    if(count === 7){
         setHide2(false);  
         setDisplay("block");
-        props.state(false);
         setTimeout(() =>{
             setOpacity(1);
         },1000);       
