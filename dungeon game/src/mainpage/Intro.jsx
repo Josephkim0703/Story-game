@@ -12,25 +12,26 @@ function Intro(props) {
   const [zoom, setZoom] = useState("");
   const [position, setPosition] = useState("");
 
- // useEffect(() => {
-  //  const updatePage = localStorage.getItem('start')
-
-  //  if(updatePage == "true"){
-   //   setComplete(true);
-//setDone(false); 
-  //  }
- //},[]);
-
   const start = () => {
     setComplete(true);
     setDone(false); 
-   // localStorage.setItem('start', true)
+    localStorage.setItem('start', 'true')
+
   }
 
   const videoChange = () => {
     setPosition("-6%, 25%");
     setZoom("7");
   }
+
+  useEffect(() => {
+    const updatePage = localStorage.getItem('start')
+
+    if(updatePage === 'true'){
+      setComplete(true);
+      setDone(false); 
+    }
+ },[]);
 
   return(
     <>

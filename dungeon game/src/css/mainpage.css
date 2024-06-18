@@ -239,7 +239,7 @@ main div{
 #playerPrompts img{
     width: 30rem;
     position: relative;
-    top: 4.3rem;
+    top: 6.3rem;
     margin: auto;
 }
 
@@ -257,7 +257,7 @@ main div{
 #inputBox{
     width: 17rem;
     position: relative;
-    top: 6rem;
+    top: 8rem;
     left: 50%;
     transform: translate(-50%, -50%); 
 }
@@ -281,7 +281,7 @@ main div{
 
 #textBox{
     position: relative;
-    top: 9rem;
+    top: 11rem;
     left: 50%;
     transform: translate(-50%, -5rem); 
     border: 2px solid black;

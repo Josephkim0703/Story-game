@@ -24,6 +24,7 @@ function Start(props){
     const start = () => {
       setOpacity(0);  
       props.zoom();
+      
       setTimeout(() => {
         setDisplay("none");
         props.next();

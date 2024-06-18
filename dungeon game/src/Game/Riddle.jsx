@@ -55,6 +55,12 @@ const riddle = [
     "What am I?"
 ];
 
+const deathText = [
+    "Incorrect!",
+    "The asnwer is...",
+    "DEATH",
+];
+
 useEffect(() => {
     props.setText(text);
     props.background(background);
@@ -123,12 +129,6 @@ const style = {
     color: hover? 'orange' : '',
 };
 
-const deathText = [
-    "Incorrect!",
-    "The asnwer is...",
-    "DEATH",
-];
-
 const [Dtext, setDtext] = useState(deathText[0]);
 const [color, setColor] = useState("white");
 
@@ -169,8 +169,6 @@ const incorrect = () => {
 
     props.die();
 };
-
-
 
 return (
     <>
