@@ -160,7 +160,7 @@
     transform:  rotate(-6deg);
 }
 
-#Chalice1:hover{
+#setup button:hover #Chalice1{
     width: 23rem;
     transform:  rotate(-15deg);
 }
@@ -169,13 +169,14 @@
     transform:  scaleX(-1) rotate(-6deg);
 }
 
-#Chalice2:hover{
+#setup button:hover #Chalice2{
     width: 23rem;
     transform:  scaleX(-1) rotate(-15deg);
 }
 
 #setup button h1{
-    mix-blend-mode: difference;
+    font-family: 'brick';
+    text-shadow: 0px 0px 10px black;
 }
 
 #reaper{

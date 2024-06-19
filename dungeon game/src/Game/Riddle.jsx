@@ -119,7 +119,7 @@ const nextSet = () => {
     props.background(alley);
 }
 
-//creates a new array with spread operator with other array
+//creates a new array with spread operator with other array and then find the index and sets it to true
 function exit(index) {
   const newHover = [...hover];
   newHover[index] = false;
