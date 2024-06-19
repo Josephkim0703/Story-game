@@ -6,9 +6,11 @@ import alley from '../assets/Backgrounds/background_alley.png';
 import alley_blue from '../assets/Backgrounds/background_alley1.png';
 import death from '../assets/Characters/Death_Noface.png';
 import skull from '../assets/Characters/skull.png';
+import Chalice from '../assets/Util/Chalice.png';
+import Chalice_Splash from '../assets/Util/Chalice_splash.png';
 
 function Game1(props) {
-    const [hover, setHover] = useState(false);
+    const [hover, setHover] = useState(Array(3).fill(false));
 
     const [hide, setHide] = useState(false);
     const [hide1, setHide1] = useState(false);
@@ -117,12 +119,17 @@ const nextSet = () => {
     props.background(alley);
 }
 
-function exit() {
-    setHover(false);
+//creates a new array with spread operator with other array
+function exit(index) {
+  const newHover = [...hover];
+  newHover[index] = false;
+  setHover(newHover);
 }
 
-function enter() {
-    setHover(true);
+function enter(index) {
+  const newHover = [...hover];
+  newHover[index] = true;
+  setHover(newHover);
 }
 
 const style = {
@@ -174,7 +181,7 @@ return (
     <>
       {hide && (
         <div id="game_arrow" style={{ opacity: opacity, display: display }}>
-          <button type="button" onClick={nextSet} onMouseEnter={enter} onMouseLeave={exit}></button>
+          <button type="button" onClick={nextSet} onMouseEnter={() => enter(1)} onMouseLeave={() => exit(1)}></button>
           <h2 style={style}>&#129178;</h2>
         </div>
       )}
@@ -194,13 +201,13 @@ return (
                 <>
                   <div id="setup">
 
-                    <button type="button" onClick={incorrect}>
-                      <img src="" alt="Image" />
+                    <button type="button" onClick={incorrect} onMouseEnter={() => enter(2)} onMouseLeave={() => exit(2)} >
+                      <img src={hover[2]? Chalice_Splash : Chalice} alt="Image" id='Chalice1'/>
                         <h1>Tomorrow</h1>
                     </button>
 
-                    <button type="button" onClick={incorrect}>
-                      <img src="" alt="Image" />
+                    <button type="button" onClick={incorrect} onMouseEnter={() => enter(3)} onMouseLeave={() => exit(3)} >
+                      <img src={hover[3]? Chalice_Splash : Chalice} alt="Image" id='Chalice2'/>
                         <h1>Night</h1>
                     </button>
 
