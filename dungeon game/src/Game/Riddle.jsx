@@ -8,6 +8,7 @@ import death from '../assets/Characters/Death_Noface.png';
 import skull from '../assets/Characters/skull.png';
 import Chalice from '../assets/Util/Chalice.png';
 import Chalice_Splash from '../assets/Util/Chalice_splash.png';
+import card from '../assets/Util/tarot_back.png';
 
 function Game1(props) {
     const [hover, setHover] = useState(Array(3).fill(false));
@@ -16,7 +17,7 @@ function Game1(props) {
     const [hide1, setHide1] = useState(false);
     const [hide2, setHide2] = useState(false);
     const [hide3, setHide3] = useState(true);
-    const [hide4, setHide4] = useState(false);
+    const [hide4, setHide4] = useState(false); 
 
     const [display, setDisplay] = useState("none");
     const [opacity, setOpacity] = useState(0);
@@ -50,17 +51,22 @@ const text = [
 const riddle = [
     "I am the end of all things, the shadow's embrace",
     "A path that all must tread, yet none can retrace.",
-    "Some call me silence, where voices all cease",
+    "Some call me silence, where all voices cease",
     "Others see darkness, a void without peace.",
-    "But look deeper, you'll see my true guise",
-    "I am not ONE or the OTHER, you must open your EYES.",
-    "What am I?"
+    "But look deeper, where the truth might lie",
+    "I am not ONE or the OTHER... What am I?"
 ];
 
 const deathText = [
     "Incorrect!",
     "The asnwer is...",
     "DEATH",
+];
+
+const saveText = [
+  "Congradulations!",
+  "Good luck...",
+  "And may luck be by your side.",
 ];
 
 useEffect(() => {
@@ -107,7 +113,6 @@ useEffect(() => {
 
     if(props.count === text.length){
         setHide2(true);
-       
     }
 },[props.count]);
 
@@ -133,49 +138,57 @@ function enter(index) {
 }
 
 const style = {
-    color: hover? 'orange' : '',
+    color: hover[1]? 'orange' : '',
 };
 
-const [Dtext, setDtext] = useState(deathText[0]);
+const [script, setScript] = useState()
 const [color, setColor] = useState("white");
 
-const incorrect = () => {
-    setHide3(false);
-    setHide4(true);
-    props.hide2(false);
+function nextLevel(text, setText){
+  setHide3(false);
+  setHide4(true);
+  props.hide2(false);
 
-    setTimeout(() =>{ 
-        setOpacity2(1);
-        setTimeout(() => {
-            setOpacity2(0);
-            setTimeout(() => {
-                setOpacity2(1);
-                setDtext(deathText[1])
-                setTimeout(() => {
-                    setOpacity2(0);
-                    setTimeout(() => {
-                        setColor("red")
-                        setOpacity2(1);
-                        setDtext(deathText[2]) 
-                        setBrightness("brightness(2)")
-                            setTimeout(() => {
-                                props.setBlur("blur(8px) brightness(0.5)");
-                                setTimeout(() => {
-                                    props.setOpacity(1);
-                                    props.setVisibility("visible");
-                                    setTimeout(() => {
-                                    props.finish(false);
-                                    },4000);  
-                            },2500);  
-                        }, 500); 
-                    }, 2000);
-                }, 2000);
-            }, 2000);
-        }, 1000);
-     },500);
+  setTimeout(() =>{   
+    setText(text[0])
+      setOpacity2(1);
+      setTimeout(() => {
+          setOpacity2(0);
+          setTimeout(() => {
+              setOpacity2(1);
+              setText(text[1])
+              setTimeout(() => {
+                  setOpacity2(0);
+                  setTimeout(() => {
+                      setColor("red")
+                      setOpacity2(1);
+                      setText(text[2]) 
+                      setBrightness("brightness(2)")
+                          setTimeout(() => {
+                              props.setBlur("blur(8px) brightness(0.5)");
+                              setTimeout(() => {
+                                  props.setOpacity(1);
+                                  props.setVisibility("visible");
+                                  setTimeout(() => {
+                                  props.finish(false);
+                                  },4000);  
+                          },2500);  
+                      }, 500); 
+                  }, 2000);
+              }, 2000);
+          }, 2000);
+      }, 1000);
+   },500);
+}
 
+const incorrect = () => { 
+    nextLevel(deathText, setScript);
     props.die();
 };
+
+const correct = () => {
+    nextLevel(saveText, setScript);
+}
 
 return (
     <>
@@ -189,11 +202,11 @@ return (
       {hide1 && (
         <div id="game1" className="GameScreen">
           <img src={death} alt="image" id="reaper" style={{opacity: opacity1}}/>
-            {hide4 && (<h2 style={{opacity: opacity2, color: color }}>{Dtext}</h2>)} 
+            {hide4 && (<h2 style={{opacity: opacity2, color: color }}>{script}</h2>)} 
 
           {hide2 && (
             <>
-              <button type="button" id="button_skull">
+              <button type="button" id="button_skull" onClick={correct}>
                 <img src={skull} alt="" id="skull" style={{ filter: brightness }} />
               </button>
   
@@ -214,9 +227,10 @@ return (
                   </div>
   
                   <div id="textBox_riddle">
+                  <img src={card} alt="" />  
                     {riddle.map((line, index) => (
                       <p key={index}>{line}</p>
-                    ))}
+                    ))}          
                   </div>
                 </>
               )}
