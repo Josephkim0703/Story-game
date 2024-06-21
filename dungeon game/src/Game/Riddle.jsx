@@ -103,6 +103,12 @@ useEffect(() => {
         props.background(alley_blue);
     }
 
+    const counter1 = (props.count === 5);
+    props.setColor(counter1 ? "#B22222" : "");
+    props.setButtonColor(counter1 ? "#B22222" : "");
+    props.setBgcolor(counter1 ? "rgba(0, 0, 0, 0.5)" : "");
+    props.setBorder(counter1 ? "2px solid white" : "");
+
     const counter = (props.count >= 9 && props.count <= 14);
         props.setColor(counter ? "#B22222" : "");
         props.setButtonColor(counter ? "#B22222" : "");

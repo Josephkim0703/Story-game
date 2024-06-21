@@ -90,7 +90,8 @@ function Game(props){
 
         {hide_game[0] && 
         (<Game2 setText={setText} die={die} background={setBackground} status={status} 
-                count={count} hide={setHide}/>)}
+                count={count} hide={setHide} setButtonColor={setButtonColor}
+                setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}/>)}
         
         
         {hide && (<Textbox text={text} count={count} setCount={setCount}

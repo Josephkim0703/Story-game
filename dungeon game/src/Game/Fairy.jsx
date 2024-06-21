@@ -10,7 +10,7 @@ function Fairy(props){
         'My head hurts...',
         'What happened to me? Where am I?',
         'I gotta stop drinking jeez.',
-        'Wait I just lost a life, God dammit, I should just moved on what was I thinking.',
+        "Wait I just lost a life, God dammit, I should've just moved on what was I thinking.",
         '',
         '',
         '',
@@ -44,7 +44,7 @@ function Fairy(props){
 
     function UpdateHide(index){
         const newArray = [...hide];
-        newArray[index]
+        newArray[index];
         setHide(newArray);
     }
 
@@ -56,7 +56,21 @@ function Fairy(props){
     },[props.setText]);
     
     useEffect(() => {
-        if(props.count === 12){
+        console.log(props.count);
+
+        const counter = (props.count === 12 );
+        props.setButtonColor(counter ? "White" : "");
+        props.setColor(counter ? "White" : "");
+        props.setBgcolor(counter ? "rgba(190, 86, 131, 0.7)" : "");
+        props.setBorder(counter ? "2px solid white" : "");
+
+        const counter1 = (props.count === 9 );
+        props.setButtonColor(counter1 ? "#1CAC78" : "");
+        props.setColor(counter1 ? "White" : "");
+        props.setBgcolor(counter1 ? "rgba(190, 86, 131, 0.7)" : "");
+        props.setBorder(counter1 ? "2px solid #66CDAA" : "");
+
+        if(props.count > 12){
             props.hide(false);
             UpdateHide(0);
         }
