@@ -136,6 +136,8 @@
 }
 
 #setup{  
+    opacity: 0;
+    transition: opacity 1.5s ease;
     position: absolute;
     top: -1rem;
     left: 50%;
@@ -208,6 +210,8 @@
 }
 
 #textBox_riddle{
+    opacity: 0;
+    transition: opacity 1.5s ease;
     z-index: 1;
     position: absolute;
     top: 10rem;

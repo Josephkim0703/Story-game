@@ -2,7 +2,7 @@ import './css/game.css';
 import Game1 from './Game/Riddle.jsx';
 import Textbox from './Util/Textbox.jsx';
 import HealthBar from './Util/HealthBar.jsx';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function Game(props){
     const [text, setText] = useState(["..."]);
@@ -37,8 +37,35 @@ function Game(props){
             //find the previous div in the new array and set it to false then push to setHearts()
             newArray[prevHeart] = false;
             setHearts(newArray);
+            return(newArray);
         }     
     }
+
+  useEffect(() => {
+    const updatePage2 = localStorage.getItem("game_1_fin");
+
+    if (updatePage2 === "true") {
+        sethide_game_1(false);
+        setHide2(true);
+        setHide(true);
+        let prevHealthBar = die();
+        setHearts(prevHealthBar);
+    }
+  }, []);
+
+    if(hide_game_1 === false){
+    setTimeout(() => {
+        props.opacity(0);
+        setHide2(true);
+        setBlur("");
+    },);
+
+    setTimeout(() => {
+        setHide(true);  
+        props.visibility("");
+    },4000)}
+
+    
 
     return(
         <>

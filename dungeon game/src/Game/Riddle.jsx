@@ -23,6 +23,7 @@ function Game1(props) {
     const [opacity, setOpacity] = useState(0);
     const [opacity1, setOpacity1] = useState(0);
     const [opacity2, setOpacity2] = useState(0);
+    const [opacity3, setOpacity3] = useState(0);
     const [brightness, setBrightness] = useState("");
 
 const text = [
@@ -65,8 +66,8 @@ const deathText = [
 
 const saveText = [
   "Congradulations!",
-  "Good luck...",
-  "And may luck be by your side.",
+  "And I hope...",
+  "our paths do not merge to soon.",
 ];
 
 useEffect(() => {
@@ -113,6 +114,7 @@ useEffect(() => {
 
     if(props.count === text.length){
         setHide2(true);
+        setTimeout(() => {setOpacity3(1)},); 
     }
 },[props.count]);
 
@@ -124,7 +126,6 @@ const nextSet = () => {
     props.background(alley);
 }
 
-//creates a new array with spread operator with other array and then find the index and sets it to true
 function exit(index) {
   const newHover = [...hover];
   newHover[index] = false;
@@ -170,6 +171,7 @@ function nextLevel(text, setText){
                                   props.setOpacity(1);
                                   props.setVisibility("visible");
                                   setTimeout(() => {
+                                  localStorage.setItem("game_1_fin", "true");
                                   props.finish(false);
                                   },4000);  
                           },2500);  
@@ -212,7 +214,7 @@ return (
   
               {hide3 && (
                 <>
-                  <div id="setup">
+                  <div id="setup" style={{opacity: opacity3}}>
 
                     <button type="button" onClick={incorrect} onMouseEnter={() => enter(2)} onMouseLeave={() => exit(2)} >
                       <img src={hover[2]? Chalice_Splash : Chalice} alt="Image" id='Chalice1'/>
@@ -226,7 +228,7 @@ return (
 
                   </div>
   
-                  <div id="textBox_riddle">
+                  <div id="textBox_riddle" style={{opacity: opacity3}}>
                   <img src={card} alt="" />  
                     {riddle.map((line, index) => (
                       <p key={index}>{line}</p>
