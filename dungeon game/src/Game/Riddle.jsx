@@ -1,3 +1,4 @@
+import '../css/game.css';
 import '../css/index.css';
 import { useState, useEffect } from 'react';
 import background from '../assets/Backgrounds/background_town.png';

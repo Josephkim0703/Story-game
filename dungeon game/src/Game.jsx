@@ -1,5 +1,6 @@
 import './css/game.css';
 import Game1 from './Game/Riddle.jsx';
+import Game2 from './Game/Fairy.jsx';
 import Textbox from './Util/Textbox.jsx';
 import HealthBar from './Util/HealthBar.jsx';
 import { useState, useEffect } from 'react';
@@ -16,6 +17,7 @@ function Game(props){
     //hide health bar
     const [hide2, setHide2] = useState(true);
     const [hide_game_1, sethide_game_1] = useState(true);
+    const [hide_game, setHideGame] = useState(Array(2).fill(false));
 
     const [border, setBorder] = useState("");
     const [color, setColor] = useState("");
@@ -41,6 +43,12 @@ function Game(props){
         }     
     }
 
+    function updateHide(index){
+        const newHide = [...hide_game];
+        newHide[index] = true;
+        setHideGame(newHide);
+    }
+
   useEffect(() => {
     const updatePage2 = localStorage.getItem("game_1_fin");
 
@@ -55,6 +63,7 @@ function Game(props){
 
     if(hide_game_1 === false){
     setTimeout(() => {
+        updateHide(0);
         props.opacity(0);
         setHide2(true);
         setBlur("");
@@ -75,6 +84,9 @@ function Game(props){
                setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}
                setButtonColor={setButtonColor} setBlur={setBlur}
                setOpacity={props.opacity} setVisibility={props.visibility} finish={sethide_game_1}/>)}
+
+        {hide_game[0] && 
+        (<Game2/>)}
         
         
         {hide && (<Textbox text={text} count={count} setCount={setCount}
