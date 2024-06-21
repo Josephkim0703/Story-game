@@ -173,6 +173,7 @@ function nextLevel(text, setText){
                                   props.setVisibility("visible");
                                   setTimeout(() => {
                                   localStorage.setItem("game_1_fin", "true");
+                                  props.setCount(0);
                                   props.finish(false);
                                   },4000);  
                           },2500);  

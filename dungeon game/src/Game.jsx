@@ -67,10 +67,11 @@ function Game(props){
         props.opacity(0);
         setHide2(true);
         setBlur("");
+        setHide(true);   
     },);
 
     setTimeout(() => {
-        setHide(true);  
+        
         props.visibility("");
     },4000)}
 
@@ -80,13 +81,14 @@ function Game(props){
         <>
         {hide_game_1 &&
         (<Game1 setText={setText} die={die} background={setBackground} 
-               hide={setHide} hide1={setHide1} hide2={setHide2} count={count} 
+               hide={setHide} hide1={setHide1} hide2={setHide2} count={count} setCount={setCount}
                setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}
                setButtonColor={setButtonColor} setBlur={setBlur}
                setOpacity={props.opacity} setVisibility={props.visibility} finish={sethide_game_1}/>)}
 
         {hide_game[0] && 
-        (<Game2/>)}
+        (<Game2 setText={setText} die={die} background={setBackground} 
+                count={count}/>)}
         
         
         {hide && (<Textbox text={text} count={count} setCount={setCount}

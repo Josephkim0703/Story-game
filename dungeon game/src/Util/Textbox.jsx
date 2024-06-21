@@ -17,12 +17,20 @@ function Textbox(props){
         } 
     }, [props.count]);
 
+    useEffect(() => {
+        if(props.count === 0){
+            props.setHide1(false);
+        }
+    },[props.count]);
+
     const forward = () => {
         props.setCount((prevCount) => prevCount + 1);
     
         if(props.count >= 1){
             props.setHide1(true);
-        }  
+        } else{
+            props.setHide1(false);
+        }
         
     };
     
