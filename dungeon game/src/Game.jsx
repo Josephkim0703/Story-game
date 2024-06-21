@@ -9,6 +9,7 @@ function Game(props){
     const [text, setText] = useState(["..."]);
     const [count, setCount] = useState(0);
     const [background, setBackground] = useState();
+    const [status, setStatus] = useState();
 
     //hide text box
     const [hide, setHide] = useState(true);
@@ -49,7 +50,7 @@ function Game(props){
         setHideGame(newHide);
     }
 
-  useEffect(() => {
+    useEffect(() => {
     const updatePage2 = localStorage.getItem("game_1_fin");
 
     if (updatePage2 === "true") {
@@ -59,7 +60,7 @@ function Game(props){
         let prevHealthBar = die();
         setHearts(prevHealthBar);
     }
-  }, []);
+    }, []);
 
     if(hide_game_1 === false){
     setTimeout(() => {
@@ -73,22 +74,23 @@ function Game(props){
     setTimeout(() => {
         
         props.visibility("");
-    },4000)}
+    },4000)
+    }
 
     
 
     return(
         <>
         {hide_game_1 &&
-        (<Game1 setText={setText} die={die} background={setBackground} 
+        (<Game1 setText={setText} die={die} background={setBackground} status={setStatus} 
                hide={setHide} hide1={setHide1} hide2={setHide2} count={count} setCount={setCount}
                setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}
                setButtonColor={setButtonColor} setBlur={setBlur}
                setOpacity={props.opacity} setVisibility={props.visibility} finish={sethide_game_1}/>)}
 
         {hide_game[0] && 
-        (<Game2 setText={setText} die={die} background={setBackground} 
-                count={count}/>)}
+        (<Game2 setText={setText} die={die} background={setBackground} status={status} 
+                count={count} hide={setHide}/>)}
         
         
         {hide && (<Textbox text={text} count={count} setCount={setCount}

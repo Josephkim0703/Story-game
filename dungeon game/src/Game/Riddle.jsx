@@ -188,10 +188,12 @@ function nextLevel(text, setText){
 const incorrect = () => { 
     nextLevel(deathText, setScript);
     props.die();
+    props.status(false);
 };
 
 const correct = () => {
     nextLevel(saveText, setScript);
+    props.status(true);
 }
 
 return (
