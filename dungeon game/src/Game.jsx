@@ -52,27 +52,25 @@ function Game(props){
 
     useEffect(() => {
     const updatePage2 = localStorage.getItem("game_1_fin");
-
     if (updatePage2 === "true") {
         sethide_game_1(false);
-        setHide2(true);
-        setHide(true);
-        let prevHealthBar = die();
-        setHearts(prevHealthBar);
+        setStatus(status);
+        if(status === false){
+            const newHeart = die();
+            setHearts(newHeart);
+        }else{
+            setHearts(hearts);
+        }
     }
     }, []);
 
     if(hide_game_1 === false){
     setTimeout(() => {
+
         updateHide(0);
-        props.opacity(0);
-        setHide2(true);
-        setBlur("");
-        setHide(true);   
     },);
 
-    setTimeout(() => {
-        
+    setTimeout(() => {  
         props.visibility("");
     },4000)
     }
@@ -94,10 +92,10 @@ function Game(props){
                 setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}/>)}
         
         
-        {hide && (<Textbox text={text} count={count} setCount={setCount}
+        {hide && <Textbox text={text} count={count} setCount={setCount}
                  hide={setHide} hide1={hide1} setHide1={setHide1}
                  color={color} setColor={setColor} bgColor={bgcolor} 
-                 border={border} buttonColor={buttonColor}/>)}
+                 border={border} buttonColor={buttonColor}/>}
 
         {hide2 && (<HealthBar hearts={hearts}/>)}
 

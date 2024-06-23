@@ -103,17 +103,19 @@ useEffect(() => {
         props.background(alley_blue);
     }
 
+    if(props.count === 5){
     const counter1 = (props.count === 5);
     props.setColor(counter1 ? "#B22222" : "");
     props.setButtonColor(counter1 ? "#B22222" : "");
     props.setBgcolor(counter1 ? "rgba(0, 0, 0, 0.5)" : "");
     props.setBorder(counter1 ? "2px solid white" : "");
-
-    const counter = (props.count >= 9 && props.count <= 14);
+    }else{
+    const counter = (props.count >= 9 && props.count <= 14 );
         props.setColor(counter ? "#B22222" : "");
         props.setButtonColor(counter ? "#B22222" : "");
         props.setBgcolor(counter ? "rgba(0, 0, 0, 0.5)" : "");
         props.setBorder(counter ? "2px solid white" : "");
+    }
 
     if(props.count < 7){
         setHide1(false);
@@ -181,6 +183,10 @@ function nextLevel(text, setText){
                                   localStorage.setItem("game_1_fin", "true");
                                   props.setCount(0);
                                   props.finish(false);
+                                  props.setBlur("");
+                                  props.hide(true);
+                                  props.hide2(true);
+                                  props.setOpacity(0);
                                   },4000);  
                           },2500);  
                       }, 500); 
