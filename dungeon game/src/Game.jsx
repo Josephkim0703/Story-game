@@ -72,8 +72,6 @@ function Game(props){
     },4000)
     }
 
-    
-
     return(
         <>
         {hide_game_1 &&

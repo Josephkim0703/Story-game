@@ -55,20 +55,16 @@ function Fairy(props){
         newArray[index] = true;
         setHide(newArray);
     }
-
     
     useEffect(() => {
-        const status = localStorage.getItem('status');
-            
+        const status = localStorage.getItem('status');          
             if(status === 'false'){
                 setStatus(false);
             }else if(status === 'true'){
                 setStatus(true);
-            }
-   
-        },[]);
-
-    
+            } 
+    },[]);
+ 
     const Text = status? PassText : FailText;
 
     useEffect(() => {
@@ -99,34 +95,37 @@ function Fairy(props){
         const newHover = [...hover];
         newHover[index] = false;
         setHover(newHover);
-      }
+    }
       
     function enter(index) {
         const newHover = [...hover];
         newHover[index] = true;
         setHover(newHover);
-      }
+    }
       
-      const style = {
+    const style = {
           color: hover[1]? 'orange' : '',
-      };
+    };
 
     function nextSet(){
-
+        props.background();
+        props.hide(true);
+        UpdateHide(1);
     }
 
     return(
         <>
         {hide[0] && (
-            <div id="game_arrow_1" style={{ opacity: opacity}}>
+            <div id="game_arrow_1" style={{opacity: opacity}}>
               <button type="button" onClick={nextSet} onMouseEnter={() => enter(1)} onMouseLeave={() => exit(1)}></button>
               <h2 style={style}>&#129178;</h2>
             </div>
           )}
-
-        <div id='game2'>
-   
-        </div>
+        {hide[1] && (
+            <div id='game2'>
+                <h1>Testing</h1>
+            </div>
+        )}
         </>
     )
 }
