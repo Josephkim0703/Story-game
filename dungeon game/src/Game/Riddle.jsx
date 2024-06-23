@@ -200,12 +200,12 @@ function nextLevel(text, setText){
 const incorrect = () => { 
     nextLevel(deathText, setScript);
     props.die();
-    props.status(false);
+    localStorage.setItem("status", false);
 };
 
 const correct = () => {
     nextLevel(saveText, setScript);
-    props.status(true);
+    localStorage.setItem("status", true);
 }
 
 return (

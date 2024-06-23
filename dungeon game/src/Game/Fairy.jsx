@@ -48,6 +48,7 @@ function Fairy(props){
     const [hover, setHover] = useState(Array(3).fill(false));
     const [hide, setHide] = useState(Array(5).fill(false));
     const [opacity, setOpacity] = useState(0);
+    const [status, setStatus] = useState();
 
     function UpdateHide(index){
         const newArray = [...hide];
@@ -55,7 +56,20 @@ function Fairy(props){
         setHide(newArray);
     }
 
-    const Text = props.status? PassText : FailText;
+    
+    useEffect(() => {
+        const status = localStorage.getItem('status');
+            
+            if(status === 'false'){
+                setStatus(false);
+            }else if(status === 'true'){
+                setStatus(true);
+            }
+   
+        },[]);
+
+    
+    const Text = status? PassText : FailText;
 
     useEffect(() => {
         props.setText(Text);
@@ -63,7 +77,7 @@ function Fairy(props){
     },[props.setText]);
     
     useEffect(() => {
-        console.log(props.count);
+      
 
         const counter = (props.count === 9 || props.count === 12);
         props.setButtonColor(counter ? "red" : "");

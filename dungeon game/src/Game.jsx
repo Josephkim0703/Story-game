@@ -9,7 +9,6 @@ function Game(props){
     const [text, setText] = useState(["..."]);
     const [count, setCount] = useState(0);
     const [background, setBackground] = useState();
-    const [status, setStatus] = useState();
 
     //hide text box
     const [hide, setHide] = useState(true);
@@ -17,6 +16,7 @@ function Game(props){
     const [hide1, setHide1] = useState(false);
     //hide health bar
     const [hide2, setHide2] = useState(true);
+    
     const [hide_game_1, sethide_game_1] = useState(true);
     const [hide_game, setHideGame] = useState(Array(2).fill(false));
 
@@ -26,23 +26,27 @@ function Game(props){
     const [bgcolor, setBgcolor] = useState("");
     const [blur, setBlur] = useState(""); 
 
-    const [hearts, setHearts] = useState(Array(10).fill(true));
+    /*grabs the heart status from local storage if it exists then sets heart
+      to savedHearts but if it isnt then it sets it to default array.
+      then returns the the heart status from arrow function
+    */
+    const [hearts, setHearts] = useState(() => {
+        const heartStatus = localStorage.getItem("heartStatus");
+        return heartStatus? JSON.parse(heartStatus) : Array(10).fill(true);
+    });
 
-    const die = () => {
-
-        //this find the last div that is set to true
+    function die(){
         const prevHeart = hearts.lastIndexOf(true);
-    
-        //if the last div is not false
         if (prevHeart !== false) {
-            //create a new array and use spread operator to fill with the heart array
             const newArray = [...hearts];
-            //find the previous div in the new array and set it to false then push to setHearts()
             newArray[prevHeart] = false;
             setHearts(newArray);
-            return(newArray);
         }     
     }
+
+    useEffect(() => {
+        localStorage.setItem("heartStatus", JSON.stringify(hearts));
+    }, [hearts]);
 
     function updateHide(index){
         const newHide = [...hide_game];
@@ -54,13 +58,6 @@ function Game(props){
     const updatePage2 = localStorage.getItem("game_1_fin");
     if (updatePage2 === "true") {
         sethide_game_1(false);
-        setStatus(status);
-        if(status === false){
-            const newHeart = die();
-            setHearts(newHeart);
-        }else{
-            setHearts(hearts);
-        }
     }
     }, []);
 
@@ -80,14 +77,14 @@ function Game(props){
     return(
         <>
         {hide_game_1 &&
-        (<Game1 setText={setText} die={die} background={setBackground} status={setStatus} 
+        (<Game1 setText={setText} die={die} background={setBackground}
                hide={setHide} hide1={setHide1} hide2={setHide2} count={count} setCount={setCount}
                setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}
                setButtonColor={setButtonColor} setBlur={setBlur}
                setOpacity={props.opacity} setVisibility={props.visibility} finish={sethide_game_1}/>)}
 
         {hide_game[0] && 
-        (<Game2 setText={setText} die={die} background={setBackground} status={status} 
+        (<Game2 setText={setText} die={die} background={setBackground} 
                 count={count} hide={setHide} setButtonColor={setButtonColor}
                 setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}/>)}
         
