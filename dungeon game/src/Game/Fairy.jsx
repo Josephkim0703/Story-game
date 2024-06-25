@@ -10,11 +10,11 @@ function Fairy(props){
         'My head hurts...',
         'What happened to me? Where am I?',
         'I swear to god that dude had a skull for a face... I gotta stop drinking jeez.',
-        "Wait I just lost a life, God dammit, I should've just moved on what was I thinking.",
-        'Man this sucks!! Calm down, breath, lets just figure out where we are first.',
-        'Ok... I see trees and flowers and...',
+        "Wait, I just lost a life. By the gods, what was I thinking? Should've just walked away.",
+        "Man this sucks!! Calm down. Breath. Let's figure out where we are first.",
+        "Alright... I see trees and flowers and...",
         '...',
-        "More trees... God dammit! Well it could've been worse.",
+        "More trees... Great. Well, it could've been worse.",
         'AHHHHH!!!',
         'What was that?!',
         '...',
@@ -31,9 +31,9 @@ function Fairy(props){
         'My vision got Blurry and then I blacked out.',
         'I swear to god that dude had a skull for a face...',
         'Was he the Grim Reaper... I gotta stop drinking.',
-        'Well He did say congradulation so I guess I passed. So if I had picked either chalice I would have failed.',
-        'I wonder what would have happened if I chose one the Chalices.',
-        'Wait What is that in the corner of my vision...',
+        "Well, he did say congratulations, so I guess I passed. If I had picked either chalice, I would've failed.",
+        "I wonder what would have happened if I chose one of the chalices.",
+        "Wait, what's that shimmering in the corner of my vision...?",
         'Auto-Pilot... I guess that was the reward for solving the riddle.',
         'AHHHHH!!!',
         'What was that?!',
@@ -50,11 +50,16 @@ function Fairy(props){
     const [opacity, setOpacity] = useState(0);
     const [status, setStatus] = useState();
 
-    function UpdateHide(index){
-        const newArray = [...hide];
-        newArray[index] = true;
-        setHide(newArray);
+    //takes previous state and then adds on new state and updates
+    function UpdateHide(index, value){
+        setHide(prevHide => {
+            const newArray = [...prevHide];
+            newArray[index] = value;
+            return newArray;
+        });
     }
+
+ 
     
     useEffect(() => {
         const status = localStorage.getItem('status');          
@@ -83,11 +88,15 @@ function Fairy(props){
         
         if(props.count === 13){
             props.hide(false);
-            UpdateHide(0);
+            UpdateHide(0, true);
 
             setTimeout(() =>{
                 setOpacity(1);
             },1000); 
+        }
+
+        if(props.count === 14 || props.count === 15){
+            props.hide1(false);
         }
     },[props.count]);
 
@@ -109,8 +118,11 @@ function Fairy(props){
 
     function nextSet(){
         props.background();
+        UpdateHide(0, false);
+        UpdateHide(1, true);
         props.hide(true);
-        UpdateHide(1);
+        props.hide1(false);
+    
     }
 
     return(
