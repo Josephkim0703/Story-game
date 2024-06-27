@@ -58,8 +58,6 @@ function Fairy(props){
             return newArray;
         });
     }
-
- 
     
     useEffect(() => {
         const status = localStorage.getItem('status');          
@@ -79,7 +77,6 @@ function Fairy(props){
     
     useEffect(() => {
       
-
         const counter = (props.count === 9 || props.count === 12);
         props.setButtonColor(counter ? "red" : "");
         props.setColor(counter ? "RED" : "");
@@ -95,7 +92,7 @@ function Fairy(props){
             },1000); 
         }
 
-        if(props.count === 14 || props.count === 15){
+        if(props.count === 14){
             props.hide1(false);
         }
     },[props.count]);
@@ -122,7 +119,6 @@ function Fairy(props){
         UpdateHide(1, true);
         props.hide(true);
         props.hide1(false);
-    
     }
 
     return(
