@@ -20,10 +20,13 @@ function Fairy(props){
         'What was that?!',
         '...',
         'HELP!!!',
-        'What the fuck',
-        '',
-        '',
-        '',
+        '...',
+        'What the fuck! First the Grim-reaper now a horde of goblins...',
+        "Wait... is that fairy!?",
+        'Kree-hee-hee! Grak nar thalash! Vroth manglar vor ak!',
+        "Help! Please, help me! These goblins have trapped me! I don't want to be their dinner!",
+        "Grak! Xul nar thokk! Grash var turak vor magra!",
+        "Hey, goblins! I know 'grak' means 'shut up.' Yeah, I speak a bit of goblin. But guess what? By the time I'm through with you, you'll be speechless!"
     ];
 
     const PassText = [
@@ -31,7 +34,7 @@ function Fairy(props){
         'What happned just now...',
         'My vision got Blurry and then I blacked out.',
         'I swear to god that dude had a skull for a face...',
-        'Was he the Grim Reaper... I gotta stop drinking.',
+        'Was he the Grim-Reaper... I gotta stop drinking.',
         "Well, he did say congratulations, so I guess I passed. If I had picked either chalice, I would've failed.",
         "I wonder what would have happened if I chose one of the chalices.",
         "Wait, what's that shimmering in the corner of my vision...?",
@@ -40,10 +43,13 @@ function Fairy(props){
         'What was that?!',
         '...',
         'HELP!!!',
-        '',
-        '',
-        '',
-        '',
+        '...',
+        'What the fuck! First the Grim-reaper now a horde  of goblins...',
+        "Wait... is that fairy!?",
+        'Kree-hee-hee! Grak nar thalash! Vroth manglar vor ak!',
+        "Help! Please, help me! These goblins have trapped me! I don't want to be their dinner!",
+        "Grak! Xul nar thokk! Grash var turak vor magra!",
+        "Hey, goblins! I know 'grak' means 'shut up.' Yeah, I speak a bit of goblin. But guess what? By the time I'm through with you, you'll be speechless!"
     ];
 
     const [hover, setHover] = useState(Array(3).fill(false));
@@ -75,6 +81,8 @@ function Fairy(props){
         props.setText(Text);
         props.background(background);
     },[props.setText]);
+
+
     
     useEffect(() => {
       
@@ -84,13 +92,34 @@ function Fairy(props){
         props.setBgcolor(counter ? "rgba(0, 0, 0, 0.7)" : "");
         props.setBorder(counter ? "2px solid red" : "");
         
+
+        if(props.count === 16 || props.count === 18){  
+            const counter = (props.count === 16 || props.count === 18);
+            props.setButtonColor(counter ? "red" : "");
+            props.setColor(counter ? "RED" : "");
+            props.setBgcolor(counter ? "rgba(0, 0, 0, 0.7)" : "");
+            props.setBorder(counter ? "2px solid red" : "");
+        }
+
+        if(props.count === 17){  
+            const counter = (props.count === 17);
+            props.setButtonColor(counter ? "#00BFFF" : "");
+            props.setColor(counter ? "#1E90FF" : "");
+            props.setBgcolor(counter ? "rgba(240,248,255, 0.7)" : "");
+            props.setBorder(counter ? "2px solid #00BFFF" : "");
+            }
+        
         if(props.count === 13){
             props.hide(false);
             UpdateHide(0, true);
-
+            UpdateHide(1, false)
             setTimeout(() =>{
                 setOpacity(1);
             },1000); 
+        }
+
+        if(props.count === 14){
+            props.background(background_2);
         }
 
         if(props.count === 14){
@@ -120,6 +149,7 @@ function Fairy(props){
         UpdateHide(1, true);
         props.hide(true);
         props.hide1(false);
+        localStorage.removeItem('checkpoint');
     }
 
     return(
