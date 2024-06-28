@@ -2,6 +2,7 @@ import '../css/game.css';
 import '../css/index.css';
 import { useState, useEffect } from 'react';
 import background from '../assets/Backgrounds/background_forest.png';
+import background_2 from '../assets/Backgrounds/background_goblin.jpeg';
 
 function Fairy(props){
 
@@ -19,7 +20,7 @@ function Fairy(props){
         'What was that?!',
         '...',
         'HELP!!!',
-        '',
+        'What the fuck',
         '',
         '',
         '',
@@ -114,7 +115,7 @@ function Fairy(props){
     };
 
     function nextSet(){
-        props.background();
+        props.background(background_2);
         UpdateHide(0, false);
         UpdateHide(1, true);
         props.hide(true);
