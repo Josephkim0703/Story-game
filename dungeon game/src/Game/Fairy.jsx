@@ -2,7 +2,7 @@ import '../css/game.css';
 import '../css/index.css';
 import { useState, useEffect } from 'react';
 import background from '../assets/Backgrounds/background_forest.png';
-import background_2 from '../assets/Backgrounds/background_goblin1.jpeg';
+import background_2 from '../assets/Backgrounds/background_goblin.jpeg';
 import lena from '../assets/Characters/lena_talk.png';
 import Goblin from '../assets/Characters/Goblin_talk.png';
 
@@ -94,12 +94,22 @@ function Fairy(props){
         props.setColor(counter ? "RED" : "");
         props.setBgcolor(counter ? "rgba(0, 0, 0, 0.7)" : "");
         props.setBorder(counter ? "2px solid red" : "");
-        
-        if(props.count === 16){
-            UpdateHide(1, true);
+
+        if(props.count === 13){
+            props.hide(false);
+            UpdateHide(0, true);
+            UpdateHide(1, false)
+            setTimeout(() =>{
+                setOpacity(1);
+            },1000); 
+        }
+      
+        if(props.count === 14){
+            props.hide1(false);
         }
 
-        if(props.count === 16 || props.count === 18){  
+        if(props.count === 16 || props.count === 18){ 
+            UpdateHide(1, true); 
             setCharacter(Goblin);
             const counter = (props.count === 16 || props.count === 18);
             props.setButtonColor(counter ? "red" : "");
@@ -113,26 +123,14 @@ function Fairy(props){
             const counter = (props.count === 17);
             props.setButtonColor(counter ? "#00BFFF" : "");
             props.setColor(counter ? "#1E90FF" : "");
-            props.setBgcolor(counter ? "rgba(240,248,255, 0.7)" : "");
+            props.setBgcolor(counter ? "rgba(240,248,255, 0.85)" : "");
             props.setBorder(counter ? "2px solid #00BFFF" : "");
             }
-        
-        if(props.count === 13){
-            props.hide(false);
-            UpdateHide(0, true);
-            UpdateHide(1, false)
-            setTimeout(() =>{
-                setOpacity(1);
-            },1000); 
-        }
 
-        if(props.count === 14){
-            props.background(background_2);
+        if(props.count === 15 || props.count === 19){
+            UpdateHide(1, false);
         }
-
-        if(props.count === 14){
-            props.hide1(false);
-        }
+   
     },[props.count]);
 
     function exit(index) {
@@ -156,7 +154,6 @@ function Fairy(props){
         UpdateHide(0, false);
         props.hide(true);
         props.hide1(false);
-        localStorage.removeItem('checkpoint');
     }
 
     return(
