@@ -2,7 +2,9 @@ import '../css/game.css';
 import '../css/index.css';
 import { useState, useEffect } from 'react';
 import background from '../assets/Backgrounds/background_forest.png';
-import background_2 from '../assets/Backgrounds/background_goblin.jpeg';
+import background_2 from '../assets/Backgrounds/background_goblin1.jpeg';
+import lena from '../assets/Characters/lena_talk.png';
+import Goblin from '../assets/Characters/Goblin_talk.png';
 
 function Fairy(props){
 
@@ -56,6 +58,7 @@ function Fairy(props){
     const [hide, setHide] = useState(Array(5).fill(false));
     const [opacity, setOpacity] = useState(0);
     const [status, setStatus] = useState();
+    const [Character, setCharacter] = useState();
 
     //takes previous state and then adds on new state and updates
     function UpdateHide(index, value){
@@ -92,8 +95,12 @@ function Fairy(props){
         props.setBgcolor(counter ? "rgba(0, 0, 0, 0.7)" : "");
         props.setBorder(counter ? "2px solid red" : "");
         
+        if(props.count === 16){
+            UpdateHide(1, true);
+        }
 
         if(props.count === 16 || props.count === 18){  
+            setCharacter(Goblin);
             const counter = (props.count === 16 || props.count === 18);
             props.setButtonColor(counter ? "red" : "");
             props.setColor(counter ? "RED" : "");
@@ -102,6 +109,7 @@ function Fairy(props){
         }
 
         if(props.count === 17){  
+            setCharacter(lena);
             const counter = (props.count === 17);
             props.setButtonColor(counter ? "#00BFFF" : "");
             props.setColor(counter ? "#1E90FF" : "");
@@ -146,7 +154,6 @@ function Fairy(props){
     function nextSet(){
         props.background(background_2);
         UpdateHide(0, false);
-        UpdateHide(1, true);
         props.hide(true);
         props.hide1(false);
         localStorage.removeItem('checkpoint');
@@ -161,8 +168,8 @@ function Fairy(props){
             </div>
           )}
         {hide[1] && (
-            <div id='game2'>
-                <h1>Testing</h1>
+            <div id='Char_img'>
+                <img src={Character} alt="" />
             </div>
         )}
         </>

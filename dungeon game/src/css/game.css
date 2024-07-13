@@ -292,7 +292,7 @@
     }
 }
 
-#game2{
+#Char_img{
     z-index: 1;
     position: absolute;
     top: 50%;
@@ -301,5 +301,11 @@
     text-align: center;
     display: flex;
     flex-direction: row;
+}
+
+#Char_img img{
+    z-index: 1;
+    width: 25rem;
+    transform: translateY(-2.8rem);
 }
 
