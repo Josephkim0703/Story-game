@@ -3,6 +3,7 @@ import '../css/index.css';
 import { useState, useEffect } from 'react';
 import background from '../assets/Backgrounds/background_forest.png';
 import background_2 from '../assets/Backgrounds/background_goblin.jpeg';
+import background_closeup from '../assets/Backgrounds/background_noGoblin.jpg'
 import lena from '../assets/Characters/lena_talk.png';
 import Goblin from '../assets/Characters/Goblin_talk.png';
 
@@ -77,6 +78,17 @@ function Fairy(props){
                 setStatus(true);
             } 
     },[]);
+
+    useEffect(() => {
+      const update = localStorage.getItem('game_2_startGame');
+      if(update === 'true'){
+        UpdateHide(0, false);
+        UpdateHide(1, false);
+        UpdateHide(2, true);
+        props.background(background_2);
+        props.hide(false);
+      }
+    },[]);
  
     const Text = status? PassText : FailText;
 
@@ -84,8 +96,6 @@ function Fairy(props){
         props.setText(Text);
         props.background(background);
     },[props.setText]);
-
-
     
     useEffect(() => {
       
@@ -129,6 +139,13 @@ function Fairy(props){
 
         if(props.count === 15 || props.count === 19){
             UpdateHide(1, false);
+            props.background(background_2);
+        }
+
+        if(props.count >= Text.length){
+            props.background(background_2);
+            UpdateHide(2, true);
+            localStorage.setItem('game_2_startGame', 'true');
         }
    
     },[props.count]);
@@ -156,6 +173,51 @@ function Fairy(props){
         props.hide1(false);
     }
 
+    const [left, setLeft] = useState(0);
+    const [top, setTop] = useState(0);
+    const [jumping, setJumping] = useState(false);
+    const moveStep = 25;
+  
+    useEffect(() => {
+
+        const movement = (e) => {
+            switch (e.key) {
+              case 'a':
+                setLeft(prevLeft => prevLeft - moveStep);
+                break;
+              case 'd':
+                setLeft(prevLeft => prevLeft + moveStep);
+                break;
+              case ' ':
+                if (!jumping) {
+                  setJumping(true);
+                  jump();
+                }
+                break;
+              default:
+                break;
+            }
+          };
+
+        function jump() {
+            const intervals = setInterval(() => {  
+                  setTop(prevTop => prevTop - 5)
+          
+              },50)
+              if (top == 50) {
+                  clearInterval(intervals); 
+                  setJumping(false);
+                }
+          }
+      document.addEventListener('keydown', movement);
+      console.log(top);
+      return () => {
+        document.removeEventListener('keydown', movement);
+      };
+      
+    }, []);
+
+   
     return(
         <>
         {hide[0] && (
@@ -167,6 +229,13 @@ function Fairy(props){
         {hide[1] && (
             <div id='Char_img'>
                 <img src={Character} alt="" />
+            </div>
+        )}
+          {hide[2] && (
+            <div id='game2'>
+                <div id='gameboard'>
+                    <div id='game_2_player' style={{left: left, top: top}}></div>
+                </div>
             </div>
         )}
         </>
