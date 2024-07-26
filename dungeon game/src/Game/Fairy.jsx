@@ -31,7 +31,7 @@ function Fairy(props){
         'Kree-hee-hee! Grak nar thalash! Vroth manglar vor ak!',
         "Help! Please, help me! These goblins have trapped me! I don't want to be their dinner!",
         "Grak! Xul nar thokk! Grash var turak vor magra!",
-        "Hey, goblins! I know 'grak' means 'shut up.' Yeah, I speak a bit of goblin. But guess what? By the time I'm through with you, you'll be speechless!"
+        "If you save me I wil grant you a wish! Just keep me safe until I can charge up my attack!"
     ];
 
     const PassText = [
@@ -54,7 +54,7 @@ function Fairy(props){
         'Kree-hee-hee! Grak nar thalash! Vroth manglar vor ak!',
         "Help! Please, help me! These goblins have trapped me! I don't want to be their dinner!",
         "Grak! Xul nar thokk! Grash var turak vor magra!",
-        "Hey, goblins! I know 'grak' means 'shut up.' Yeah, I speak a bit of goblin. But guess what? By the time I'm through with you, you'll be speechless!"
+        "If you save me I wil grant you a wish! Just keep me safe until I can charge up my attack!"
     ];
 
     const [hover, setHover] = useState(Array(3).fill(false));
@@ -124,6 +124,7 @@ function Fairy(props){
         if(props.count === 16 || props.count === 18){ 
             UpdateHide(1, true); 
             setCharacter(Goblin);
+            props.background(background_closeup);
             const counter = (props.count === 16 || props.count === 18);
             props.setButtonColor(counter ? "red" : "");
             props.setColor(counter ? "RED" : "");
@@ -131,22 +132,23 @@ function Fairy(props){
             props.setBorder(counter ? "2px solid red" : "");
         }
 
-        if(props.count === 17){  
+        if(props.count === 17 || props.count === 19){  
             setCharacter(lena);
-            const counter = (props.count === 17);
+            const counter = (props.count === 17 || props.count === 19);
             props.setButtonColor(counter ? "#00BFFF" : "");
             props.setColor(counter ? "#1E90FF" : "");
             props.setBgcolor(counter ? "rgba(240,248,255, 0.85)" : "");
             props.setBorder(counter ? "2px solid #00BFFF" : "");
             }
 
-        if(props.count === 15 || props.count === 19){
+        if(props.count === 15){
             UpdateHide(1, false);
             props.background(background_2);
         }
 
         if(props.count >= Text.length){
             props.background(background_2);
+            UpdateHide(1, false);
             UpdateHide(2, true);
             UpdateHide(3, true);
             localStorage.setItem('game_2_startGame', 'true');
@@ -206,12 +208,30 @@ function Fairy(props){
       };
     }, []);
 
-  
-    const start = () => {
+    const [seconds, setSeconds] = useState(60);
+    const [startTimer, setStartTimer] = useState(false);
+ 
+        useEffect(() => {
+            if (startTimer === true) {
+              const interval = setInterval(() => {
+                setSeconds(prevSeconds => prevSeconds - 1);
+              }, 1000);
+
+              if(seconds <= 0){
+                setStartTimer(false);
+                clearInterval(interval);
+              }
+        
+              return () => clearInterval(interval);
+            }
+          }, [startTimer]);
+    
+
+    function start(){
         UpdateHide(3, false);
+        setStartTimer(true);
     }
 
-   
     return(
         <>
         {hide[0] && (
@@ -239,7 +259,7 @@ function Fairy(props){
                 </div>
             )}
 
-            <div id='timer'>{}</div>
+            <div id='timer'><h1>Timer: {seconds}s</h1></div>
 
                 <div id='gameboard'>
                     <div id='game_2_player' style={{left: left, top: top}}></div>
