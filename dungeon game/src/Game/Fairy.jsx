@@ -3,9 +3,11 @@ import '../css/index.css';
 import { useState, useEffect } from 'react';
 import background from '../assets/Backgrounds/background_forest.png';
 import background_2 from '../assets/Backgrounds/background_goblin.jpeg';
-import background_closeup from '../assets/Backgrounds/background_noGoblin.jpg'
+import background_closeup from '../assets/Backgrounds/background_noGoblin.jpg';
+import scroll from '../assets/Util/scroll.png';
 import lena from '../assets/Characters/lena_talk.png';
 import Goblin from '../assets/Characters/Goblin_talk.png';
+import button from '../assets/Util/button.png';
 
 function Fairy(props){
 
@@ -85,6 +87,7 @@ function Fairy(props){
         UpdateHide(0, false);
         UpdateHide(1, false);
         UpdateHide(2, true);
+        UpdateHide(3, true);
         props.background(background_2);
         props.hide(false);
       }
@@ -145,6 +148,7 @@ function Fairy(props){
         if(props.count >= Text.length){
             props.background(background_2);
             UpdateHide(2, true);
+            UpdateHide(3, true);
             localStorage.setItem('game_2_startGame', 'true');
         }
    
@@ -175,47 +179,37 @@ function Fairy(props){
 
     const [left, setLeft] = useState(0);
     const [top, setTop] = useState(0);
-    const [jumping, setJumping] = useState(false);
-    const moveStep = 25;
   
     useEffect(() => {
-
-        const movement = (e) => {
-            switch (e.key) {
-              case 'a':
-                setLeft(prevLeft => prevLeft - moveStep);
-                break;
-              case 'd':
-                setLeft(prevLeft => prevLeft + moveStep);
-                break;
-              case ' ':
-                if (!jumping) {
-                  setJumping(true);
-                  jump();
-                }
-                break;
-              default:
-                break;
-            }
-          };
-
-        function jump() {
-            const intervals = setInterval(() => {  
-                  setTop(prevTop => prevTop - 5)
-          
-              },50)
-              if (top == 50) {
-                  clearInterval(intervals); 
-                  setJumping(false);
-                }
-          }
-      document.addEventListener('keydown', movement);
-      console.log(top);
-      return () => {
-        document.removeEventListener('keydown', movement);
+      const y = window.innerWidth; 
+      const x = window.innerHeight; 
+  
+      const movement = (e) => {
+        if (e.key === 'w') {
+          setTop(prevTop => Math.max(0, prevTop - 15));
+        }
+        if (e.key === 'a') {
+          setLeft(prevLeft => Math.max(0, prevLeft - 15));
+        }
+        if (e.key === 's') {
+          setTop(prevTop => Math.min(x - 35, prevTop + 15)); 
+        }
+        if (e.key === 'd') {
+          setLeft(prevLeft => Math.min(y - 35, prevLeft + 15)); 
+        }
       };
-      
+  
+      document.addEventListener('keypress', movement);
+  
+      return () => {
+        document.removeEventListener('keypress', movement);
+      };
     }, []);
+
+  
+    const start = () => {
+        UpdateHide(3, false);
+    }
 
    
     return(
@@ -233,6 +227,20 @@ function Fairy(props){
         )}
           {hide[2] && (
             <div id='game2'>
+
+            {hide[3] && (
+                <div id='rules'>      
+                    <h1>How To Play</h1>
+                    <p>Survive by avoiding goblins until the fairy unleashes her powers. <br/><br/> Use the W A S D to maneuver your character to dodge the goblins and stay alive. <br/><br/>
+                      Each time a goblin hits you, you lose a life. Keep moving and stay alert to avoid getting caught.<br/><br/>
+                      Good luck and stay nimble to survive the goblin onslaught!</p>
+                    <button type='start_game_2' onClick={start}><img src={button} alt="" /><h1>Start</h1></button>
+                    <img src={scroll} alt="" />
+                </div>
+            )}
+
+            <div id='timer'>{}</div>
+
                 <div id='gameboard'>
                     <div id='game_2_player' style={{left: left, top: top}}></div>
                 </div>

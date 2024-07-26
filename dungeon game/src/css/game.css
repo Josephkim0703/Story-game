@@ -329,15 +329,73 @@
     position: relative;
     width: 100%;
     height: auto;
-    background-color: rgb(153, 111, 55);
+    background-color: rgba(153, 111, 55, 0.048);
 }
 
 #game_2_player{
     position: absolute;
-    transform: translate(50vw, 70vh);
+    transform: translate(50vw, 50vh);
     width: 2rem;
     height: 2rem;
     border: 1px solid black;
     border-radius: 50%;
     background-color: black;
+}
+
+#rules{
+    border: 2px solid black;
+    position: absolute;
+    transform: translate(50, 50);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-60%);
+    width: 20rem;
+    height: 20rem;
+    z-index: 10;
+}
+
+#rules img{
+width: 35rem;
+}
+
+#rules h1{
+    position: absolute;
+    transform: translate(-130px, -220px);
+    font-size: 3.5rem;
+    width: 30rem;
+    font-family: 'cursive';
+}
+
+#rules p{
+    position: absolute;
+    transform: translate(-20px, -80px);
+    font-size: 1.7rem;
+    z-index: 2;
+    width: 23rem;
+    font-family: 'cursive';
+    font-weight: 500;
+    text-shadow: 0px 0px 3px white;
+    line-height: 30px;
+}
+
+#rules button {
+    border: 0px;
+    background-color: transparent;
+    width: 11.5rem;
+    height: 3rem;
+    z-index: 3;
+    position: absolute;
+    transform: translate(-5.7rem, 22.5rem);
+}
+
+#rules button img{
+    width: 15rem;
+}
+
+#rules button h1{
+    position: absolute;
+    left: -15px;
+    top: 12rem;
+    font-size: 2.3rem;
+    font-family: 'brick';
 }
