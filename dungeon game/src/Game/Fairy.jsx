@@ -215,16 +215,19 @@ function Fairy(props){
             if (startTimer === true) {
               const interval = setInterval(() => {
                 setSeconds(prevSeconds => prevSeconds - 1);
+
+                if(seconds <= 0){
+                    setSeconds(0);
+                    setStartTimer(false);
+                    clearInterval(interval);
+                  }
+            
               }, 1000);
 
-              if(seconds <= 0){
-                setStartTimer(false);
-                clearInterval(interval);
-              }
-        
+            
               return () => clearInterval(interval);
             }
-          }, [startTimer]);
+          }, [startTimer, seconds]);
     
 
     function start(){
