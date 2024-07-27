@@ -31,7 +31,7 @@ function Fairy(props){
         'Kree-hee-hee! Grak nar thalash! Vroth manglar vor ak!',
         "Help! Please, help me! These goblins have trapped me! I don't want to be their dinner!",
         "Grak! Xul nar thokk! Grash var turak vor magra!",
-        "If you save me I wil grant you a wish! Just keep me safe until I can charge up my attack!"
+        "If you save me I will grant you a wish! Just keep me safe until I can charge up my attack!"
     ];
 
     const PassText = [
@@ -54,7 +54,7 @@ function Fairy(props){
         'Kree-hee-hee! Grak nar thalash! Vroth manglar vor ak!',
         "Help! Please, help me! These goblins have trapped me! I don't want to be their dinner!",
         "Grak! Xul nar thokk! Grash var turak vor magra!",
-        "If you save me I wil grant you a wish! Just keep me safe until I can charge up my attack!"
+        "If you save me I will grant you a wish! Just keep me safe until I can charge up my attack!"
     ];
 
     const [hover, setHover] = useState(Array(3).fill(false));
@@ -124,7 +124,6 @@ function Fairy(props){
         if(props.count === 16 || props.count === 18){ 
             UpdateHide(1, true); 
             setCharacter(Goblin);
-            props.background(background_closeup);
             const counter = (props.count === 16 || props.count === 18);
             props.setButtonColor(counter ? "red" : "");
             props.setColor(counter ? "RED" : "");
@@ -224,13 +223,14 @@ function Fairy(props){
             
               }, 1000);
 
-            
               return () => clearInterval(interval);
             }
           }, [startTimer, seconds]);
     
 
     function start(){
+        props.background(background_2);
+        UpdateHide(4, true);
         UpdateHide(3, false);
         setStartTimer(true);
     }
@@ -263,10 +263,11 @@ function Fairy(props){
             )}
 
             <div id='timer'><h1>Timer: {seconds}s</h1></div>
-
+            {hide[4] && (
                 <div id='gameboard'>
                     <div id='game_2_player' style={{left: left, top: top}}></div>
                 </div>
+            )}
             </div>
         )}
         </>
