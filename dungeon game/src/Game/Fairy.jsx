@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import background from '../assets/Backgrounds/background_forest.png';
 import background_2 from '../assets/Backgrounds/background_goblin.jpeg';
 import background_closeup from '../assets/Backgrounds/background_noGoblin.jpg';
+import lena_head from '../assets/Util/Fairy_head.png';
+import bomb from '../assets/Util/bomb.png';
 import scroll from '../assets/Util/scroll.png';
 import lena from '../assets/Characters/lena_talk.png';
 import Goblin from '../assets/Characters/Goblin_talk.png';
@@ -177,37 +179,8 @@ function Fairy(props){
         props.hide(true);
         props.hide1(false);
     }
-
-    const [left, setLeft] = useState(0);
-    const [top, setTop] = useState(0);
   
-    useEffect(() => {
-      const y = window.innerWidth; 
-      const x = window.innerHeight; 
-  
-      const movement = (e) => {
-        if (e.key === 'w') {
-          setTop(prevTop => Math.max(0, prevTop - 15));
-        }
-        if (e.key === 'a') {
-          setLeft(prevLeft => Math.max(0, prevLeft - 15));
-        }
-        if (e.key === 's') {
-          setTop(prevTop => Math.min(x - 35, prevTop + 15)); 
-        }
-        if (e.key === 'd') {
-          setLeft(prevLeft => Math.min(y - 35, prevLeft + 15)); 
-        }
-      };
-  
-      document.addEventListener('keypress', movement);
-  
-      return () => {
-        document.removeEventListener('keypress', movement);
-      };
-    }, []);
-
-    const [seconds, setSeconds] = useState(60);
+    const [seconds, setSeconds] = useState(30);
     const [startTimer, setStartTimer] = useState(false);
  
         useEffect(() => {
@@ -233,8 +206,50 @@ function Fairy(props){
         UpdateHide(4, true);
         UpdateHide(3, false);
         setStartTimer(true);
+     
     }
 
+      const [image, setImage] = useState();
+      const [ran, setRan] = useState();
+      const [top, setTop] = useState();
+      const [left, setLeft] = useState();
+
+      useEffect(() => {
+      const x = window.innerWidth - 200;
+      const y = window.innerHeight - 200;
+       
+      const interval = setInterval(() => {
+        setTop(() => {
+          return Math.floor(Math.random() * y)+ 100;
+        });
+  
+        setLeft(() => {
+          return Math.floor(Math.random() * x )+ 100;
+        });
+
+        if(seconds <= 0){
+          clearInterval(interval);
+        }
+
+        setRan(() => {return Math.floor(Math.random() * 6) + 1});
+
+          if(ran == 1 , 2 , 4, 6){
+            setImage()    
+          }
+          if(ran == 3){
+            setImage(bomb)
+          }
+          if(ran == 5){
+            setImage(lena_head)
+          }
+        clearInterval(interval);
+      }, 500)
+      },[seconds]);
+    
+      function test(){
+        console.log("clicked", ran)
+      }
+    
     return(
         <>
         {hide[0] && (
@@ -254,8 +269,8 @@ function Fairy(props){
             {hide[3] && (
                 <div id='rules'>      
                     <h1>How To Play</h1>
-                    <p>Survive by avoiding goblins until the fairy unleashes her powers. <br/><br/> Use the W A S D to maneuver your character to dodge the goblins and stay alive. <br/><br/>
-                      Each time a goblin hits you, you lose a life. Keep moving and stay alert to avoid getting caught.<br/><br/>
+                    <p>Survive by <span style={{ color: "green"}}>Clicking</span> 10 or More Goblins. <br/><br/> Stay vigilant and avoid hitting the <span style={{ color: "green"}}>bombs</span> or you'll lose a life. <br/><br/>
+                      Be warned if you attack the <span style={{ color: "green"}}>fairy</span> you will lose 2 lives.<br/><br/>
                       Good luck and stay nimble to survive the goblin onslaught!</p>
                     <button type='start_game_2' onClick={start}><img src={button} alt="" /><h1>Start</h1></button>
                     <img src={scroll} alt="" />
@@ -263,11 +278,15 @@ function Fairy(props){
             )}
 
             <div id='timer'><h1>Timer: {seconds}s</h1></div>
-            {hide[4] && (
+           
                 <div id='gameboard'>
-                    <div id='game_2_player' style={{left: left, top: top}}></div>
+                
+                    <button id='test' style={{top: top, left: left}} onClick={test}>
+                    <img src={image} alt="" />
+                    </button>
+                 
                 </div>
-            )}
+          
             </div>
         )}
         </>
