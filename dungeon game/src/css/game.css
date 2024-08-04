@@ -393,18 +393,27 @@ width: 35rem;
     position: absolute;
     top: 5%;
     left: 10px;
-    width: 12rem;
+    width: 10rem;
     border: 2px solid white;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 1.5rem;
-}
-
-#timer h1{
     font-family: 'cursive';
     color: white;
 }
 
-#test{
+#GoblinCount{
+    position: absolute;
+    top: 15%;
+    left: 10px;
+    width: 10rem;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 1.5rem; 
+    font-family: 'cursive';
+    color: white;
+}
+
+#game_2_icon{
     z-index: 1;
     position: absolute;
     top: 50%;
@@ -416,14 +425,16 @@ width: 35rem;
     background-color: transparent;
 }
 
-#test img{
+#game_2_icon img{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     width: 14rem;
+    pointer-events: none;
 }
 
-#test img:active{
+#game_2_icon img:active{
     width: 12rem;
 }
+

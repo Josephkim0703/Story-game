@@ -208,7 +208,7 @@ function Fairy(props){
         setStartTimer(true);
      
     }
-
+      const [count, setCount] = useState(0);
       const [image, setImage] = useState();
       const [ran, setRan] = useState();
       const [top, setTop] = useState();
@@ -254,23 +254,21 @@ function Fairy(props){
               break;
           }
         
-      }, 600)
+      }, 550)
 
       return () => clearInterval(interval);
       },[seconds]);
     
-      function test(){
-     
+      function test(){   
           if(image == bomb){
             props.die();
           }
           if(image == Goblin_head){
-            console.log("nice")
+           setCount(prevCount => prevCount + 1);
           }
           if(image == lena_head){
             props.die();
-          }
-      
+          }  
       }
     
     return(
@@ -292,8 +290,8 @@ function Fairy(props){
             {hide[3] && (
                 <div id='rules'>      
                     <h1>How To Play</h1>
-                    <p>Survive by <span style={{ color: "green"}}>Clicking</span> 10 or More Goblins. <br/><br/> Stay vigilant and avoid hitting the <span style={{ color: "green"}}>bombs</span> or you'll lose a life. <br/><br/>
-                      Be warned if you attack the <span style={{ color: "green"}}>fairy</span> you will lose 2 lives.<br/><br/>
+                    <p>Survive by <span style={{ color: "green"}}>Clicking</span> 15 Goblins. <br/><br/> Stay vigilant and avoid hitting the <span style={{ color: "green"}}>bombs</span> or you'll lose a life. <br/><br/>
+                      Be warned if you attack the <span style={{ color: "green"}}>fairy</span> you will also lose a life.<br/><br/>
                       Good luck and stay nimble to survive the goblin onslaught!</p>
                     <button type='start_game_2' onClick={start}><img src={button} alt="" /><h1>Start</h1></button>
                     <img src={scroll} alt="" />
@@ -301,10 +299,11 @@ function Fairy(props){
             )}
 
             <div id='timer'><h1>Timer: {seconds}s</h1></div>
+            <div id='GoblinCount'><h1>Kills: {count}</h1></div>
             {hide[4] && (
                 <div id='gameboard'>
                 
-                    <button id='test' style={{top: top, left: left}} onClick={test}>
+                    <button id='game_2_icon' style={{top: top, left: left}} onClick={test}>
                     <img src={image} alt="" />
                     </button>
                  
