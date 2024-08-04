@@ -270,6 +270,10 @@ function Fairy(props){
             props.die();
           }  
       }
+
+//Death box when all lives is lost restart and reset all saved local storages
+//If you kill 15 goblins end game next level
+//If timer ends but you dont kill 15 goblins then it minus from your health the amount of goblins not killed
     
     return(
         <>
@@ -300,6 +304,7 @@ function Fairy(props){
 
             <div id='timer'><h1>Timer: {seconds}s</h1></div>
             <div id='GoblinCount'><h1>Kills: {count}</h1></div>
+
             {hide[4] && (
                 <div id='gameboard'>
                 

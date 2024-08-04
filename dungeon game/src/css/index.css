@@ -37,3 +37,7 @@ button{
     visibility: hidden;
     opacity: 0;
 }
+
+img{
+    pointer-events: none;
+}
