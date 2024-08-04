@@ -74,15 +74,21 @@ function Fairy(props){
             return newArray;
         });
     }
+
+    //bug default is fail text for some reason
+  
     
     useEffect(() => {
         const status = localStorage.getItem('status');          
             if(status === 'false'){
                 setStatus(false);
-            }else if(status === 'true'){
+            }
+            else{
                 setStatus(true);
             } 
     },[]);
+
+    const Text = status? PassText : FailText;
 
     useEffect(() => {
       const update = localStorage.getItem('game_2_startGame');
@@ -95,8 +101,6 @@ function Fairy(props){
         props.hide(false);
       }
     },[]);
- 
-    const Text = status? PassText : FailText;
 
     useEffect(() => {
         props.setText(Text);
@@ -231,7 +235,7 @@ function Fairy(props){
           clearInterval(interval);
         }
 
-        setRan(() => {return Math.floor(Math.random() * 6) + 1});
+        setRan(() => {return Math.floor(Math.random() * 7) + 1});
 
           switch(ran){
             case 1:
@@ -251,6 +255,9 @@ function Fairy(props){
               break;
             case 6:
               setImage(lena_head);
+              break;
+            case 7:
+              setImage(Goblin_head);
               break;
           }
         
@@ -274,7 +281,8 @@ function Fairy(props){
 //Death box when all lives is lost restart and reset all saved local storages
 //If you kill 15 goblins end game next level
 //If timer ends but you dont kill 15 goblins then it minus from your health the amount of goblins not killed
-    
+//add background for zoom of goblin and fairy talking
+//add background for game   
     return(
         <>
         {hide[0] && (
@@ -292,7 +300,7 @@ function Fairy(props){
             <div id='game2'>
 
             {hide[3] && (
-                <div id='rules'>      
+                <div id='game_rules'>      
                     <h1>How To Play</h1>
                     <p>Survive by <span style={{ color: "green"}}>Clicking</span> 15 Goblins. <br/><br/> Stay vigilant and avoid hitting the <span style={{ color: "green"}}>bombs</span> or you'll lose a life. <br/><br/>
                       Be warned if you attack the <span style={{ color: "green"}}>fairy</span> you will also lose a life.<br/><br/>
