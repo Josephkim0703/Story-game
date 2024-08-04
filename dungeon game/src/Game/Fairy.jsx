@@ -5,6 +5,7 @@ import background from '../assets/Backgrounds/background_forest.png';
 import background_2 from '../assets/Backgrounds/background_goblin.jpeg';
 import background_closeup from '../assets/Backgrounds/background_noGoblin.jpg';
 import lena_head from '../assets/Util/Fairy_head.png';
+import Goblin_head from '../assets/Util/Goblin_head.png';
 import bomb from '../assets/Util/bomb.png';
 import scroll from '../assets/Util/scroll.png';
 import lena from '../assets/Characters/lena_talk.png';
@@ -198,8 +199,7 @@ function Fairy(props){
 
               return () => clearInterval(interval);
             }
-          }, [startTimer, seconds]);
-    
+          }, [startTimer, seconds]);   
 
     function start(){
         props.background(background_2);
@@ -233,21 +233,44 @@ function Fairy(props){
 
         setRan(() => {return Math.floor(Math.random() * 6) + 1});
 
-          if(ran == 1 , 2 , 4, 6){
-            setImage()    
+          switch(ran){
+            case 1:
+              setImage(bomb);
+              break;
+            case 2:
+              setImage(Goblin_head);
+              break;
+            case 3:
+              setImage(Goblin_head);
+              break;
+            case 4:
+              setImage(Goblin_head);
+              break;
+            case 5:
+              setImage(bomb);
+              break;
+            case 6:
+              setImage(lena_head);
+              break;
           }
-          if(ran == 3){
-            setImage(bomb)
-          }
-          if(ran == 5){
-            setImage(lena_head)
-          }
-        clearInterval(interval);
-      }, 500)
+        
+      }, 600)
+
+      return () => clearInterval(interval);
       },[seconds]);
     
       function test(){
-        console.log("clicked", ran)
+     
+          if(image == bomb){
+            props.die();
+          }
+          if(image == Goblin_head){
+            console.log("nice")
+          }
+          if(image == lena_head){
+            props.die();
+          }
+      
       }
     
     return(
@@ -278,7 +301,7 @@ function Fairy(props){
             )}
 
             <div id='timer'><h1>Timer: {seconds}s</h1></div>
-           
+            {hide[4] && (
                 <div id='gameboard'>
                 
                     <button id='test' style={{top: top, left: left}} onClick={test}>
@@ -286,7 +309,7 @@ function Fairy(props){
                     </button>
                  
                 </div>
-          
+              )}
             </div>
         )}
         </>
