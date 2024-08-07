@@ -55,6 +55,14 @@ function Game(props){
     }
 
     useEffect(() => {
+        if(hearts == "[false,false,false,false,false,false,false,false,false,false]"){
+            localStorage.clear();
+        }else{
+            return;
+        }
+    }, [hearts]);
+
+    useEffect(() => {
     const updatePage2 = localStorage.getItem("game_1_fin");
     if (updatePage2 === "true") {
         sethide_game_1(false);

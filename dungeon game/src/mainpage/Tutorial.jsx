@@ -81,6 +81,7 @@ const back = () => {
 //updates username once its clicked
 const update = (e) => {
     setUsername(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1).toLowerCase())
+ 
 };
 
 //submit button for username
@@ -91,6 +92,7 @@ const set = () => {
         setCount((prevCount) => prevCount + 1);
         setVisibility(false);
         setHide(true);
+        localStorage.setItem("name", userName)
     }
 };
 

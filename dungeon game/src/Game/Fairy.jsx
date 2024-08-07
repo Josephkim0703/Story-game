@@ -3,7 +3,6 @@ import '../css/index.css';
 import { useState, useEffect } from 'react';
 import background from '../assets/Backgrounds/background_forest.png';
 import background_2 from '../assets/Backgrounds/background_goblin.jpeg';
-import background_closeup from '../assets/Backgrounds/background_noGoblin.jpg';
 import lena_head from '../assets/Util/Fairy_head.png';
 import Goblin_head from '../assets/Util/Goblin_head.png';
 import bomb from '../assets/Util/bomb.png';
@@ -35,7 +34,7 @@ function Fairy(props){
         "Help! Please, help me! These goblins have trapped me! I don't want to be their dinner!",
         "Grak! Xul nar thokk! Grash var turak vor magra!",
         "If you save me I will grant you a wish! Just keep me safe until I can charge up my attack!"
-    ];
+      ];
 
     const PassText = [
         '...',
@@ -153,6 +152,7 @@ function Fairy(props){
         }
 
         if(props.count >= Text.length){
+      
             props.background(background_2);
             UpdateHide(1, false);
             UpdateHide(2, true);
@@ -225,8 +225,7 @@ function Fairy(props){
       const interval = setInterval(() => {
         setTop(() => {
           return Math.floor(Math.random() * y)+ 100;
-        });
-  
+        });  
         setLeft(() => {
           return Math.floor(Math.random() * x )+ 100;
         });
@@ -235,7 +234,7 @@ function Fairy(props){
           clearInterval(interval);
         }
 
-        setRan(() => {return Math.floor(Math.random() * 7) + 1});
+        setRan(() => {return Math.floor(Math.random() * 8) + 1});
 
           switch(ran){
             case 1:
@@ -259,9 +258,12 @@ function Fairy(props){
             case 7:
               setImage(Goblin_head);
               break;
+            case 8:
+              setImage(Goblin_head);
+            break;
           }
         
-      }, 550)
+      }, 510)
 
       return () => clearInterval(interval);
       },[seconds]);
@@ -278,9 +280,111 @@ function Fairy(props){
           }  
       }
 
-//Death box when all lives is lost restart and reset all saved local storages
-//If you kill 15 goblins end game next level
-//If timer ends but you dont kill 15 goblins then it minus from your health the amount of goblins not killed
+      useEffect(() => {
+          if(seconds <= 0){
+          UpdateHide(4, false);
+          UpdateHide(3, false);
+          CurrentStatus()
+          }
+      },[seconds]);
+      
+      const name = localStorage.getItem("name");
+
+      const win = [
+        "...",
+        "Thank you so much for saving me! I hope you didn't take too much damage.",
+        "I'm alright! What a day—first, I run into the Grim Reaper, and then a horde of goblins!",
+        "And I haven't even started looking for Alexandria. Honestly, I don’t even know where I am.",
+        "Wait, did you say Alexandria? I was heading there too, but that's when the goblins captured me.",
+        "I’ve heard rumors that Alexandria was sealed away and disguised as a dungeon, so no one could find it.",
+        "How were you planning to find Alexandria, if you don’t mind me asking?",
+        "...",
+        "So, no plan at all, huh?",
+        "...",
+        "Heh, you're quite the character! How about we team up? I’ll handle the navigating, and you can be the muscle.",
+        `That sounds like a deal, partner. HaHaHa! My name is ${name}. What's yours?`,
+        "My name is Lena!"
+      ];
+
+      const lose = [
+        "...",
+        "We barely escaped! Oh my goodness you took so much damage!",
+        "Don't worry about it! I knew this Journey would be a tough one. But this is a bummer...",
+        "And I haven't even started looking for Alexandria. Honestly, I don’t even know where I am.",
+        "Wait, did you say Alexandria? I was heading there too, but that's when the goblins captured me.",
+        "I’ve heard rumors that Alexandria was sealed away and disguised as a dungeon, so no one could find it.",
+        "How were you planning to find Alexandria, if you don’t mind me asking?",
+        "...",
+        "So, no plan at all, huh?",
+        "...",
+        "Heh, you're quite the character! How about we team up? I’ll handle the navigating, and you can be the muscle.",
+        `That sounds like a deal, partner. HaHaHa! My name is ${name}. What's yours?`,
+        "My name is Lena!"
+      ];
+
+      const [endText, setEndText] = useState();
+      const [endColor, setEndColor] = useState();
+      const [endShadow, setEndShadow] = useState();  
+      const [endfade, setEndFade] = useState("0");      
+
+      function CurrentStatus(){
+
+        UpdateHide(5, true);
+        setTimeout(() => {setEndFade("1")})
+      
+          if(count >= 15){    
+            setEndText("Victory!")
+            setEndColor("white");
+            setEndShadow("0px 0px 10px white");
+            props.setText(win);
+           
+          }else{ 
+            setEndText("Escaped!")
+            setEndColor("red");
+            setEndShadow("0px 0px 10px red");
+            props.setText(lose);
+            const newCount = 15 - count;
+
+            for(let i = 0; i < newCount; i++){
+              props.die();
+            }  
+          }
+
+          setTimeout(() => {
+            setEndFade("0");
+            setTimeout(() => {
+              props.hide(true);
+              UpdateHide(2, false);
+            },1000);
+          },2500);
+      }
+
+      useEffect(() => {
+        if(seconds <= 0){
+
+        if(props.count === 1 || (props.count >= 4 && props.count <= 6) || props.count === 8 || props.count === 10 ||  props.count === 12){
+          const counter = (props.count === 1 || (props.count >= 4 && props.count <= 6) || props.count === 8 || props.count === 10 ||  props.count === 12);
+            props.setButtonColor(counter ? "#00BFFF" : "");
+            props.setColor(counter ? "#1E90FF" : "");
+            props.setBgcolor(counter ? "rgba(240,248,255, 0.85)" : "");
+            props.setBorder(counter ? "2px solid #00BFFF" : "");
+        }else{
+          props.setButtonColor();
+          props.setColor();
+          props.setBgcolor();
+          props.setBorder();
+        }
+
+        if(props.count >= 13){
+          UpdateHide(0, false);
+        }
+       
+      }
+    },[props.count,seconds]);
+
+//add lena talking fairy form
+//hit effects
+//if we lose all heatlh restart
 //add background for zoom of goblin and fairy talking
 //add background for game   
     return(
@@ -322,8 +426,18 @@ function Fairy(props){
                  
                 </div>
               )}
+
+            {hide[5] && (
+              <div id='game_2_status' style={{opacity: endfade}}>
+             
+                    <h1 style={{color: endColor, textShadow: endShadow}}>{endText}</h1>
+                
+              </div>
+            )};
             </div>
         )}
+
+ 
         </>
     )
 }

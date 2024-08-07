@@ -440,6 +440,7 @@
     height: 11rem;
     border: transparent;
     background-color: transparent;
+    outline: none;
 }
 
 #game_2_icon img{
@@ -451,7 +452,26 @@
     pointer-events: none;
 }
 
-#game_2_icon img:active{
-    width: 12rem;
+#game_2_status{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 0px;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    transition: opacity 2s;
+    opacity: 0;
 }
 
+#game_2_status h1{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-family: 'brick';
+    font-size: 7rem;
+    text-shadow: 0px 0px 10px white;
+}
