@@ -90,7 +90,7 @@ function Game(props){
                setOpacity={props.opacity} setVisibility={props.visibility} finish={sethide_game_1}/>)}
 
         {hide_game[0] && 
-        (<Game2 setText={setText} die={die} background={setBackground} 
+        (<Game2 setText={setText} die={die} background={setBackground} setCount={setCount}
                 count={count} hide={setHide} hide1={setHide1} setButtonColor={setButtonColor}
                 setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}/>)}
         

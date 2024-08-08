@@ -3,6 +3,8 @@ import '../css/index.css';
 import { useState, useEffect } from 'react';
 import background from '../assets/Backgrounds/background_forest.png';
 import background_2 from '../assets/Backgrounds/background_goblin.jpeg';
+import background_3 from '../assets/Backgrounds/background_forest_3.png';
+import background_4 from '../assets/Backgrounds/background_tree_1.png';
 import lena_head from '../assets/Util/Fairy_head.png';
 import Goblin_head from '../assets/Util/Goblin_head.png';
 import bomb from '../assets/Util/bomb.png';
@@ -10,6 +12,7 @@ import scroll from '../assets/Util/scroll.png';
 import lena from '../assets/Characters/lena_talk.png';
 import Goblin from '../assets/Characters/Goblin_talk.png';
 import button from '../assets/Util/button.png';
+import lena_full from '../assets/Characters/lena.png';
 
 function Fairy(props){
 
@@ -34,7 +37,7 @@ function Fairy(props){
         "Help! Please, help me! These goblins have trapped me! I don't want to be their dinner!",
         "Grak! Xul nar thokk! Grash var turak vor magra!",
         "If you save me I will grant you a wish! Just keep me safe until I can charge up my attack!"
-      ];
+    ];
 
     const PassText = [
         '...',
@@ -73,9 +76,7 @@ function Fairy(props){
             return newArray;
         });
     }
-
     //bug default is fail text for some reason
-  
     
     useEffect(() => {
         const status = localStorage.getItem('status');          
@@ -96,9 +97,10 @@ function Fairy(props){
         UpdateHide(1, false);
         UpdateHide(2, true);
         UpdateHide(3, true);
-        props.background(background_2);
+        props.background(background_4);
         props.hide(false);
       }
+
     },[]);
 
     useEffect(() => {
@@ -152,8 +154,8 @@ function Fairy(props){
         }
 
         if(props.count >= Text.length){
-      
-            props.background(background_2);
+            props.setCount(0);
+            props.background(background_4);
             UpdateHide(1, false);
             UpdateHide(2, true);
             UpdateHide(3, true);
@@ -188,29 +190,28 @@ function Fairy(props){
     const [seconds, setSeconds] = useState(30);
     const [startTimer, setStartTimer] = useState(false);
  
-        useEffect(() => {
-            if (startTimer === true) {
-              const interval = setInterval(() => {
-                setSeconds(prevSeconds => prevSeconds - 1);
+    useEffect(() => {
+      if (startTimer === true) {
+        const interval = setInterval(() => {
+          setSeconds(prevSeconds => prevSeconds - 1);
 
-                if(seconds <= 0){
-                    setSeconds(0);
-                    setStartTimer(false);
-                    clearInterval(interval);
-                  }
+          if(seconds <= 0){
+            setSeconds(0);
+            setStartTimer(false);
+            clearInterval(interval);
+          }
             
-              }, 1000);
+          }, 1000);
 
-              return () => clearInterval(interval);
-            }
-          }, [startTimer, seconds]);   
+        return () => clearInterval(interval);
+      }
+    }, [startTimer, seconds]);   
 
     function start(){
-        props.background(background_2);
         UpdateHide(4, true);
         UpdateHide(3, false);
         setStartTimer(true);
-     
+        props.background(background_4);
     }
       const [count, setCount] = useState(0);
       const [image, setImage] = useState();
@@ -218,7 +219,7 @@ function Fairy(props){
       const [top, setTop] = useState();
       const [left, setLeft] = useState();
 
-      useEffect(() => {
+    useEffect(() => {
       const x = window.innerWidth - 200;
       const y = window.innerHeight - 200;
        
@@ -266,9 +267,9 @@ function Fairy(props){
       }, 510)
 
       return () => clearInterval(interval);
-      },[seconds]);
+    },[seconds]);
     
-      function test(){   
+    function test(){   
           if(image == bomb){
             props.die();
           }
@@ -278,19 +279,19 @@ function Fairy(props){
           if(image == lena_head){
             props.die();
           }  
-      }
+    }
 
-      useEffect(() => {
+    useEffect(() => {
           if(seconds <= 0){
           UpdateHide(4, false);
           UpdateHide(3, false);
           CurrentStatus()
           }
-      },[seconds]);
+    },[seconds]);
       
-      const name = localStorage.getItem("name");
+    const name = localStorage.getItem("name");
 
-      const win = [
+    const win = [
         "...",
         "Thank you so much for saving me! I hope you didn't take too much damage.",
         "I'm alright! What a day—first, I run into the Grim Reaper, and then a horde of goblins!",
@@ -304,9 +305,9 @@ function Fairy(props){
         "Heh, you're quite the character! How about we team up? I’ll handle the navigating, and you can be the muscle.",
         `That sounds like a deal, partner. HaHaHa! My name is ${name}. What's yours?`,
         "My name is Lena!"
-      ];
+    ];
 
-      const lose = [
+    const lose = [
         "...",
         "We barely escaped! Oh my goodness you took so much damage!",
         "Don't worry about it! I knew this Journey would be a tough one. But this is a bummer...",
@@ -320,15 +321,15 @@ function Fairy(props){
         "Heh, you're quite the character! How about we team up? I’ll handle the navigating, and you can be the muscle.",
         `That sounds like a deal, partner. HaHaHa! My name is ${name}. What's yours?`,
         "My name is Lena!"
-      ];
+    ];
 
-      const [endText, setEndText] = useState();
-      const [endColor, setEndColor] = useState();
-      const [endShadow, setEndShadow] = useState();  
-      const [endfade, setEndFade] = useState("0");      
+    const [endText, setEndText] = useState();
+    const [endColor, setEndColor] = useState();
+    const [endShadow, setEndShadow] = useState();  
+    const [endfade, setEndFade] = useState("0");      
 
-      function CurrentStatus(){
-
+    function CurrentStatus(){
+        localStorage.setItem("Goblin_game", true);
         UpdateHide(5, true);
         setTimeout(() => {setEndFade("1")})
       
@@ -355,11 +356,13 @@ function Fairy(props){
             setTimeout(() => {
               props.hide(true);
               UpdateHide(2, false);
+              UpdateHide(6, true);
+              props.background(background_3);
             },1000);
           },2500);
-      }
+    }
 
-      useEffect(() => {
+    useEffect(() => {
         if(seconds <= 0){
 
         if(props.count === 1 || (props.count >= 4 && props.count <= 6) || props.count === 8 || props.count === 10 ||  props.count === 12){
@@ -376,17 +379,29 @@ function Fairy(props){
         }
 
         if(props.count >= 13){
+          UpdateHide(6, false);
           UpdateHide(0, false);
         }
        
       }
     },[props.count,seconds]);
 
-//add lena talking fairy form
+    useEffect(() => {
+      const update1 = localStorage.getItem("Goblin_game")
+      if(update1 === 'true'){
+        UpdateHide(0, false);
+        UpdateHide(1, false);
+        UpdateHide(2, false);
+        UpdateHide(6, true);
+        setSeconds(0);
+        props.background(background_3);
+        props.hide(true);
+      }
+    },[]);
+
 //hit effects
 //if we lose all heatlh restart
-//add background for zoom of goblin and fairy talking
-//add background for game   
+//add background for zoom of goblin and fairy talking  
     return(
         <>
         {hide[0] && (
@@ -429,14 +444,17 @@ function Fairy(props){
 
             {hide[5] && (
               <div id='game_2_status' style={{opacity: endfade}}>
-             
-                    <h1 style={{color: endColor, textShadow: endShadow}}>{endText}</h1>
-                
+                    <h1 style={{color: endColor, textShadow: endShadow}}>{endText}</h1>            
               </div>
             )};
             </div>
         )}
 
+          {hide[6] && (
+            <div id='game_2_Char'>
+                <img src={lena_full} alt="" />
+            </div>
+          )}
  
         </>
     )

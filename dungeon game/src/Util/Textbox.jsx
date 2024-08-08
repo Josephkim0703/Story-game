@@ -11,7 +11,7 @@ function Textbox(props){
         setWords(text[props.count]);
 
         if(props.count >= text.length){
-            props.setCount(0);
+          
             props.hide(false);
             props.setColor("black");
             setWords();
