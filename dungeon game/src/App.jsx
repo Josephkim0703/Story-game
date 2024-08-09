@@ -30,8 +30,8 @@ function App() {
       <BlackScreen opacity={opacity} visibility={visibility} />
       <Header />
 
-      {hide && <Intro start={startGame} healthbar={setHide1} />}
-      {hide1 && <Game opacity={setOpacity} visibility={setVisibility} />}
+      {hide && <Intro start={startGame} />}
+      {hide1 && <Game opacity={setOpacity} visibility={setVisibility}/>}
     </>
   );
 }

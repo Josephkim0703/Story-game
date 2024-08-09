@@ -17,8 +17,7 @@ function Game(props){
     //hide health bar
     const [hide2, setHide2] = useState(true);
     
-    const [hide_game_1, sethide_game_1] = useState(true);
-    const [hide_game, setHideGame] = useState(Array(2).fill(false));
+    const [Game, setGame] = useState([true, false, false]);
 
     const [border, setBorder] = useState("");
     const [color, setColor] = useState("");
@@ -64,23 +63,25 @@ function Game(props){
         sessionStorage.setItem("Player_HeartStatus", JSON.stringify(hearts));
     }, [hearts]);
 
-    function updateHide(index){
-        const newHide = [...hide_game];
-        newHide[index] = true;
-        setHideGame(newHide);
-    }
+    function UpdateHide(index, value) {
+        setGame((prevGame) => {
+          const newGame = [...prevGame];
+          newGame[index] = value;
+          return newGame;
+        });
+      }
 
     useEffect(() => {
     const updatePage2 = sessionStorage.getItem("G1_Complete");
     if (updatePage2 === "true") {
-        sethide_game_1(false);
+        UpdateHide(0, false);
     }
     }, []);
 
-    if(hide_game_1 === false){
+    if(Game[0] === false){
     setTimeout(() => {
 
-        updateHide(0);
+        UpdateHide(1, true);
     },);
 
     setTimeout(() => {  
@@ -90,14 +91,14 @@ function Game(props){
 
     return(
         <>
-        {hide_game_1 &&
+        {Game[0] &&
         (<Game1 setText={setText} die={die} background={setBackground}
                hide={setHide} hide1={setHide1} hide2={setHide2} count={count} setCount={setCount}
                setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}
                setButtonColor={setButtonColor} setBlur={setBlur}
-               setOpacity={props.opacity} setVisibility={props.visibility} finish={sethide_game_1}/>)}
+               setOpacity={props.opacity} setVisibility={props.visibility} finish={UpdateHide}/>)}
 
-        {hide_game[0] && 
+        {Game[1] && 
         (<Game2 setText={setText} die={die} live={live} background={setBackground} setCount={setCount}
                 count={count} hide={setHide} hide1={setHide1} setButtonColor={setButtonColor}
                 setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}/>)}

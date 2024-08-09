@@ -179,7 +179,7 @@ function Game1(props) {
                   setTimeout(() => {
                     sessionStorage.setItem("G1_Complete", "true");
                     props.setCount(0);
-                    props.finish(false);
+                    props.finish(0, false);
                     props.setBlur("");
                     props.hide(true);
                     props.hide2(true);

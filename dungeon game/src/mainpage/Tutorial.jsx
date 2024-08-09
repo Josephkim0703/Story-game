@@ -81,7 +81,7 @@ function Tutorial(props) {
   const update = (e) => {
     setUsername(
       e.target.value.charAt(0).toUpperCase() +
-        e.target.value.slice(1).toLowerCase()
+      e.target.value.slice(1).toLowerCase()
     );
   };
 

@@ -327,16 +327,25 @@ function Fairy(props) {
   useEffect(() => {
     const playerStatus = sessionStorage.getItem("G2_PlayerStatus");
     if(playerStatus === "true"){
+      setCount(15);
       setPlayerStatus(true);
-    }else{
-      setPlayerStatus(false);      
+    }else if(playerStatus === "false"){
+      setCount(0); 
+      setPlayerStatus(false);     
     }
 
-    const hasRun = sessionStorage.getItem("G2_HasRun");
-    if(hasRun === "true"){
+    const DeathCount = sessionStorage.getItem("G2_DeathCount");
+    if(DeathCount === "true"){
       setHasRun1(true);
     }else{
       setHasRun1(false);
+    }
+
+    const LiveCount = sessionStorage.getItem("G2_LiveCount");
+    if(LiveCount === "true"){
+      setHasRun(true);
+    }else{
+      setHasRun(false);
     }
   },)
 
@@ -361,12 +370,11 @@ function Fairy(props) {
       props.setText(lose);
       setPlayerStatus(false);
       sessionStorage.setItem("G2_PlayerStatus", false);
-      sessionStorage.setItem("G2_HasRun", true);
+      sessionStorage.setItem("G2_DeathCount", true);
       if(!hasRun1 && !playerStatus) {
         props.die();
         setHasRun1(true);
-      }
-      
+      } 
     }
 
     setTimeout(() => {
@@ -387,6 +395,7 @@ function Fairy(props) {
       if(props.count === 1 && !hasRun && playerStatus) {
         props.live();
         setHasRun(true);
+        sessionStorage.setItem("G2_LiveCount", true);
       }
       if (
         props.count === 1 ||
