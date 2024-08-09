@@ -5,6 +5,10 @@ import Textbox from "./Util/Textbox.jsx";
 import HealthBar from "./Util/HealthBar.jsx";
 import { useState, useEffect } from "react";
 
+//add end scene when all hearts are lost
+//add gain health on riddle level
+//add new goblin or talking background
+
 function Game(props) {
   const [text, setText] = useState(["..."]);
   const [count, setCount] = useState(0);
