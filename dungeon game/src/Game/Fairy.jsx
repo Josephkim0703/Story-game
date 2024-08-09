@@ -68,8 +68,9 @@ function Fairy(props) {
   const [hover, setHover] = useState(Array(3).fill(false));
   const [hide, setHide] = useState(Array(5).fill(false));
   const [opacity, setOpacity] = useState(0);
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState();
   const [Character, setCharacter] = useState();
+  const [Text, setText]= useState(() => {return status? PassText : FailText});
 
   //takes previous state and then adds on new state and updates
   function UpdateHide(index, value) {
@@ -79,20 +80,21 @@ function Fairy(props) {
       return newArray;
     });
   }
+  //bug default is fail text for some reason
 
   useEffect(() => {
-    const storedStatus = localStorage.getItem("G1_PlayerStatus");
-    if (storedStatus === "false") {
+    const status = sessionStorage.getItem("G1_PlayerStatus");
+    if (status === "false") {
       setStatus(false);
-    } else if (storedStatus === "true") {
+      setText(FailText);
+    } else {
       setStatus(true);
+      setText(PassText);
     }
-  }, ); 
-
-  const Text = status ? PassText : FailText;
+  },[]);
 
   useEffect(() => {
-    const update = localStorage.getItem("G2_StartGame");
+    const update = sessionStorage.getItem("G2_StartGame");
     if (update === "true") {
       UpdateHide(0, false);
       UpdateHide(1, false);
@@ -158,7 +160,7 @@ function Fairy(props) {
       UpdateHide(1, false);
       UpdateHide(2, true);
       UpdateHide(3, true);
-      localStorage.setItem("G2_StartGame", "true");
+      sessionStorage.setItem("G2_StartGame", "true");
     }
   }, [props.count]);
 
@@ -288,7 +290,7 @@ function Fairy(props) {
     }
   }, [seconds]);
 
-  const name = localStorage.getItem("Player_Username");
+  const name = sessionStorage.getItem("Player_Username");
 
   const win = [
     "...",
@@ -330,14 +332,14 @@ function Fairy(props) {
   const [hasRun1, setHasRun1] = useState(false);
 
   useEffect(() => {
-    const playerStatus = localStorage.getItem("G2_PlayerStatus");
+    const playerStatus = sessionStorage.getItem("G2_PlayerStatus");
     if(playerStatus === "true"){
       setPlayerStatus(true);
     }else{
       setPlayerStatus(false);      
     }
 
-    const hasRun = localStorage.getItem("G2_HasRun");
+    const hasRun = sessionStorage.getItem("G2_HasRun");
     if(hasRun === "true"){
       setHasRun1(true);
     }else{
@@ -346,7 +348,7 @@ function Fairy(props) {
   },)
 
   function CurrentStatus() {
-    localStorage.setItem("G2_FinishGame", true);
+    sessionStorage.setItem("G2_FinishGame", true);
     UpdateHide(5, true);
     setTimeout(() => {
       setEndFade("1");
@@ -358,15 +360,15 @@ function Fairy(props) {
       setEndShadow("0px 0px 10px white");
       props.setText(win);
       setPlayerStatus(true);
-      localStorage.setItem("G2_PlayerStatus", true);
+      sessionStorage.setItem("G2_PlayerStatus", true);
     } else {
       setEndText("Escaped!");
       setEndColor("red");
       setEndShadow("0px 0px 10px red");
       props.setText(lose);
       setPlayerStatus(false);
-      localStorage.setItem("G2_PlayerStatus", false);
-      localStorage.setItem("G2_HasRun", true);
+      sessionStorage.setItem("G2_PlayerStatus", false);
+      sessionStorage.setItem("G2_HasRun", true);
       if(!hasRun1 && !playerStatus) {
         props.die();
         setHasRun1(true);
@@ -444,7 +446,7 @@ function Fairy(props) {
   }
 
   useEffect(() => {
-    const update1 = localStorage.getItem("G2_FinishGame");
+    const update1 = sessionStorage.getItem("G2_FinishGame");
     if (update1 === "true") {
       UpdateHide(0, false);
       UpdateHide(1, false);

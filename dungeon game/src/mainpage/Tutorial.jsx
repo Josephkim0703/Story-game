@@ -93,7 +93,7 @@ function Tutorial(props) {
       setCount((prevCount) => prevCount + 1);
       setVisibility(false);
       setHide(true);
-      localStorage.setItem("Player_Username", userName);
+      sessionStorage.setItem("Player_Username", userName);
     }
   };
 

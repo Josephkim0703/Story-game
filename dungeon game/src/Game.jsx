@@ -30,10 +30,9 @@ function Game(props){
       to savedHearts but if it isnt then it sets it to default array.
       then returns the the heart status from arrow function
     */
-
     const [num, setNum] = useState(10);
     const [hearts, setHearts] = useState(() => {
-        const heartStatus = localStorage.getItem("Player_HeartStatus");
+        const heartStatus = sessionStorage.getItem("Player_HeartStatus");
         return heartStatus? JSON.parse(heartStatus) : Array(num).fill(true);
     });
 
@@ -62,7 +61,7 @@ function Game(props){
     }
 
     useEffect(() => {
-        localStorage.setItem("Player_HeartStatus", JSON.stringify(hearts));
+        sessionStorage.setItem("Player_HeartStatus", JSON.stringify(hearts));
     }, [hearts]);
 
     function updateHide(index){
@@ -72,7 +71,7 @@ function Game(props){
     }
 
     useEffect(() => {
-    const updatePage2 = localStorage.getItem("G1_Complete");
+    const updatePage2 = sessionStorage.getItem("G1_Complete");
     if (updatePage2 === "true") {
         sethide_game_1(false);
     }

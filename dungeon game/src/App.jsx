@@ -14,11 +14,11 @@ function App() {
   const startGame = () => {
     setHide(false);
     setHide1(true);
-    localStorage.setItem("TutorialPage_Start", "true");
+    sessionStorage.setItem("TutorialPage_Start", "true");
   };
 
   useEffect(() => {
-    const updatePage1 = localStorage.getItem("TutorialPage_Start");
+    const updatePage1 = sessionStorage.getItem("TutorialPage_Start");
     if (updatePage1 === "true") {
       setHide(false);
       setHide1(true);

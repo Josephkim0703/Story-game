@@ -177,7 +177,7 @@ function Game1(props) {
                   props.setOpacity(1);
                   props.setVisibility("visible");
                   setTimeout(() => {
-                    localStorage.setItem("G1_Complete", "true");
+                    sessionStorage.setItem("G1_Complete", "true");
                     props.setCount(0);
                     props.finish(false);
                     props.setBlur("");
@@ -197,12 +197,12 @@ function Game1(props) {
   const incorrect = () => {
     nextLevel(deathText, setScript);
     props.die();
-    localStorage.setItem("G1_PlayerStatus", false);
+    sessionStorage.setItem("G1_PlayerStatus", false);
   };
 
   const correct = () => {
     nextLevel(saveText, setScript);
-    localStorage.setItem("G1_PlayerStatus", true);
+    sessionStorage.setItem("G1_PlayerStatus", true);
   };
 
   return (
