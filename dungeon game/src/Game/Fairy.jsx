@@ -68,9 +68,7 @@ function Fairy(props) {
   const [hover, setHover] = useState(Array(3).fill(false));
   const [hide, setHide] = useState(Array(5).fill(false));
   const [opacity, setOpacity] = useState(0);
-  const [status, setStatus] = useState();
   const [Character, setCharacter] = useState();
-  const [Text, setText]= useState(() => {return status? PassText : FailText});
 
   //takes previous state and then adds on new state and updates
   function UpdateHide(index, value) {
@@ -80,17 +78,15 @@ function Fairy(props) {
       return newArray;
     });
   }
-  //bug default is fail text for some reason
 
   useEffect(() => {
     const status = sessionStorage.getItem("G1_PlayerStatus");
     if (status === "false") {
-      setStatus(false);
-      setText(FailText);
+      props.setText(FailText);    
     } else {
-      setStatus(true);
-      setText(PassText);
+      props.setText(PassText);    
     }
+    props.background(background);
   },[]);
 
   useEffect(() => {
@@ -105,12 +101,8 @@ function Fairy(props) {
     }
   }, []);
 
-  useEffect(() => {
-    props.setText(Text);
-    props.background(background);
-  }, [props.setText]);
-
-  useEffect(() => {
+  useEffect(() => { 
+  
     const counter = props.count === 9 || props.count === 12;
     props.setButtonColor(counter ? "red" : "");
     props.setColor(counter ? "RED" : "");
@@ -153,15 +145,15 @@ function Fairy(props) {
       UpdateHide(1, false);
       props.background(background_2);
     }
-
-    if (props.count >= Text.length) {
+   
+    if (props.count >= 20) {
       props.setCount(0);
       props.background(background_4);
       UpdateHide(1, false);
       UpdateHide(2, true);
       UpdateHide(3, true);
       sessionStorage.setItem("G2_StartGame", "true");
-    }
+  }
   }, [props.count]);
 
   function exit(index) {
@@ -185,6 +177,7 @@ function Fairy(props) {
     UpdateHide(0, false);
     props.hide(true);
     props.hide1(false);
+  
   }
 
   const [seconds, setSeconds] = useState(30);
@@ -270,7 +263,7 @@ function Fairy(props) {
     return () => clearInterval(interval);
   }, [seconds]);
 
-  function test() {
+  function identifier() {
     if (image == bomb) {
       props.die();
     }
@@ -515,7 +508,7 @@ function Fairy(props) {
               <button
                 id="game_2_icon"
                 style={{ top: top, left: left }}
-                onClick={test}
+                onClick={identifier}
               >
                 <img src={image} alt="" draggable="false" />
               </button>
