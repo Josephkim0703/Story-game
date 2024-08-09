@@ -103,17 +103,6 @@ function Game(props){
                 count={count} hide={setHide} hide1={setHide1} setButtonColor={setButtonColor}
                 setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}/>)}
         
-        
-
-
-
-
-
-
-
-
-
-
         {hide && <Textbox text={text} count={count} setCount={setCount}
                  hide={setHide} hide1={hide1} setHide1={setHide1}
                  color={color} setColor={setColor} bgColor={bgcolor} 

@@ -82,12 +82,12 @@ function Fairy(props) {
   useEffect(() => {
     const status = sessionStorage.getItem("G1_PlayerStatus");
     if (status === "false") {
-      props.setText(FailText);    
+      props.setText(FailText);
     } else {
-      props.setText(PassText);    
+      props.setText(PassText);
     }
     props.background(background);
-  },[]);
+  }, []);
 
   useEffect(() => {
     const update = sessionStorage.getItem("G2_StartGame");
@@ -101,8 +101,7 @@ function Fairy(props) {
     }
   }, []);
 
-  useEffect(() => { 
-  
+  useEffect(() => {
     const counter = props.count === 9 || props.count === 12;
     props.setButtonColor(counter ? "red" : "");
     props.setColor(counter ? "RED" : "");
@@ -145,7 +144,7 @@ function Fairy(props) {
       UpdateHide(1, false);
       props.background(background_2);
     }
-   
+
     if (props.count >= 20) {
       props.setCount(0);
       props.background(background_4);
@@ -153,7 +152,7 @@ function Fairy(props) {
       UpdateHide(2, true);
       UpdateHide(3, true);
       sessionStorage.setItem("G2_StartGame", "true");
-  }
+    }
   }, [props.count]);
 
   function exit(index) {
@@ -177,7 +176,6 @@ function Fairy(props) {
     UpdateHide(0, false);
     props.hide(true);
     props.hide1(false);
-  
   }
 
   const [seconds, setSeconds] = useState(30);
@@ -326,28 +324,28 @@ function Fairy(props) {
 
   useEffect(() => {
     const playerStatus = sessionStorage.getItem("G2_PlayerStatus");
-    if(playerStatus === "true"){
+    if (playerStatus === "true") {
       setCount(15);
       setPlayerStatus(true);
-    }else if(playerStatus === "false"){
-      setCount(0); 
-      setPlayerStatus(false);     
+    } else if (playerStatus === "false") {
+      setCount(0);
+      setPlayerStatus(false);
     }
 
     const DeathCount = sessionStorage.getItem("G2_DeathCount");
-    if(DeathCount === "true"){
+    if (DeathCount === "true") {
       setHasRun1(true);
-    }else{
+    } else {
       setHasRun1(false);
     }
 
     const LiveCount = sessionStorage.getItem("G2_LiveCount");
-    if(LiveCount === "true"){
+    if (LiveCount === "true") {
       setHasRun(true);
-    }else{
+    } else {
       setHasRun(false);
     }
-  },)
+  });
 
   function CurrentStatus() {
     sessionStorage.setItem("G2_FinishGame", true);
@@ -371,10 +369,10 @@ function Fairy(props) {
       setPlayerStatus(false);
       sessionStorage.setItem("G2_PlayerStatus", false);
       sessionStorage.setItem("G2_DeathCount", true);
-      if(!hasRun1 && !playerStatus) {
+      if (!hasRun1 && !playerStatus) {
         props.die();
         setHasRun1(true);
-      } 
+      }
     }
 
     setTimeout(() => {
@@ -392,7 +390,7 @@ function Fairy(props) {
 
   useEffect(() => {
     if (seconds <= 0) {
-      if(props.count === 1 && !hasRun && playerStatus) {
+      if (props.count === 1 && !hasRun && playerStatus) {
         props.live();
         setHasRun(true);
         sessionStorage.setItem("G2_LiveCount", true);
@@ -437,7 +435,7 @@ function Fairy(props) {
       setMouseY(e.clientY);
       UpdateHide(7, true);
       setTimeout(() => {
-      UpdateHide(7, false);
+        UpdateHide(7, false);
       }, 100);
     };
     document.addEventListener("mousedown", handleMouseClick);
