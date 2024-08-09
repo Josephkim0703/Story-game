@@ -14,7 +14,7 @@ function Intro(props) {
   const start = () => {
     setComplete(true);
     setDone(false);
-    localStorage.setItem("start", "true");
+    localStorage.setItem("IntroPage_Start", "true");
   };
 
   const videoChange = () => {
@@ -23,7 +23,7 @@ function Intro(props) {
   };
 
   useEffect(() => {
-    const updatePage = localStorage.getItem("start");
+    const updatePage = localStorage.getItem("IntroPage_Start");
 
     if (updatePage === "true") {
       setComplete(true);

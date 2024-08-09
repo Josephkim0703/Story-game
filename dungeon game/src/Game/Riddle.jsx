@@ -128,7 +128,6 @@ function Game1(props) {
   const nextSet = () => {
     setHide1(true);
     setDisplay("none");
-
     props.hide(true);
     props.background(alley);
   };
@@ -178,7 +177,7 @@ function Game1(props) {
                   props.setOpacity(1);
                   props.setVisibility("visible");
                   setTimeout(() => {
-                    localStorage.setItem("game_1_fin", "true");
+                    localStorage.setItem("G1_Complete", "true");
                     props.setCount(0);
                     props.finish(false);
                     props.setBlur("");
@@ -198,12 +197,12 @@ function Game1(props) {
   const incorrect = () => {
     nextLevel(deathText, setScript);
     props.die();
-    localStorage.setItem("status", false);
+    localStorage.setItem("G1_PlayerStatus", false);
   };
 
   const correct = () => {
     nextLevel(saveText, setScript);
-    localStorage.setItem("status", true);
+    localStorage.setItem("G1_PlayerStatus", true);
   };
 
   return (
@@ -280,7 +279,7 @@ function Game1(props) {
                   </div>
 
                   <div id="textBox_riddle" style={{ opacity: opacity3 }}>
-                    <img src={card} alt="" draggable="false"/>
+                    <img src={card} alt="" draggable="false" />
                     {riddle.map((line, index) => (
                       <p key={index}>{line}</p>
                     ))}

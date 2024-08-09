@@ -30,9 +30,11 @@ function Game(props){
       to savedHearts but if it isnt then it sets it to default array.
       then returns the the heart status from arrow function
     */
+
+    const [num, setNum] = useState(10);
     const [hearts, setHearts] = useState(() => {
-        const heartStatus = localStorage.getItem("heartStatus");
-        return heartStatus? JSON.parse(heartStatus) : Array(10).fill(true);
+        const heartStatus = localStorage.getItem("Player_HeartStatus");
+        return heartStatus? JSON.parse(heartStatus) : Array(num).fill(true);
     });
 
     function die(){
@@ -44,8 +46,23 @@ function Game(props){
         }     
     }
 
+    function live(){
+        const prevHeart = hearts.indexOf(false);
+        if (prevHeart !== true) {
+            const newArray = [...hearts];
+            newArray[prevHeart] = true;
+            setHearts(newArray);
+        }
+        else if(prevHeart !== false){
+            setNum(prevNum => prevNum + 1);
+            const newArray = [...hearts];
+            newArray[prevHeart + 1] = true;
+            setHearts(newArray);
+        }     
+    }
+
     useEffect(() => {
-        localStorage.setItem("heartStatus", JSON.stringify(hearts));
+        localStorage.setItem("Player_HeartStatus", JSON.stringify(hearts));
     }, [hearts]);
 
     function updateHide(index){
@@ -55,15 +72,7 @@ function Game(props){
     }
 
     useEffect(() => {
-        if(hearts == "[false,false,false,false,false,false,false,false,false,false]"){
-            localStorage.clear();
-        }else{
-            return;
-        }
-    }, [hearts]);
-
-    useEffect(() => {
-    const updatePage2 = localStorage.getItem("game_1_fin");
+    const updatePage2 = localStorage.getItem("G1_Complete");
     if (updatePage2 === "true") {
         sethide_game_1(false);
     }
@@ -90,11 +99,21 @@ function Game(props){
                setOpacity={props.opacity} setVisibility={props.visibility} finish={sethide_game_1}/>)}
 
         {hide_game[0] && 
-        (<Game2 setText={setText} die={die} background={setBackground} setCount={setCount}
+        (<Game2 setText={setText} die={die} live={live} background={setBackground} setCount={setCount}
                 count={count} hide={setHide} hide1={setHide1} setButtonColor={setButtonColor}
                 setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}/>)}
         
         
+
+
+
+
+
+
+
+
+
+
         {hide && <Textbox text={text} count={count} setCount={setCount}
                  hide={setHide} hide1={hide1} setHide1={setHide1}
                  color={color} setColor={setColor} bgColor={bgcolor} 

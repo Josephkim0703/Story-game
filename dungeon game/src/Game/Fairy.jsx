@@ -68,7 +68,7 @@ function Fairy(props) {
   const [hover, setHover] = useState(Array(3).fill(false));
   const [hide, setHide] = useState(Array(5).fill(false));
   const [opacity, setOpacity] = useState(0);
-  const [status, setStatus] = useState();
+  const [status, setStatus] = useState(null);
   const [Character, setCharacter] = useState();
 
   //takes previous state and then adds on new state and updates
@@ -79,21 +79,20 @@ function Fairy(props) {
       return newArray;
     });
   }
-  //bug default is fail text for some reason
 
   useEffect(() => {
-    const status = localStorage.getItem("status");
-    if (status === "false") {
+    const storedStatus = localStorage.getItem("G1_PlayerStatus");
+    if (storedStatus === "false") {
       setStatus(false);
-    } else {
+    } else if (storedStatus === "true") {
       setStatus(true);
     }
-  }, []);
+  }, ); 
 
   const Text = status ? PassText : FailText;
 
   useEffect(() => {
-    const update = localStorage.getItem("game_2_startGame");
+    const update = localStorage.getItem("G2_StartGame");
     if (update === "true") {
       UpdateHide(0, false);
       UpdateHide(1, false);
@@ -159,7 +158,7 @@ function Fairy(props) {
       UpdateHide(1, false);
       UpdateHide(2, true);
       UpdateHide(3, true);
-      localStorage.setItem("game_2_startGame", "true");
+      localStorage.setItem("G2_StartGame", "true");
     }
   }, [props.count]);
 
@@ -270,11 +269,11 @@ function Fairy(props) {
   }, [seconds]);
 
   function test() {
-    if (image == bomb) {  
+    if (image == bomb) {
       props.die();
     }
     if (image == Goblin_head) {
-      setCount((prevCount) => prevCount + 1); 
+      setCount((prevCount) => prevCount + 1);
     }
     if (image == lena_head) {
       props.die();
@@ -289,11 +288,11 @@ function Fairy(props) {
     }
   }, [seconds]);
 
-  const name = localStorage.getItem("name");
+  const name = localStorage.getItem("Player_Username");
 
   const win = [
     "...",
-    "Thank you so much for saving me! I hope you didn't take too much damage.",
+    "Thank you so much for saving me! I hope you didn't take too much damage. Let me heal you.",
     "I'm alright! What a day—first, I run into the Grim Reaper, and then a horde of goblins!",
     "And I haven't even started looking for Alexandria. Honestly, I don’t even know where I am.",
     "Wait, did you say Alexandria? I was heading there too, but that's when the goblins captured me.",
@@ -327,9 +326,27 @@ function Fairy(props) {
   const [endColor, setEndColor] = useState();
   const [endShadow, setEndShadow] = useState();
   const [endfade, setEndFade] = useState("0");
+  const [playerStatus, setPlayerStatus] = useState();
+  const [hasRun1, setHasRun1] = useState(false);
+
+  useEffect(() => {
+    const playerStatus = localStorage.getItem("G2_PlayerStatus");
+    if(playerStatus === "true"){
+      setPlayerStatus(true);
+    }else{
+      setPlayerStatus(false);      
+    }
+
+    const hasRun = localStorage.getItem("G2_HasRun");
+    if(hasRun === "true"){
+      setHasRun1(true);
+    }else{
+      setHasRun1(false);
+    }
+  },)
 
   function CurrentStatus() {
-    localStorage.setItem("Goblin_game", true);
+    localStorage.setItem("G2_FinishGame", true);
     UpdateHide(5, true);
     setTimeout(() => {
       setEndFade("1");
@@ -340,12 +357,21 @@ function Fairy(props) {
       setEndColor("white");
       setEndShadow("0px 0px 10px white");
       props.setText(win);
+      setPlayerStatus(true);
+      localStorage.setItem("G2_PlayerStatus", true);
     } else {
       setEndText("Escaped!");
       setEndColor("red");
       setEndShadow("0px 0px 10px red");
-      props.setText(lose);   
-      props.die();
+      props.setText(lose);
+      setPlayerStatus(false);
+      localStorage.setItem("G2_PlayerStatus", false);
+      localStorage.setItem("G2_HasRun", true);
+      if(!hasRun1 && !playerStatus) {
+        props.die();
+        setHasRun1(true);
+      }
+      
     }
 
     setTimeout(() => {
@@ -359,8 +385,14 @@ function Fairy(props) {
     }, 2500);
   }
 
+  const [hasRun, setHasRun] = useState(false);
+
   useEffect(() => {
     if (seconds <= 0) {
+      if(props.count === 1 && !hasRun && playerStatus) {
+        props.live();
+        setHasRun(true);
+      }
       if (
         props.count === 1 ||
         (props.count >= 4 && props.count <= 6) ||
@@ -391,26 +423,28 @@ function Fairy(props) {
       }
     }
   }, [props.count, seconds]);
- 
+
   const [mouseX, setMouseX] = useState();
   const [mouseY, setMouseY] = useState();
 
-  function handleEffect(){
+  function handleEffect() {
     const handleMouseClick = (e) => {
       setMouseX(e.clientX);
-      setMouseY(e.clientY);   
+      setMouseY(e.clientY);
       UpdateHide(7, true);
-      setTimeout(() => { UpdateHide(7, false)},100);
+      setTimeout(() => {
+      UpdateHide(7, false);
+      }, 100);
     };
     document.addEventListener("mousedown", handleMouseClick);
 
     return () => {
-      document.removeEventListener("mouseup", handleMouseClick);  
+      document.removeEventListener("mouseup", handleMouseClick);
     };
-  };
+  }
 
   useEffect(() => {
-    const update1 = localStorage.getItem("Goblin_game");
+    const update1 = localStorage.getItem("G2_FinishGame");
     if (update1 === "true") {
       UpdateHide(0, false);
       UpdateHide(1, false);
@@ -462,20 +496,26 @@ function Fairy(props) {
                 Good luck and stay nimble to survive the goblin onslaught!
               </p>
               <button type="start_game_2" onClick={start}>
-                <img src={button} alt="" draggable="false"/>
+                <img src={button} alt="" draggable="false" />
                 <h1>Start</h1>
               </button>
-              <img src={scroll} alt="" draggable="false"/>
+              <img src={scroll} alt="" draggable="false" />
             </div>
           )}
-          <div id="timer"><h1>Timer: {seconds}s</h1></div>
-          <div id="GoblinCount"><h1>Kills: {count}</h1></div>
+          <div id="timer">
+            <h1>Timer: {seconds}s</h1>
+          </div>
+          <div id="GoblinCount">
+            <h1>Kills: {count}</h1>
+          </div>
           {hide[4] && (
             <div id="gameboard">
-              <button id="game_2_icon"
+              <button
+                id="game_2_icon"
                 style={{ top: top, left: left }}
-                onClick={test}>
-                <img src={image} alt="" draggable="false"/>
+                onClick={test}
+              >
+                <img src={image} alt="" draggable="false" />
               </button>
             </div>
           )}
@@ -485,18 +525,24 @@ function Fairy(props) {
                 {endText}
               </h1>
             </div>
-          )};
+          )}
+          ;
           {hide[7] && (
             <>
-            <img src={hit_effect} alt="" id="game_2_hitEffect" style={{top: mouseY, left: mouseX}} draggable="false"/>
+              <img
+                src={hit_effect}
+                alt=""
+                id="game_2_hitEffect"
+                style={{ top: mouseY, left: mouseX }}
+                draggable="false"
+              />
             </>
           )}
         </div>
       )}
-     
       {hide[6] && (
         <div id="game_2_Char">
-          <img src={lena_full} alt="" draggable="false"/>
+          <img src={lena_full} alt="" draggable="false" />
         </div>
       )}
     </>
