@@ -458,8 +458,6 @@ function Fairy(props) {
     }
   }, []);
 
-  //if we lose all heatlh restart
-  //add background for zoom of goblin and fairy talking
   return (
     <>
       {hide[0] && (
