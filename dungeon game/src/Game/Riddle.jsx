@@ -202,6 +202,7 @@ function Game1(props) {
 
   const correct = () => {
     nextLevel(saveText, setScript);
+    props.live();
     sessionStorage.setItem("G1_PlayerStatus", true);
   };
 

@@ -38,7 +38,7 @@ function Game(props) {
 
   useEffect(() => {
     sessionStorage.setItem("Player_HeartStatus", JSON.stringify(hearts));
-  }, [hearts]);
+  }, [hearts, num]);
 
   function die() {
     const prevHeart = hearts.lastIndexOf(true);
@@ -55,11 +55,9 @@ function Game(props) {
       const newArray = [...hearts];
       newArray[prevHeart] = true;
       setHearts(newArray);
-    } else if (prevHeart !== false) {
+    } else {
       setNum((prevNum) => prevNum + 1);
-      const newArray = [...hearts];
-      newArray[prevHeart + 1] = true;
-      setHearts(newArray);
+      setHearts((prevHearts) => [...prevHearts, true]);
     }
   }
 
@@ -93,7 +91,7 @@ function Game(props) {
   return (
     <>
       {Game[0] && (
-        <Game1 die={die} finish={UpdateHide} background={setBackground}
+        <Game1 die={die} live={live} finish={UpdateHide} background={setBackground}
           hide={setHide} hide1={setHide1} hide2={setHide2} count={count} setCount={setCount}
           setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder} setButtonColor={setButtonColor}
           setBlur={setBlur} setOpacity={props.opacity} setVisibility={props.visibility} setText={setText}/>
