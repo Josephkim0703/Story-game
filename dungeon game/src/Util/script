@@ -1,68 +1,49 @@
 
-function rename(){
+            Character A: "How did you find out about the ruins most people think are just a fairy tale?"
 
+            Character B: "I overheard someone at a tavern talking about it."
 
+            Character A: "So, you don’t know anything about the ruins of Alexandria or why people are searching for it?"
 
-        return(
-            <h1>
-So how did you find out about the ruins most people only believe as a fairytail
+            Character B: "Not really."
 
-Um i just heard someone talking about it at a bar
+            Character A: "Every 5,000 years, an island rises from the sea, bringing chaos—disasters, famines, even a plague that wiped out millions.
+             its as if the world was cleansing itself
 
-wait so you know nothing about the ruins of alexnadria and why theres people searching for it
+            Character A: "A virus from the island made its way to the mainland, spreading like wildfire and causing millions to die. But this was no ordinary virus—it mutated its victims, 
+             turning them into savage, barbaric monsters. No race was safe, not even the powerful High Elves.
 
-um not really
+            Character A: "But the ones who saved us were none other than humans. You see, humans don’t have the organ to store or process mana, so they can’t use magic. But due to the virus, 
+             some humans, instead of mutating into monsters, evolved and gained supernatural abilities that surpassed magic.
 
-oh my god well let me tell you why you see every 5000 years a huge island emerge from the sea
-bringing choas with it narutral disaster which caused famines and wipes the planet clean its like
-the world is cleansing itself
+            Character A: "Magic is created by storing mana within oneself and using it as a sort of fuel."
 
-the worse thing that came out of the island was the death plaque
+            Character B: "Oh, so kind of like furnace the more coal you put in the more powerful the flame."
 
-what the death plaque was from the island??! 
+            Character A: Uh sure , but these humans, instead of storing the mana and outputting magic, it was as if their bodies produced the magic itself. It became a part of them.
 
-yes a virus from the island made it to mainland spreading like wild fire causes millions to die but this was no ordinary virus it 
-mutated the victims turning them into savage barbaric monsters no race was safe even the powerful high elves could not do anything
+            Character A "These humans are known as the Twelve Pillars. Their powers were passed down through generations, though not all the bloodlines survived, and only four of the Twelve are still known to be alive."
 
-but the people that saved us were non other then humans you see human dont have the organ that can store or process mana so human can not use
-magic but due to the virus some human instead of mutating into monster instead evolved and gain supernatural abilities surpassing magic
+            Character B: "Wait, so King Aurelian is one of those Twelve Pillars' descendants?"
 
-you see magic is created through storing mana inside one self and using is as a sort of fuel
+            Character A: "Yes, he is a descendant of one of them. But just because the virus was handled didn’t mean the disaster was over.
 
-oh so kind of like gun powder
+            Character A: "Before the world could be wiped out, one powerful High Elf mage, along with two of the Pillars, sacrificed themselves to seal the island and stop it 
+            from submerging back into the ocean so the cycle wouldn’t repeat itself.
 
-exactly but these humans instead of storeing the mana and outputting magic instead was like as if there body produced the magic itself
-its as if these powers were apart of them.
+            Character A: "The only way onto the island now is to find the teleportation circle left by the mage. Only one remains, and it’s said to be hidden deep in a dungeon filled with traps, ensuring no one can reach it.
 
-these human are known as the 12 pillars there powers passed though generations though not all the bloodlines survived and only 4
-of the 12 still are still known to be alive
+            Character A: "People rumor that the island brings such chaos because it’s protecting something priceless. Others say the mage isn’t dead but sealed it away and faked his death to keep the island to himself.
 
-wait so king Aine is one of those 12 pillar kids
+            Character A: "And to think you were going to search for Alexandria with no clue in the world—it's really funny."
 
-yes he is a descendant of one of them.
+            Character B: "That’s why I have you now, partner. So, where to?"
 
-but just cause the virus was handle did not mean the disaster was over 
+            Character A: "Well, from my research, the Plague first started in the southern region, in a small village near a huge canyon. That could be where the circle is."
+            that could be a good starting point.
 
-before the world could be wiped out 1 powerful high elf mages as well as 2 of the pillars sacrifaced themselves and sealed the island and stopped it from
-submerging into the ocean so the cycle doesnt repeat itself
+            Character B: "Wait, are you talking about Lyndrindell? That’s where I’m from! And now that you mention it, I remember there being a huge cave system I used to explore as a kid. That could be the dungeon."
 
-The only way onto the island is to find the teleportaion circle left by the mage only one remain
-and it is said its hidden deep in a dungeon filled with traps making sure no one can reach it
+            Character B: "To think the place I’m searching for was under my nose the entire time."
 
-people rumor that the reason the island bring such chaos is becuase its protecting somthing pricless on the island others say the mages isnt dead 
-but sealed it away and faked his death to keep the island to himself.
-
-and to think you were going to search for alexandira with no clue in the world is well really funny
-
-Thats why I have you now partner so where to well from my research the plaque first started in the southern region in a small village
-its located near a huge canyon that could be where the circle is.
-
-Wait are you talking about Lyrindell thats where I'm from and now that you speak of it I remeber there being a huge cave system i used
-to explore as a kid that could be the dungeon. 
-            </h1>
-
-        )
-        
-    
-
-}
+            Character A: "Don’t get too excited. We don’t know if Lyndrindell is the right place. It’s getting dark—let’s find a place to camp out."

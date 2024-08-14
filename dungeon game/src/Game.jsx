@@ -1,6 +1,7 @@
 import "./css/game.css";
-import Game1 from "./Game/Riddle.jsx";
-import Game2 from "./Game/Fairy.jsx";
+import Game0 from "./Game/Riddle.jsx";
+import Game1 from "./Game/Fairy.jsx";
+import Game2 from "./Game/Map.jsx";
 import Textbox from "./Util/Textbox.jsx";
 import HealthBar from "./Util/HealthBar.jsx";
 import { useState, useEffect } from "react";
@@ -76,6 +77,11 @@ function Game(props) {
     if (updatePage2 === "true") {
       UpdateHide(0, false);
     }
+
+    const updatePage3 = sessionStorage.getItem("G2_Complete");
+    if (updatePage3 === "true") {
+      UpdateHide(1, false);
+    }
   }, []);
 
   if (Game[0] === false) {
@@ -88,19 +94,27 @@ function Game(props) {
     }, 4000);
   }
 
+
+
   return (
     <>
       {Game[0] && (
-        <Game1 die={die} live={live} finish={UpdateHide} background={setBackground}
+        <Game0 die={die} live={live} finish={UpdateHide} background={setBackground}
           hide={setHide} hide1={setHide1} hide2={setHide2} count={count} setCount={setCount}
           setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder} setButtonColor={setButtonColor}
           setBlur={setBlur} setOpacity={props.opacity} setVisibility={props.visibility} setText={setText}/>
       )}
 
       {Game[1] && (
-        <Game2 setText={setText} die={die} live={live} background={setBackground}
-          setCount={setCount} count={count} hide={setHide} hide1={setHide1}
-          setButtonColor={setButtonColor} setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder} />
+        <Game1 setText={setText} die={die} live={live} background={setBackground}
+          setCount={setCount} count={count} hide={setHide} hide1={setHide1} finish={UpdateHide}
+          setButtonColor={setButtonColor} setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}/>
+      )}
+
+      {Game[2] && (
+       <Game2 setText={setText} die={die} live={live} background={setBackground}
+          setCount={setCount} count={count} hide={setHide} hide1={setHide1} finish={UpdateHide}
+          setButtonColor={setButtonColor} setColor={setColor} setBgcolor={setBgcolor} setBorder={setBorder}/>
       )}
 
       {hide && (

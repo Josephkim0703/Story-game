@@ -289,7 +289,7 @@ function Fairy(props) {
     "I'm alright! What a day—first, I run into the Grim Reaper, and then a horde of goblins!",
     "And I haven't even started looking for Alexandria. Honestly, I don’t even know where I am.",
     "Wait, did you say Alexandria? I was heading there too, but that's when the goblins captured me.",
-    "No one has been able to find the ruins since its first discovery over 3,000 years ago.",
+    "No one has been able to find any trace of the ruins for millenniums.",
     "How were you planning to find Alexandria, if you don’t mind me asking?",
     "...",
     "So, no plan at all, huh?",
@@ -305,7 +305,7 @@ function Fairy(props) {
     "Don't worry about it! I knew this Journey would be a tough one. But this is a bummer...",
     "And I haven't even started looking for Alexandria. Honestly, I don’t even know where I am.",
     "Wait, did you say Alexandria? I was heading there too, but that's when the goblins captured me.",
-    "No one has been able to find the ruins since its first discovery over 3,000 years ago.",
+    "No one has been able to find any trace of the ruins for millenniums.",
     "How were you planning to find Alexandria, if you don’t mind me asking?",
     "...",
     "So, no plan at all, huh?",
@@ -422,7 +422,9 @@ function Fairy(props) {
       if (props.count >= 13) {
         UpdateHide(6, false);
         UpdateHide(0, false);
-      }
+        sessionStorage.setItem("G2_Complete", true);  
+        props.finish(1, false);
+        props.setCount(0)}
     }
   }, [props.count, seconds]);
 
