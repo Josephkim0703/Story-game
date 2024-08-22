@@ -325,7 +325,8 @@ function Fairy(props) {
   useEffect(() => {
     const playerStatus = sessionStorage.getItem("G2_PlayerStatus");
     if (playerStatus === "true") {
-      setCount(15);
+      //once game resets it just makes count 15
+        setCount(15);   
       setPlayerStatus(true);
     } else if (playerStatus === "false") {
       setCount(0);
@@ -424,6 +425,7 @@ function Fairy(props) {
         UpdateHide(0, false);
         sessionStorage.setItem("G2_Complete", true);  
         props.finish(1, false);
+        props.finish(2, true);
         props.setCount(0)}
     }
   }, [props.count, seconds]);

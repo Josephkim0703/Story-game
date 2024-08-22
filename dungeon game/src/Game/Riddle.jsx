@@ -180,6 +180,7 @@ function Game1(props) {
                     sessionStorage.setItem("G1_Complete", "true");
                     props.setCount(0);
                     props.finish(0, false);
+                    props.finish(1, true);
                     props.setBlur("");
                     props.hide(true);
                     props.hide2(true);

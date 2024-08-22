@@ -76,24 +76,21 @@ function Game(props) {
     const updatePage2 = sessionStorage.getItem("G1_Complete");
     if (updatePage2 === "true") {
       UpdateHide(0, false);
+      UpdateHide(1, true);
     }
 
     const updatePage3 = sessionStorage.getItem("G2_Complete");
     if (updatePage3 === "true") {
       UpdateHide(1, false);
+      UpdateHide(2, true);
     }
   }, []);
-
-  if (Game[0] === false) {
-    setTimeout(() => {
-      UpdateHide(1, true);
-    });
-
-    setTimeout(() => {
-      props.visibility("");
-    }, 4000);
-  }
-
+  
+if (Game[0] === false) {
+  setTimeout(() => {
+    props.visibility("");
+  }, 4000);
+}
 
 
   return (
