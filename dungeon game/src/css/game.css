@@ -494,3 +494,13 @@
   z-index: 5;
   pointer-events: none;
 }
+
+#game_3_lena{
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: 20rem;
+  filter: brightness(0.5);
+}

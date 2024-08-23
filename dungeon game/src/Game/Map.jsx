@@ -2,11 +2,15 @@ import "../css/game.css";
 import "../css/index.css";
 import { useState, useEffect } from "react";
 
-import background1 from "../assets/Backgrounds/background_singletree.png";
+import lena from "../assets/Characters/lena.png";
+
+import background1 from "../assets/Backgrounds/background_forest_4.png";
 
 function Map(props) {
   const [hide, setHide] = useState(Array(5).fill(false));
   const [background, setBackground] = useState(background1);
+  const [filter, setFilter] = useState("");
+  const [width, setWidth] = useState("");
 
   const text = [
     "...",
@@ -46,6 +50,7 @@ function Map(props) {
     props.hide(true);
     props.setText(text);
     props.background(background);
+    UpdateHide(0, true);
   }, []);
 
   function UpdateHide(index, value) {
@@ -65,15 +70,31 @@ function Map(props) {
       props.setColor(counter ? "#1E90FF" : "");
       props.setBgcolor(counter ? "rgba(240,248,255, 0.85)" : "");
       props.setBorder(counter ? "2px solid #00BFFF" : "");
+      setFilter("brightness(1)");
+      setWidth("25rem");
     } else {
+      setFilter("");
+      setWidth("");
       props.setButtonColor();
       props.setColor();
       props.setBgcolor();
       props.setBorder();
     }
+
+    if(props.count >= 6){
+        UpdateHide(0, false);
+    }else{
+        UpdateHide(0, true);
+    }
   }, [props.count]);
 
-  return <></>;
+  return(
+    <>
+    {hide[0] && (
+        <img id="game_3_lena" src={lena} alt="" style={{filter: filter, width: width}}/>
+        )}
+    </>
+  )
 }
 
 export default Map;
