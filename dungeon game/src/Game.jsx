@@ -4,10 +4,10 @@ import Game1 from "./Game/Fairy.jsx";
 import Game2 from "./Game/Map.jsx";
 import Textbox from "./Util/Textbox.jsx";
 import HealthBar from "./Util/HealthBar.jsx";
+import EndCredit from "./Util/EndCredit.jsx";
 import { useState, useEffect } from "react";
 
 //add end scene when all hearts are lost
-//add gain health on riddle level
 //add new goblin or talking background
 
 function Game(props) {
@@ -52,7 +52,8 @@ function Game(props) {
 
   function live() {
     const prevHeart = hearts.indexOf(false);
-    if (prevHeart !== true) {
+    
+    if (prevHeart !== -1) { 
       const newArray = [...hearts];
       newArray[prevHeart] = true;
       setHearts(newArray);
