@@ -454,3 +454,34 @@ footer li {
     transform: translate(0) scale(2, 1) rotate(-50deg);
   }
 }
+
+@media only screen and (max-height: 835px){
+  main img {
+    top: 20rem;
+  }
+
+  main div {
+    top: 17rem;
+  }
+
+  main h1 {
+    top: 0px;
+  }
+
+  #start {
+    top: 39rem;
+  }
+
+  #rules {
+    top: 43.5rem;
+  }
+
+  #playerPrompts {
+    top: -3rem;
+  }
+
+  footer {
+    top: 94%;
+  }
+
+} 

@@ -297,7 +297,7 @@
 #Char_img {
   z-index: 1;
   position: absolute;
-  top: 50%;
+  top: 29.7rem;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -403,7 +403,7 @@
 
 #timer {
   position: absolute;
-  top: 5%;
+  top: 3rem;
   left: 10px;
   width: 10rem;
   border: 2px solid white;
@@ -415,7 +415,7 @@
 
 #GoblinCount {
   position: absolute;
-  top: 15%;
+  top: 9rem;
   left: 10px;
   width: 10rem;
   border: 2px solid white;
@@ -504,3 +504,64 @@
   width: 20rem;
   filter: brightness(0.5);
 }
+
+@media only screen and (max-height: 900px){
+  #game_textBox {
+    top: 37rem;
+  }
+
+  #textBox_riddle {
+    top: 8rem;
+  }
+
+  #textBox_riddle {
+    top: 9rem;
+  }
+  
+  #textBox_riddle p {
+    top: -2.5rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+  }
+  
+  #textBox_riddle img {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 4rem;
+    width: 35rem;
+  }
+  
+  #setup button {
+    margin: 0 21rem;
+  }
+  
+  #setup img {
+    width: 14rem;
+  }
+
+  #setup button:hover #Chalice1 {
+    width: 18rem;
+  }
+  
+  #setup button:hover #Chalice2 {
+    width: 18rem;
+  }
+
+  #Char_img {
+    top: 20.7rem;
+  }
+
+  #game_2_Char {
+    top: 34%;
+  }
+
+  #game_2_Char img {
+    width: 30rem;
+  }
+
+  #game_3_lena{
+    top: 38%;
+  }
+} 
+
