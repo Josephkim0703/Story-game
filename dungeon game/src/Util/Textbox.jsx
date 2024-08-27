@@ -40,6 +40,17 @@ function Textbox(props) {
     }
   };
 
+const [right, setRight] = useState("\u{1F802}"); // Use the Unicode character directly
+  const [left, setLeft] = useState("\u{1F800}"); // Use the Unicode character directly
+
+  useEffect(() => {
+    const platform = window.navigator.platform.toLowerCase();
+    if (platform.includes('mac')) {
+      setLeft("\u2190"); // Unicode for left arrow
+      setRight("\u2192"); // Unicode for right arrow
+    }
+  }, []);
+
   return (
     <>
       <div
@@ -54,7 +65,7 @@ function Textbox(props) {
               onClick={back}
               style={{ color: props.buttonColor }}
             >
-              <h2>&#129176;</h2>
+              <h2>{right}</h2>
             </button>
           )}
           <button
@@ -62,7 +73,7 @@ function Textbox(props) {
             onClick={forward}
             style={{ color: props.buttonColor }}
           >
-            <h2>&#129178;</h2>
+            <h2>{left}</h2>
           </button>
         </div>
       </div>
