@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
 function Arrows() {
-  const [right, setRight] = useState("\u{1F802}");
-  const [left, setLeft] = useState("\u{1F800}");
+  const [right, setRight] = useState("🢘");
+  const [left, setLeft] = useState("🢚");
 
   useEffect(() => {
     const platform = window.navigator.platform.toLowerCase();
