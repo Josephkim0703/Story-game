@@ -1,6 +1,7 @@
 import "../css/game.css";
 import "../css/index.css";
 import { useState, useEffect } from "react";
+import arrow from "../Util/Arrows.jsx";
 
 import background from "../assets/Backgrounds/background_forest.png";
 import background_2 from "../assets/Backgrounds/background_goblin.jpeg";
@@ -207,8 +208,8 @@ function Fairy(props) {
   const [count, setCount] = useState(0);
   const [image, setImage] = useState();
   const [ran, setRan] = useState();
-  const [top, setTop] = useState();
-  const [left, setLeft] = useState();
+  const [topPos, setTop] = useState();
+  const [leftPos, setLeft] = useState();
 
   useEffect(() => {
     const x = window.innerWidth - 200;
@@ -462,6 +463,8 @@ function Fairy(props) {
     }
   }, []);
 
+  const {left, right} = arrow();
+
   return (
     <>
       {hide[0] && (
@@ -472,7 +475,7 @@ function Fairy(props) {
             onMouseEnter={() => enter(1)}
             onMouseLeave={() => exit(1)}
           ></button>
-          <h2 style={style}>&#129178;</h2>
+          <h2 style={style}>{left}</h2>
         </div>
       )}
       {hide[1] && (
@@ -516,7 +519,7 @@ function Fairy(props) {
             <div id="gameboard">
               <button
                 id="game_2_icon"
-                style={{ top: top, left: left }}
+                style={{ top: topPos, left: leftPos }}
                 onClick={identifier}
               >
                 <img src={image} alt="" draggable="false" />

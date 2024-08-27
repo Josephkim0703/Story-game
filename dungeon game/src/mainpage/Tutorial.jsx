@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/mainpage.css";
+
+import arrow from "../Util/Arrows.jsx";
 import Thorn from "../assets/Characters/Thornwood.png";
 import Thorn1 from "../assets/Characters/thornwood_open.png";
 
@@ -109,6 +111,8 @@ function Tutorial(props) {
     color: hover ? "orange" : "",
   };
 
+  const {left, right } = arrow();
+
   return (
     <div id="playerPrompts">
       {hide2 && (
@@ -120,11 +124,11 @@ function Tutorial(props) {
               <div>
                 {hide1 && (
                   <button type="button" onClick={back}>
-                    <h2>&#129176;</h2>
+                    <h2>{right}</h2>
                   </button>
                 )}
                 <button type="button" onClick={forward}>
-                  <h2>&#129178;</h2>
+                  <h2>{left}</h2>
                 </button>
               </div>
             )}
@@ -152,7 +156,7 @@ function Tutorial(props) {
           onMouseEnter={enter}
           onMouseLeave={exit}
         ></button>
-        <h2 style={style}>&#129178;</h2>
+        <h2 style={style}>{left}</h2>
       </div>
     </div>
   );

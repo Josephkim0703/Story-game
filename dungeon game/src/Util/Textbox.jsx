@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/game.css";
+import arrow from "../Util/Arrows.jsx"
 
 function Textbox(props) {
   const text = props.text;
@@ -40,16 +41,7 @@ function Textbox(props) {
     }
   };
 
-const [right, setRight] = useState("\u{1F802}"); // Use the Unicode character directly
-  const [left, setLeft] = useState("\u{1F800}"); // Use the Unicode character directly
-
-  useEffect(() => {
-    const platform = window.navigator.platform.toLowerCase();
-    if (platform.includes('mac')) {
-      setLeft("\u2192"); // Unicode for left arrow
-      setRight("\u2190"); // Unicode for right arrow
-    }
-  }, []);
+  const { left, right } = arrow();
 
   return (
     <>

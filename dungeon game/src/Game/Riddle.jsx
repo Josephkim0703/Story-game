@@ -1,6 +1,8 @@
 import "../css/game.css";
 import "../css/index.css";
 import { useState, useEffect } from "react";
+import arrow from "../Util/Arrows.jsx";
+
 import background from "../assets/Backgrounds/background_town.png";
 import background_Char from "../assets/Backgrounds/background_town_1.png";
 import alley from "../assets/Backgrounds/background_alley.png";
@@ -207,6 +209,8 @@ function Game1(props) {
     sessionStorage.setItem("G1_PlayerStatus", true);
   };
 
+  const {left, right} = arrow();
+
   return (
     <>
       {hide && (
@@ -217,7 +221,7 @@ function Game1(props) {
             onMouseEnter={() => enter(1)}
             onMouseLeave={() => exit(1)}
           ></button>
-          <h2 style={style}>&#129178;</h2>
+          <h2 style={style}>{left}</h2>
         </div>
       )}
 
