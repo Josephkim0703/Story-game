@@ -46,8 +46,8 @@ const [right, setRight] = useState("\u{1F802}"); // Use the Unicode character di
   useEffect(() => {
     const platform = window.navigator.platform.toLowerCase();
     if (platform.includes('mac')) {
-      setLeft("\u2190"); // Unicode for left arrow
-      setRight("\u2192"); // Unicode for right arrow
+      setLeft("\u2192"); // Unicode for left arrow
+      setRight("\u2190"); // Unicode for right arrow
     }
   }, []);
 
